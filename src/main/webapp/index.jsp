@@ -34,8 +34,8 @@
         <option value="ویلایی">ویلایی</option>
     </select>
     <select name="dealType" form="searchForm">
-        <option value=0>رهن-اجاره</option>
-        <option value=1>خرید</option>
+        <option value=1>رهن-اجاره</option>
+        <option value=0>خرید</option>
     </select>
     <br><br>
     <form id = "searchForm" action="/Searcher" method="get">
@@ -57,8 +57,8 @@
         <option value="ویلایی">ویلایی</option>
     </select>
     <select name="dealType" form="registerForm">
-        <option value=0>رهن-اجاره</option>
-        <option value=1>خرید</option>
+        <option value=1>رهن-اجاره</option>
+        <option value=0>خرید</option>
     </select>
     <br><br>
     <form id="registerForm" action="/AddNewEstate"  method="get">

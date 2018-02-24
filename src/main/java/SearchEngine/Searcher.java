@@ -43,22 +43,23 @@ public class Searcher extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        out.println(result.size());
+        out.println("<table style=\"width:100%\" border=\"1\">");
         for (int i = 0; i < result.size(); i++){
-            out.println("<div>");
+            out.println("<tr>");
             if(result.get(i).getDealType() == DealType.rent){ //TODO: get it by enum
-                out.println("<p>قیمت پایه :" +result.get(i).getBasePrice()+"تومن<br>");
-                out.println("<p>قیمت اجاره :" +result.get(i).getBasePrice()+"تومن<br>");
+                out.println("<td>قیمت پایه :" +result.get(i).getBasePrice()+"تومن"+"</td>");
+                out.println("<td>قیمت اجاره :" +result.get(i).getBasePrice()+"تومن"+"</td>");
             }
             else
-               out.println("<p>قیمت :" +result.get(i).getSellPrice()+"تومن<br>");
-            out.println("<p>متراژ  :" +result.get(i).getArea()+"متر<br>");
-            out.println("<p>نوع قرارداد :" +result.get(i).getDealType()+"<br>");
-            out.println("<a href=\"/EstateDetail.jsp?id="+ result.get(i).getId()+ "\"اطلاعات بیشتر</a>");
+               out.println("<td>قیمت :" +result.get(i).getSellPrice()+"تومن"+"</td>");
+            out.println("<td>متراژ  :" +result.get(i).getArea()+"متر"+"</td>");
+            out.println("<td>نوع قرارداد :" +result.get(i).getDealType()+"</td>");
+            out.println("</tr>");
+            out.println("<tr><td><a href=\"/EstateDetail.jsp?id="+ result.get(i).getId()+ "\">اطلاعات بیشتر </a> </td> </tr>");
 
 //            out.println("<a href=\""++);
-            out.println("</div>");
         }
+        out.println("</table>");
     }
 
     public void destroy() {
@@ -108,7 +109,7 @@ public class Searcher extends HttpServlet {
             rentPrice = 0;
             basePrice = 0;
         }
-        if((sellPrice < price) && (area_ > area) && (buildingType.equals(buildingType_)) && (deal.equals(dealType)))
+        if((sellPrice < price) && (area_ > area) && (deal.equals(dealType)))
             return new Estate(id, area_, buildingType_, deal, sellPrice, rentPrice, basePrice);
         else
             return null;
