@@ -20,11 +20,10 @@
 </head>
 <body>
 <%
-    JSONObject x = JsonParser.getJSONResponse("http://acm.ut.ac.ir/khaneBeDoosh/house");
-    JSONArray y = x.getJSONArray("data");
+    JSONArray x = JsonParser.getJSONResponse("http://acm.ut.ac.ir/khaneBeDoosh/house");
 
 %>
-<p><%=y.length()%></p>
-<p><%=y%></p>
+<p><%=x.length()%></p>
+<p><%=x%></p>
 </body>
 </html>

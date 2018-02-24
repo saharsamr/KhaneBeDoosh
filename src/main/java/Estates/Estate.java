@@ -7,14 +7,14 @@ import Enums.*;
 public class Estate {
 
     public Estate (
-            int id, int area,
+            String id, int area,
             String buildingType,
             String address,
             String dealType,
             int ownerID
     )
     {
-        this.id = id;
+        this.id =  id;
         this.area = area;
         this.buildingType = buildingType;
         this.address = address;
@@ -23,6 +23,24 @@ public class Estate {
         else
             this.dealType = DealType.sell;
         this.ownerID = ownerID;
+    }
+
+    public Estate (
+            String id,
+            int area,
+            String buildingType,
+            DealType dealType,
+            int sellPrice,
+            int rentPrice,
+            int basePrice
+    )
+    {
+        this.area = area;
+        this.buildingType = buildingType;
+        this.dealType = dealType;
+        this.sellPrice = sellPrice;
+        this.rentPrice = rentPrice;
+        this.basePrice = basePrice;
     }
 
     public boolean hasConditions(String buildingType, DealType dealType, int price, int area){
@@ -59,7 +77,7 @@ public class Estate {
         return dealType;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -95,7 +113,7 @@ public class Estate {
         this.description = description;
     }
 
-    private int id;
+    private String id;
     private int area;
     private String buildingType;
     private String address;

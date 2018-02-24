@@ -28,22 +28,6 @@
     }
 %>
 <div class="searchForm" align="center">
-    <form action="/Searcher" method="get">
-        <input name="area" type="text" value="حداقل متراژ" id="myBtn">
-        <input name="buildingType" type="text" value="نوع ملک">
-
-        <br><br>
-
-        <input name="dealType" type="text" value="نوع قرارداد">
-        <input name="price" type="text" value="حداکثر قیمت">
-
-        <br><br>
-
-        <input type="submit" value="جست و جو">
-    </form>
-</div>
-
-<div align="center">
     <select name="buildingType" form="searchForm">
         <option value="آپارتمان">آپارتمان</option>
         <option value="ویلایی">ویلایی</option>
@@ -53,13 +37,33 @@
         <option value="خرید">خرید</option>
     </select>
     <br><br>
-    <form id="searchForm" action="/AddNewEstate"  method="get">
-        <%--<input name="buildingType" type="text" value="نوع ساختمان">--%>
-        <input name="area" type="text" value="متراژ">
+    <form id = "searchForm" action="/Searcher" method="get">
+        <input name="area" type="text" value="حداقل متراژ" id="myBtn">
 
         <br><br>
 
-        <%--<input name="dealType" type="text" value="نوع قرارداد">--%>
+        <input name="price" type="text" value="حداکثر قیمت">
+
+        <br><br>
+
+        <input type="submit" value="جست و جو">
+    </form>
+</div>
+
+<div align="center">
+    <select name="buildingType" form="registerForm">
+        <option value="آپارتمان">آپارتمان</option>
+        <option value="ویلایی">ویلایی</option>
+    </select>
+    <select name="dealType" form="registerForm">
+        <option value="رهن-اجاره">رهن-اجاره</option>
+        <option value="خرید">خرید</option>
+    </select>
+    <br><br>
+    <form id="registerForm" action="/AddNewEstate"  method="get">
+        <input name="area" type="text" value="متراژ">
+
+        <br><br>
         <input name="sellPrice" type="text" value="قیمت فروش">
 
         <br><br>

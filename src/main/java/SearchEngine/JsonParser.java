@@ -7,7 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class JsonParser {
-    public static JSONObject getJSONResponse (String url_) throws Exception{
+    public static JSONArray getJSONResponse (String url_) throws Exception{
         URL url = new URL(url_);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
@@ -17,6 +17,6 @@ public class JsonParser {
         while((line = response.readLine()) != null)
             result.append(line);
         response.close();
-        return new JSONObject(result.toString());
+        return new JSONObject(result.toString()).getJSONArray("data");
     }
 }
