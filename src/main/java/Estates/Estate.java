@@ -43,6 +43,8 @@ public class Estate {
         this.basePrice = basePrice;
     }
 
+    public Estate(){}
+
     public boolean hasConditions(String buildingType, DealType dealType, int price, int area){
         if (this.area == area && this.buildingType == buildingType && this.dealType == dealType){
             if (dealType == DealType.rent)
