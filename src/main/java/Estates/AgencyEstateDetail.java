@@ -19,6 +19,9 @@ public class AgencyEstateDetail extends HttpServlet {
 
     public void doGet (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id").toString();
 
         JSONObject jsonEstateData = new JSONObject();
@@ -31,17 +34,15 @@ public class AgencyEstateDetail extends HttpServlet {
         String description = jsonEstateData.get("description").toString();
         String imageLink = jsonEstateData.get("imageURL").toString();
         String address = jsonEstateData.get("address").toString();
-        String priceString = jsonEstateData.get("price").toString();
-        System.out.println(priceString);
-        JSONObject price = new JSONObject( "{" + priceString + "}");
+        JSONObject price = jsonEstateData.getJSONObject("price");
         DealType dealType;
-        if(dealTypeString == "1")
+        if(dealTypeString.equals("1"))
             dealType = DealType.rent;
         else
             dealType = DealType.sell;
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("<table>");
+        out.println("<table border = \"1\">");
         out.println("<tr>");
         out.println("<td>نوع ساختمان:"+buildingType+"</td>");
         out.println("<td>متراژ:"+area+"</td>");
@@ -56,6 +57,8 @@ public class AgencyEstateDetail extends HttpServlet {
         out.println("<td>آدرس:"+address+"</td>");
         out.println("<td>توضیحات:"+description+"</td>");
         out.println("<td>"+ "<a href=\"" + imageLink + "\"> لینک عکس: </a>" +"</td>");
+        out.println("<td><input type=\"submit\" value=\"شماره تلفن\"></td>");
+        out.println("</table>");
     }
 
     public void destroy() {
