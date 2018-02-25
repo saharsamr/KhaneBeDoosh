@@ -35,6 +35,7 @@ public class Estate {
             int basePrice
     )
     {
+        this.id = id;
         this.area = area;
         this.buildingType = buildingType;
         this.dealType = dealType;

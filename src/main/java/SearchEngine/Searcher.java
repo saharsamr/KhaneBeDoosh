@@ -55,7 +55,7 @@ public class Searcher extends HttpServlet {
             out.println("<td>متراژ  :" +result.get(i).getArea()+"متر"+"</td>");
             out.println("<td>نوع قرارداد :" +result.get(i).getDealType()+"</td>");
             out.println("</tr>");
-            out.println("<tr><td><a href=\"/EstateDetail.jsp?id="+ result.get(i).getId()+ "\">اطلاعات بیشتر </a> </td> </tr>");
+            out.println("<tr><td><a href=\"/AgencyEstateDetail?id="+ result.get(i).getId()+ "\">اطلاعات بیشتر </a> </td> </tr>");
 
 //            out.println("<a href=\""++);
         }
@@ -77,7 +77,7 @@ public class Searcher extends HttpServlet {
     }
 
     public static ArrayList<Estate> findAgencyEstates (String buildingType, DealType dealType_, int price_, int area_) throws Exception{
-        JSONArray estatesList = JsonParser.getJSONResponse("http://acm.ut.ac.ir/khaneBeDoosh/house");
+        JSONArray estatesList = JsonParser.getJSONResponse("http://acm.ut.ac.ir/khaneBeDoosh/house").getJSONArray("data");
         ArrayList<Estate> result = new ArrayList<Estate>();
         Estate temp = new Estate();
         System.out.println(estatesList.length());
