@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Dosis:300,400);
 *{
     direction: rtl;
+    font-family: Shabnam;
 }
 
 body {
@@ -66,7 +67,7 @@ img.logoImg{
 .logoName{
     color: rgb(46, 208, 203);
     font-size: 20px;
-    width: 100px;
+    width: 150px;
     margin: 25px;
     font-weight: bold;
 }
