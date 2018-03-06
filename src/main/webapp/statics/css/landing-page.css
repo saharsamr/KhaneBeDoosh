@@ -1,0 +1,313 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis:300,400);
+*{
+  direction: rtl;
+}
+
+body {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  direction: rtl;
+}
+
+header.masthead {
+  position: relative;
+  background-color: #343a40;
+  background: url("../img/bg-masthead.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
+div.mainDiv {
+  height: 50px;
+  width: 50px;
+}
+
+header.masthead h1 {
+  font-size: 2rem;
+}
+
+@media (min-width: 768px) {
+  header.masthead {
+    padding-top: 12rem;
+    padding-bottom: 12rem;
+  }
+  header.masthead h1 {
+    font-size: 3rem;
+  }
+}
+
+.showcase .showcase-text {
+  padding: 3rem;
+}
+
+.showcase .showcase-img {
+  min-height: 30rem;
+  background-size: cover;
+}
+
+@media (min-width: 768px) {
+  .showcase .showcase-text {
+    padding: 7rem;
+  }
+}
+
+.features-icons {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.features-icons .features-icons-item {
+  max-width: 20rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon {
+  height: 7rem;
+}
+
+.features-icons .features-icons-item .features-icons-icon i {
+  font-size: 4.5rem;
+}
+
+.features-icons .features-icons-item:hover .features-icons-icon i {
+  font-size: 5rem;
+}
+
+.testimonials {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.testimonials .testimonial-item {
+  max-width: 18rem;
+}
+
+.testimonials .testimonial-item img {
+  max-width: 12rem;
+  box-shadow: 0px 5px 5px 0px #adb5bd;
+}
+
+.call-to-action {
+  position: relative;
+  background-color: #343a40;
+  background: url("../img/bg-masthead.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.call-to-action .overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+footer{
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  width:100%;
+  background-color: #1b6d85;
+}
+.main-text
+{
+  position: absolute;
+  top: 50px;
+  width: 96.66666666666666%;
+  color: #0a0a0a;
+}
+.overlay{
+  position: absolute;
+}
+.fa.fa-check-circle{
+  color: #8b5c92;
+}
+.checkIcon {
+  font-size: 60px;
+  color: gold;
+}
+
+.container.whyHome{
+    padding-top: 50px;
+    height: 500px;
+}
+
+.row.searchHomeForm{
+  height: 200px;
+  padding: 10px;
+  background-color: ActiveBorder;
+}
+
+img.logoImg{
+  height: 75px;
+  width: 75px;
+}
+
+.logoName{
+  color: rgb(46, 208, 203);
+  font-size: 20px;
+  width: 100px;
+  margin: 25px;
+  font-weight: bold;
+}
+
+div.centered {
+  position: absolute;
+  color: rgb(46, 208, 203);
+  top: 25%;
+  left: 80%;
+  font-size: 30px;
+  transform: translate(-25%, -25%);
+}
+
+div.row.repeatImg{
+  background-image: url("../img/geometry2.png");
+  width: 100%;
+  height: 100px;
+  position: relative;
+  margin-top: -8px;
+}
+
+div.row.addMoney {
+  margin: 50px;
+}
+button.btn.btn-addMoney{
+  background-color: rgb(46, 208, 203);
+}
+
+.social-icon {
+  color: #fff;
+}
+ul.social-icons {
+  margin-top: 10px;
+}
+.social-icons li {
+  vertical-align: top;
+  display: inline;
+  height: 100px;
+}
+.social-icons a {
+  color: #fff;
+  text-decoration: none;
+}
+.fa-telegram {
+  padding:10px 14px;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition: .5s;
+  background-color: #1b6d85;
+}
+.fa-telegram:hover {
+  background-color: #2CA5E0;
+}
+.fa-twitter {
+  padding:10px 12px;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition: .5s;
+  background-color: #1b6d85;
+}
+.fa-twitter:hover {
+  background-color: #00aced;
+}
+
+.fa-instagram {
+  padding:10px 12px;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition: .5s;
+  background-color: #1b6d85;
+}
+.fa-instagram:hover {
+  background: #f09433;
+  background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+;
+}
+
+.rtol{
+  text-align: right;
+  padding-top: 10px;
+}
+
+.shadow-box {
+  -webkit-box-shadow: 0px -8px 40px 0px rgba(125,125,125,0.99);
+  box-shadow: 0px -8px 40px 0px rgba(125,125,125,0.99);
+}
+
+button.userInfo-btn{
+  border: none;
+  color: #6f42c1;
+  font-size: medium;
+}
+
+.userInfo-btn:hover{
+  background-color: #ffffff;
+}
+
+.userInfo-btn .userInfoBox-hover{
+  visibility: hidden;
+  width: 200px;
+  height: 150%;
+  background-color: #f2f2f2;
+  color: #000000;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.userInfo-btn:hover .userInfoBox-hover{
+  visibility: visible;
+  margin-left: -550px;
+}
+
+
+a.a-addMoney{
+  background-color: rgb(46, 208, 203);
+  color: #000000;
+  height: 30%;
+  margin-top: 25px;
+  padding: 5px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+}
