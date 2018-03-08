@@ -40,10 +40,6 @@ img.logoImg{
     white-space: nowrap;
 }
 
-button.btn.btn-addMoney{
-    background-color: rgb(46, 208, 203);
-}
-
 button.userInfo-btn{
     border: none;
     color: #6f42c1;
@@ -114,4 +110,29 @@ a.a-addMoney{
     text-align: right;
     padding: 6em;
     font-weight: bold;
+}
+
+
+footer{
+    position:relative;
+    left:0px;
+    bottom:0px;
+    width:100%;
+    background-color: #1b6d85;
+}
+
+
+
+.lables{
+    color: #999999;
+    text-align: center;
+    padding: 1.250em;
+    /*font-weight: bold;*/
+    white-space: nowrap;
+}
+
+.unit{
+    color: #999999;
+    text-align: right;
+    white-space: nowrap;
 }

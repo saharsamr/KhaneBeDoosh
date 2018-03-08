@@ -24,12 +24,15 @@ h6 {
 img{
     max-width: 100%;
 }
-footer{
-    position:relative;
-    left:0px;
-    bottom:0px;
-    width:100%;
-    background-color: #1b6d85;
+
+#balanceValMargin {
+    margin-right: 100px;
+}
+
+
+button.btn.btn-addMoney{
+    background-color: rgb(46, 208, 203);
+    color: white;
 }
 
 div.top-right-25 {
