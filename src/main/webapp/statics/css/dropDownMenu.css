@@ -1,0 +1,78 @@
+.userName{
+    color: black;
+    text-align: right;
+    white-space: nowrap;
+    padding-bottom: 10px;
+}
+
+.balancelable{
+    color: #999999;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.balanceValue{
+    color: #999999;
+    text-align: left;
+    white-space: nowrap;
+}
+
+button.btn.btn-addMoney{
+    background-color: rgb(46, 208, 203);
+}
+
+button.userInfo-btn{
+    border: none;
+    color: #6f42c1;
+    font-size: medium;
+}
+
+.userInfo-btn:hover{
+    background-color: #ffffff;
+}
+
+.dropdownBox {
+    background-color: white;
+    border-bottom-left-radius: 0.625em;
+    border-bottom-right-radius: 0.625em;
+    border-top-right-radius: 0.625em;
+    border-top-left-radius: 0em;
+    margin-top: 3em;
+    padding: 1.5em;
+    width: 200px;
+    box-shadow: 0px 20px 40px rgba(0,0,0,0.1);
+}
+
+.userInfo-btn .userInfoBox-hover{
+    position: absolute;
+    visibility: hidden;
+    width: 200px;
+    height: 150%;
+    color: #000000;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.userInfo-btn:hover .userInfoBox-hover{
+    position: absolute;
+    visibility: visible;
+    margin-left: -50%;
+}
+
+
+a.a-addMoney{
+    background-color: rgb(46, 208, 203);
+    color: white;
+    height: 30%;
+    margin-top: 25px;
+    padding: 5px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+}
