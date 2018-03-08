@@ -1,3 +1,26 @@
+.navBar{
+    background-color: white;
+    height: 70px;
+}
+
+img.logoImg{
+    height: 50px;
+    width: 50px;
+    margin: 20px;
+}
+
+.spacer {
+    height: 80px;
+}
+
+.logoName{
+    color: rgb(46, 208, 203);
+    font-size: 20px;
+    /*width: 150px;*/
+    margin-top: 30px;
+    font-weight: bold;
+}
+
 .userName{
     color: black;
     text-align: right;
@@ -75,4 +98,20 @@ a.a-addMoney{
     text-decoration: none;
     display: inline-block;
     border-radius: 5px;
+}
+
+.pageHeader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100px;
+    background-image: url("../img/geometry2.png")
+}
+
+.pageHeaderText {
+    color: #3AD2CB;
+    font-size: 2em;
+    text-align: right;
+    padding: 6em;
+    font-weight: bold;
 }
