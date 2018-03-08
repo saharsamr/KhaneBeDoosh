@@ -19,9 +19,15 @@ h6 {
 
 img{
     max-width: 100%;
-    height: auto;
 }
 
+footer{
+    position:relative;
+    left:0px;
+    bottom:0px;
+    width:100%;
+    background-color: #1b6d85;
+}
 .main-text
 {
     position: absolute;
@@ -40,16 +46,12 @@ img{
     color: gold;
 }
 
-.container.whyHome{
-    padding-top: 50px;
-    height: 500px;
-}
 
 .searchHomeForm{
     height: 100%;
     width: 80%;
     padding: 10px;
-    margin-left: 100px;
+    margin-left: 10%;
     background-color: rgba(0,0,0,.3);
     border-radius: 10px;
     margin-bottom: 20px;
@@ -61,9 +63,10 @@ form.form_{
 }
 
 img.logoImg{
-    height: 75px;
-    width: 75px;
+    height: 60%;
+    width: 50%;
 }
+
 div.trans{
     position: absolute;
     height:200px;
@@ -89,14 +92,6 @@ div.centered {
     transform: translate(-25%, -25%);
 }
 
-footer{
-    position:relative;
-    left:0px;
-    bottom:0px;
-    width:100%;
-    background-color: #1b6d85;
-}
-
 .fa.fa-check-circle{
     color: #8b5c92;
 }
@@ -106,8 +101,8 @@ footer{
 }
 
 .container.whyHome{
-    padding-top: 50px;
-    height: 500px;
+    padding: 50px 0px 50px 0px;
+    max-height: 100%;
 }
 
 .social-icon {
@@ -184,28 +179,23 @@ ul.social-icons {
 .margin10{
     margin: 10px;
 }
-.colory{
-    background-color: #d3232b;
-}
-.w100{
-    width: 100%;
-}
 
 .infoBox{
     padding: 20px;
-    margin: 25px;
+    margin: 2%;
     position: relative;
     align-items: center;
-    height: 250px;
+    max-height: 100%;
     width: 20%;
-    margin-top: 580px;
     border-radius: 10px;
     background-color: white;
     -webkit-box-shadow: 0px 0px 110px -22px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 110px -22px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 110px -22px rgba(0,0,0,0.75);
 }
-
+.KBDfeatureBox-md{
+    margin-top: 50%;
+}
 .transparent{
     background-color: rgba(0,0,0,0);
 }
@@ -218,10 +208,32 @@ ul.social-icons {
     border-radius: 10px;
 }
 
-
-@media only screen and (max-width: 480px) {
+.w-md-25{
+    width: 25%;
+    height: 25%;
+}
+@media only screen and (max-width: 768px) {
     /* For mobile phones: */
     [class*="col-"] {
         width: 100%;
     }
+    h1{
+        font-size: 80%;
+    }
+    .w-xs-100{
+        width: 100%;
+        height: 100%;
+    }
+    .KBDfeatureBox-xs{
+        margin-top: 250%;
+    }
+    .hidden-xs{
+        visibility: hidden;
+        margin-top: -100px;
+    }
+}
+
+.colory{
+    background-color: yellow;
+    margin: 10px;
 }

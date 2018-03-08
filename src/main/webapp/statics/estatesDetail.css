@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   height: 130px;
-  background-image: url("img\\geometry2.png")
+  background-image: url("img/geometry2.png")
 }
 
 .searchResultTable {
@@ -95,11 +95,6 @@
   background-color: #5B539D;
 }
 
-
-
-
-
-
 .searchHomeForm{
   height: 100%;
   width: 80%;
@@ -113,12 +108,11 @@
 .txtAlignL{
     text-align: left;
 }
-.txtAlignR{
-    text-align: right;
-}
+
 .margin10{
     margin: 10px;
 }
+
 form.form_{
     width: 170%;
     margin-right: -100px;

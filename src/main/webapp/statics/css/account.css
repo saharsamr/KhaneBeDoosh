@@ -54,7 +54,7 @@ div.top-right-25 {
     transform: translate(-25%, -25%);
 }
 
-div.row.repeatImg{
+div.row.backgroundImg{
     background-image: url("../img/geometry2.png");
     width: 100%;
     height: 100px;
@@ -62,9 +62,6 @@ div.row.repeatImg{
     margin-top: -8px;
 }
 
-.margin-md-50{
-    margin: 50px;
-}
 button.btn.btn-addMoney{
     background-color: rgb(46, 208, 203);
 }
@@ -208,8 +205,10 @@ ul.social-icons {
     }
 }
 
-.colory{background-color: yellow;}
-
 .padding-10{
     padding-top: 10px;
+}
+
+.margin-md-50{
+    margin: 50px;
 }
