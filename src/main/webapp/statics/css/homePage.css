@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Dosis:300,400);
 *{
-    direction: rtl;
     font-family: Shabnam;
 }
 
@@ -14,9 +13,83 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: Shabnam, 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: 700;
-    direction: rtl;
+}
+
+
+.main-text
+{
+    position: absolute;
+    top: 50px;
+    width: 96.66666666666666%;
+    color: #0a0a0a;
+}
+.overlay{
+    position: absolute;
+}
+.fa.fa-check-circle{
+    color: #8b5c92;
+}
+.checkIcon {
+    font-size: 60px;
+    color: gold;
+}
+
+.container.whyHome{
+    padding-top: 50px;
+    height: 500px;
+}
+
+.searchHomeForm{
+    height: 100%;
+    width: 80%;
+    padding: 10px;
+    margin-left: 100px;
+    background-color: rgba(0,0,0,.3);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.center_{
+    text-align: center;
+    vertical-align: middle;
+    horiz-align: center;
+}
+.center_2{
+    position: relative;
+}
+form.form_{
+    width: 170%;
+    margin-left: -35%;
+}
+
+img.logoImg{
+    height: 75px;
+    width: 75px;
+}
+div.trans{
+    position: absolute;
+    height:200px;
+    width: 500px;
+    opacity: 0.5;
+    background-color: gray;
+    border-radius: 10px;
+}
+.logoName{
+    color: rgb(46, 208, 203);
+    font-size: 20px;
+    width: 100px;
+    margin: 25px;
+    font-weight: bold;
+}
+
+div.centered {
+    position: absolute;
+    color: rgb(46, 208, 203);
+    top: 25%;
+    left: 80%;
+    font-size: 30px;
+    transform: translate(-25%, -25%);
 }
 
 footer{
@@ -39,106 +112,6 @@ footer{
     padding-top: 50px;
     height: 500px;
 }
-
-.row.searchHomeForm{
-    height: 200px;
-    padding: 10px;
-    background-color: ActiveBorder;
-}
-
-img.logoImg{
-    height: 75px;
-    width: 75px;
-}
-
-.logoName{
-    color: rgb(46, 208, 203);
-    font-size: 20px;
-    width: 150px;
-    margin: 25px;
-    font-weight: bold;
-}
-
-div.centered {
-    position: absolute;
-    color: rgb(46, 208, 203);
-    top: 25%;
-    left: 80%;
-    font-size: 30px;
-    transform: translate(-25%, -25%);
-}
-
-div.row.repeatImg{
-    background-image: url("../img/geometry2.png");
-    width: 100%;
-    height: 100px;
-    position: relative;
-    margin-top: -8px;
-}
-
-div.row.addMoney {
-    margin: 50px;
-}
-button.btn.btn-addMoney{
-    background-color: rgb(46, 208, 203);
-}
-
-.rtol{
-    text-align: right;
-    padding-top: 10px;
-}
-
-.shadow-box {
-    -webkit-box-shadow: 0px -8px 40px 0px rgba(125,125,125,0.99);
-    box-shadow: 0px -8px 40px 0px rgba(125,125,125,0.99);
-}
-
-button.userInfo-btn{
-    border: none;
-    color: #6f42c1;
-    font-size: medium;
-}
-
-.userInfo-btn:hover{
-    background-color: #ffffff;
-}
-
-.userInfo-btn .userInfoBox-hover{
-    visibility: hidden;
-    width: 200px;
-    height: 150%;
-    background-color: #f2f2f2;
-    color: #000000;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    top: 100%;
-    left: 50%;
-    margin-left: -60px;
-}
-
-.userInfo-btn:hover .userInfoBox-hover{
-    visibility: visible;
-    margin-left: -550px;
-}
-
-
-a.a-addMoney{
-    background-color: rgb(46, 208, 203);
-    color: #000000;
-    height: 30%;
-    margin-top: 25px;
-    padding: 5px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 5px;
-}
-
 
 .social-icon {
     color: #fff;
@@ -196,4 +169,47 @@ ul.social-icons {
     background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
 ;
+}
+
+.alignR{
+    direction: rtl;
+}
+.alignL{
+    direction: ltr;
+}
+
+.txtAlignL{
+    text-align: left;
+}
+.txtAlignR{
+    text-align: right;
+}
+.margin10{
+    margin: 10px;
+}
+.colory{
+    background-color: #d3232b;
+}
+.w100{
+    width: 100%;
+}
+
+.infoBox{
+    padding: 20px;
+    margin: 25px;
+    position: relative;
+    align-items: center;
+    height: 250px;
+    width: 20%;
+    margin-top: 580px;
+    border-radius: 10px;
+    background-color: white;
+    -webkit-box-shadow: 0px 0px 110px -22px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 110px -22px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 110px -22px rgba(0,0,0,0.75);
+}
+
+.centerContent{
+    justify-content: center;
+
 }
