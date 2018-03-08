@@ -213,3 +213,15 @@ ul.social-icons {
     justify-content: center;
 
 }
+
+.transparent{
+    background-color: rgba(0,0,0,0);
+}
+.text-white{
+    color: white;
+}
+
+.border-white{
+    border-color: white;
+    border-radius: 10px;
+}
