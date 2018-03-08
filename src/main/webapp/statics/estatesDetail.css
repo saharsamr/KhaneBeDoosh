@@ -1,0 +1,125 @@
+.searchResultHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 130px;
+  background-image: url("img\\geometry2.png")
+}
+
+.searchResultTable {
+  width: 100%;
+  margin: 0.6250em;
+  text-align: right;
+  font-size: 1em;
+  white-space: nowrap;
+}
+
+.lables{
+  color: #999999;
+  text-align: center;
+  padding: 1.250em;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+#searchResultHeaderText {
+  color: #3AD2CB;
+  font-size: 2em;
+  text-align: right;
+  padding: 3em;
+  font-weight: bold;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 60%;
+  object-fit: fill;
+  border-top-left-radius: 0.625em;
+  border-top-right-radius: 0.625em;
+}
+
+
+.card {
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1.250em;
+  position: relative;
+  width: 20em;
+  height: 22em;
+  border-radius: 0.6250em;
+  box-shadow: 0px 20px 40px rgba(0,0,0,0.1);
+  transition: all 1s ease;
+}
+
+.card:hover{
+  box-shadow: 0px 2px 80px rgba(0,0,0,0.1);
+  background-color: #999999;
+}
+
+.card-body {
+  justify-items: center;
+  -webkit-box-flex:1;
+  -ms-flex:1 1 auto;
+  flex:1 1 auto;
+  padding:1.25rem
+}
+
+.searchResult {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2.5em;
+  justify-content: center;
+  flex-direction: row;
+}
+
+
+.delTypeLable {
+  text-align: center;
+  width: 5.5em;
+  position: absolute;
+  top: 0.625em;
+  left: 0.625em;
+  color: white;
+  border-radius: 0.4em;
+  margin: 0.4em;
+  float: left;
+  padding: 0.4em;
+}
+.rentLable{
+    background-color: #F45B69;
+}
+
+.sellLable {
+  background-color: #5B539D;
+}
+
+
+
+
+
+
+.searchHomeForm{
+  height: 100%;
+  width: 80%;
+  padding: 10px;
+  margin-right: 100px;
+  background-color: rgba(0,0,0,.3);
+  border-radius: 10px;
+  margin-bottom: 20px;
+
+}
+.txtAlignL{
+    text-align: left;
+}
+.txtAlignR{
+    text-align: right;
+}
+.margin10{
+    margin: 10px;
+}
+form.form_{
+    width: 170%;
+    margin-right: -100px;
+}
