@@ -12,6 +12,7 @@
   text-align: right;
   font-size: 1em;
   white-space: nowrap;
+    margin-right: 1.5em;
 }
 
 .lables{
@@ -78,7 +79,7 @@
 
 .delTypeLable {
   text-align: center;
-  width: 5.5em;
+  /*width: 5.5em;*/
   position: absolute;
   top: 0.625em;
   left: 0.625em;
@@ -86,7 +87,10 @@
   border-radius: 0.4em;
   margin: 0.4em;
   float: left;
-  padding: 0.4em;
+  padding-right: 1.5em;
+    padding-left: 1.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 .rentLable{
     background-color: #F45B69;
@@ -94,6 +98,14 @@
 
 .sellLable {
   background-color: #5B539D;
+}
+
+.rentLocation {
+    color: #F45B69;
+}
+
+.sellLocation {
+    color: #5B539D;
 }
 
 .searchHomeForm{
