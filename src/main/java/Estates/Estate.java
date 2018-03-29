@@ -47,9 +47,9 @@ public class Estate {
     public Estate(){}
 
     public boolean hasConditions(String buildingType, DealType dealType, int price, int area){
-        if (this.area == area && this.buildingType == buildingType && this.dealType == dealType){
+        if (this.area == area && this.buildingType.equals(buildingType) && this.dealType.equals(dealType)){
             if (dealType == DealType.rent)
-                return (price == rentPrice + basePrice);
+                return (price == basePrice);
             else
                 return (price == sellPrice);
         }

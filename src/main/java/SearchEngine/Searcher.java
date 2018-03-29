@@ -90,29 +90,33 @@ public class Searcher extends HttpServlet {
     public static Estate hasConditions(JSONObject obj, String buildingType, DealType dealType, int price, int area){
         String buildingType_ = obj.get("buildingType").toString();
         int dealType_ = Integer.parseInt(obj.get("dealType").toString());
-        DealType deal;
-        int sellPrice, rentPrice, basePrice;
         int area_ = Integer.parseInt(obj.get("area").toString());
         String id = obj.get("id").toString();
+        DealType deal;
         if(dealType_ == 1)
             deal = DealType.rent;
         else
             deal = DealType.sell;
         JSONObject price_ = new JSONObject(obj.get("price").toString());
+        int sellPrice, rentPrice, basePrice;
         if(deal.equals(DealType.rent)){
             sellPrice = 0;
             rentPrice = Integer.parseInt(price_.get("rentPrice").toString());
             basePrice = Integer.parseInt(price_.get("basePrice").toString());
+            if((basePrice < price) && (area_ > area) && (deal.equals(dealType)) && buildingType.equals(buildingType_))
+                return new Estate(id, area_, buildingType_, deal, sellPrice, rentPrice, basePrice);
+            else
+                return null;
         }
         else{
             sellPrice = Integer.parseInt(price_.get("sellPrice").toString());
             rentPrice = 0;
             basePrice = 0;
+            if((sellPrice < price) && (area_ > area) && (deal.equals(dealType)) && buildingType.equals(buildingType_))
+                return new Estate(id, area_, buildingType_, deal, sellPrice, rentPrice, basePrice);
+            else
+                return null;
         }
-        if((sellPrice < price) && (area_ > area) && (deal.equals(dealType)))
-            return new Estate(id, area_, buildingType_, deal, sellPrice, rentPrice, basePrice);
-        else
-            return null;
     }
 
 

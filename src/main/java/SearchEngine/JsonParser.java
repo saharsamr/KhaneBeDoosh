@@ -11,7 +11,7 @@ public class JsonParser {
         URL url = new URL(url_);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
-        BufferedReader response = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        BufferedReader response = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
         String line;
         StringBuffer result = new StringBuffer();
         while((line = response.readLine()) != null)
