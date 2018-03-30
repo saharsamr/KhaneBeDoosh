@@ -25,47 +25,33 @@ public class Searcher extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    DealType deal;
-    ArrayList<Estate> result = new ArrayList<Estate>();
-
-    try{
-        String buildingType = request.getParameter("buildingType");
-        int dealType = Integer.parseInt(request.getParameter("dealType"));
-        int price = Integer.parseInt(request.getParameter("price"));
-        int area = Integer.parseInt(request.getParameter("area"));
-        checkSearchParametersValidation(buildingType, dealType, price, area);
-
-        deal = DealType.valueOf(dealType);
-
-        result = findLocalEstates(buildingType, deal, price, area);
-        result.addAll(findAgencyEstates(buildingType, deal, price,area));
-        
-    }catch (SearchParametersException ParametersExcep){
-
-    } catch (NumberFormatException NonIntegerExcep){
-
-    } catch (Exception e){}
-
+        DealType deal;
+        ArrayList<Estate> result = new ArrayList<Estate>();
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        out.println("<table style=\"width:100%\" border=\"1\">");
-        for (int i = 0; i < result.size(); i++){
-            out.println("<tr>");
-            if(result.get(i).getDealType() == DealType.rent){ //TODO: get it by enum
-                out.println("<td>قیمت پایه :" +result.get(i).getBasePrice()+"تومن"+"</td>");
-                out.println("<td>قیمت اجاره :" +result.get(i).getBasePrice()+"تومن"+"</td>");
-            }
-            else
-               out.println("<td>قیمت :" +result.get(i).getSellPrice()+"تومن"+"</td>");
-            out.println("<td>متراژ  :" +result.get(i).getArea()+"متر"+"</td>");
-            out.println("<td>نوع قرارداد :" +result.get(i).getDealType()+"</td>");
-            out.println("</tr>");
-            out.println("<tr><td><a href=\"/AgencyEstateDetail?id="+ result.get(i).getId()+ "\">اطلاعات بیشتر </a> </td> </tr>");
+        try{
+            String buildingType = request.getParameter("buildingType");
+            int dealType = Integer.parseInt(request.getParameter("dealType"));
+            int price = Integer.parseInt(request.getParameter("price"));
+            int area = Integer.parseInt(request.getParameter("area"));
+            checkSearchParametersValidation(buildingType, dealType, price, area);
 
-//            out.println("<a href=\""++);
-        }
-        out.println("</table>");
+            deal = DealType.valueOf(dealType);
+
+            result = findLocalEstates(buildingType, deal, price, area);
+            result.addAll(findAgencyEstates(buildingType, deal, price,area));
+
+        }catch (SearchParametersException ParametersExcep){
+            out.println("<h1>Invalid Search Parameters</h1>");
+            return;
+        } catch (NumberFormatException NonIntegerExcep){
+            out.println("<h1>Invalid Search Parameters</h1>");
+            return;
+        } catch (Exception e){}
+
+        makeSearchResultList(out, result);
+
     }
 
     public void checkSearchParametersValidation(String buildingType, int dealType, int price, int area) throws SearchParametersException{
@@ -74,6 +60,24 @@ public class Searcher extends HttpServlet {
                 area < 0 ||
                 price < 0)
             throw new SearchParametersException();
+    }
+
+    public void makeSearchResultList(PrintWriter out, ArrayList<Estate> result){
+        out.println("<table style=\"width:100%\" border=\"1\">");
+        for (int i = 0; i < result.size(); i++){
+            out.println("<tr>");
+            if(result.get(i).getDealType() == DealType.rent){ //TODO: get it by enum
+                out.println("<td>قیمت پایه :" +result.get(i).getBasePrice()+"تومن"+"</td>");
+                out.println("<td>قیمت اجاره :" +result.get(i).getBasePrice()+"تومن"+"</td>");
+            }
+            else
+                out.println("<td>قیمت :" +result.get(i).getSellPrice()+"تومن"+"</td>");
+            out.println("<td>متراژ  :" +result.get(i).getArea()+"متر"+"</td>");
+            out.println("<td>نوع قرارداد :" +result.get(i).getDealType()+"</td>");
+            out.println("</tr>");
+            out.println("<tr><td><a href=\"/AgencyEstateDetail?id="+ result.get(i).getId()+ "\">اطلاعات بیشتر </a> </td> </tr>");
+        }
+        out.println("</table>");
     }
 
     public void destroy() {
