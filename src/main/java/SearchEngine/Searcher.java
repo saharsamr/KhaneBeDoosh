@@ -26,13 +26,7 @@ public class Searcher extends HttpServlet {
         int dealType = Integer.parseInt(request.getParameter("dealType"));
         int price = Integer.parseInt(request.getParameter("price"));
         int area = Integer.parseInt(request.getParameter("area"));
-        DealType deal;
-        System.out.println(buildingType);
-        System.out.println(dealType);
-        if(dealType == 1)
-            deal = DealType.rent;
-        else
-            deal = DealType.sell;
+        DealType deal = DealType.valueOf(dealType);
 
         ArrayList<Estate> result = new ArrayList<Estate>();
         try {
@@ -92,11 +86,7 @@ public class Searcher extends HttpServlet {
         int dealType_ = Integer.parseInt(obj.get("dealType").toString());
         int area_ = Integer.parseInt(obj.get("area").toString());
         String id = obj.get("id").toString();
-        DealType deal;
-        if(dealType_ == 1)
-            deal = DealType.rent;
-        else
-            deal = DealType.sell;
+        DealType deal = DealType.valueOf(dealType_);
         JSONObject price_ = new JSONObject(obj.get("price").toString());
         int sellPrice, rentPrice, basePrice;
         if(deal.equals(DealType.rent)){
