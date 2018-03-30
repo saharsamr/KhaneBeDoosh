@@ -12,8 +12,10 @@ import KhaneBeDoosh.*;
 import Estates.Estate;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import Exceptions.SearchParametersException;
 
 @WebServlet("/Searcher")
+
 public class Searcher extends HttpServlet {
 
     public void init() throws ServletException {
@@ -22,17 +24,27 @@ public class Searcher extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+    DealType deal;
+    ArrayList<Estate> result = new ArrayList<Estate>();
+
+    try{
         String buildingType = request.getParameter("buildingType");
         int dealType = Integer.parseInt(request.getParameter("dealType"));
         int price = Integer.parseInt(request.getParameter("price"));
         int area = Integer.parseInt(request.getParameter("area"));
-        DealType deal = DealType.valueOf(dealType);
+        checkSearchParametersValidation(buildingType, dealType, price, area);
 
-        ArrayList<Estate> result = new ArrayList<Estate>();
-        try {
-            result = findLocalEstates(buildingType, deal, price, area);
-            result.addAll(findAgencyEstates(buildingType, deal, price,area));
-        }catch (Exception e){}
+        deal = DealType.valueOf(dealType);
+
+        result = findLocalEstates(buildingType, deal, price, area);
+        result.addAll(findAgencyEstates(buildingType, deal, price,area));
+        
+    }catch (SearchParametersException ParametersExcep){
+
+    } catch (NumberFormatException NonIntegerExcep){
+
+    } catch (Exception e){}
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -54,6 +66,14 @@ public class Searcher extends HttpServlet {
 //            out.println("<a href=\""++);
         }
         out.println("</table>");
+    }
+
+    public void checkSearchParametersValidation(String buildingType, int dealType, int price, int area) throws SearchParametersException{
+        if (!(buildingType.equals("آپارتمان") || buildingType.equals("ویلایی")) ||
+                !(dealType == DealType.sell.getValue() || dealType == DealType.rent.getValue()) ||
+                area < 0 ||
+                price < 0)
+            throw new SearchParametersException();
     }
 
     public void destroy() {
@@ -108,6 +128,5 @@ public class Searcher extends HttpServlet {
                 return null;
         }
     }
-
 
 }
