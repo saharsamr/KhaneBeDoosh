@@ -43,10 +43,10 @@ public class Searcher extends HttpServlet {
             result.addAll(findAgencyEstates(buildingType, deal, price,area));
 
         }catch (SearchParametersException ParametersExcep){
-            out.println("<h1>Invalid Search Parameters</h1>");
+            response.sendRedirect("/"+"?msg=Invalid search parameters. Try again.");
             return;
         } catch (NumberFormatException NonIntegerExcep){
-            out.println("<h1>Invalid Search Parameters</h1>");
+            response.sendRedirect("/"+"?msg=Invalid search parameters. Try again.");
             return;
         } catch (Exception e){}
 
