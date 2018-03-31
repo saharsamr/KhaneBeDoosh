@@ -49,7 +49,7 @@ public class IncreaseCredit extends HttpServlet {
         JSONObject res = new JSONObject(bankResponse);
         if (res.getJSONObject("success").equals("true")){
             response.sendRedirect("/"+"?msg=Balance incremented successfully.");
-
+            Website.increaseCredit(Website.getCurrentUserID(), balance);
         }
         else
             response.sendRedirect("/"+"?msg=" + res.getJSONObject("message"));

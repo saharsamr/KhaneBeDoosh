@@ -7,7 +7,7 @@ abstract public class User {
     private String name;
     private String username;
     private String password;
-    private int id;
+    private String id;
     private List<Integer> paidReportsID = new ArrayList<Integer>();
     private int balance;
 
@@ -27,7 +27,7 @@ abstract public class User {
         this.balance = this.balance + value;
     }
 
-    public User (int id, String name, String username, String password){
+    public User (String id, String name, String username, String password){
         this.id = id;
         this.name = name;
         this.username = username;
@@ -55,7 +55,7 @@ abstract public class User {
         return password;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 }

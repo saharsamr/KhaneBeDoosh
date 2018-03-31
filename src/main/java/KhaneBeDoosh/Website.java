@@ -16,7 +16,7 @@ public class Website {
 
     private static ArrayList<Estate> estates;
     private static ArrayList<User> users;
-    private static int logedInUserID;
+    private static String logedInUserID;
     private static String bankApiKey;
     private static ArrayList<Estate> searchResult;
 
@@ -25,9 +25,9 @@ public class Website {
         users = new ArrayList<User>();
         users.add(new Individual(1, "بهنام همایون", "بهنام همایون", "123123"));
         estates= new ArrayList<Estate>();
-        estates.add(new Estate("1", 100, "ویلایی", "daUs", "1", 1));
+        estates.add(new Estate("1", 100, "ویلایی", "daUs", "1", "1"));
         searchResult = new ArrayList<Estate>();
-        logedInUserID = 1;
+        logedInUserID = "1";
     }
 
     public static List<Estate> getEstates() {
@@ -40,7 +40,7 @@ public class Website {
 
     public static User getCurrentUser() {
         for (int i = 0; i < users.size(); i++)
-            if (users.get(i).getId() == logedInUserID)
+            if (users.get(i).getId().equals(logedInUserID))
                 return users.get(i);
         return null;
     }
@@ -74,8 +74,14 @@ public class Website {
         estates.add(newEstate);
     }
 
+    public static void increaseCredit(String userId, int balance){
+        for (User user : users){
+            if (user.getId().equals(userId))
+                user.increaseBalance(balance);
+        }
+    }
 
-    public static int getCurrentUserID (){
+    public static String getCurrentUserID (){
         return logedInUserID;
     }
 }

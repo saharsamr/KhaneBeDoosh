@@ -11,7 +11,7 @@ public class Estate {
             String buildingType,
             String address,
             String dealType,
-            int ownerID
+            String ownerID
     )
     {
         this.id =  id;
@@ -130,5 +130,5 @@ public class Estate {
     private String phone;
     private String description;
     private Date expireTime;
-    private int ownerID;
+    private String ownerID;
 }
