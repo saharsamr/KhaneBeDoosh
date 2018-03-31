@@ -54,6 +54,10 @@ public class Searcher extends HttpServlet {
 
     }
 
+    public void destroy() {
+        // do nothing.
+    }
+
     public void checkSearchParametersValidation(String buildingType, int dealType, int price, int area) throws SearchParametersException{
         if (!(buildingType.equals("آپارتمان") || buildingType.equals("ویلایی")) ||
                 !(dealType == DealType.sell.getValue() || dealType == DealType.rent.getValue()) ||
@@ -78,10 +82,6 @@ public class Searcher extends HttpServlet {
             out.println("<tr><td><a href=\"/AgencyEstateDetail?id="+ result.get(i).getId()+ "\">اطلاعات بیشتر </a> </td> </tr>");
         }
         out.println("</table>");
-    }
-
-    public void destroy() {
-        // do nothing.
     }
 
     public static ArrayList<Estate> findLocalEstates(String buildingType, DealType dealType, int price, int area){

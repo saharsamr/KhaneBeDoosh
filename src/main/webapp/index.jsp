@@ -57,8 +57,8 @@
         <option value="ویلایی">ویلایی</option>
     </select>
     <select name="dealType" form="registerForm">
-        <option value=1>رهن-اجاره</option>
-        <option value=0>خرید</option>
+        <option value="1">رهن-اجاره</option>
+        <option value="0">خرید</option>
     </select>
     <br><br>
     <form id="registerForm" action="/AddNewEstate"  method="get">

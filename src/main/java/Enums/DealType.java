@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum DealType{
-    rent(1), sell(0);
+    sell(0), rent(1);
 
     private int value;
     private static Map map = new HashMap();
 
-    private DealType (int value){
+    DealType (int value){
         this.value = value;
     }
 

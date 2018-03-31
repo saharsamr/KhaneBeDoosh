@@ -21,7 +21,7 @@ public class Website {
         users = new ArrayList<User>();
         users.add(new Individual(1, "بهنام همایون", "بهنام همایون", "123123"));
         estates= new ArrayList<Estate>();
-        estates.add(new Estate("1", 100, "vilayi", "daUs", "رهن-اجاره", 1));
+        estates.add(new Estate("1", 100, "ویلایی", "daUs", "1", 1));
         searchResult = new ArrayList<Estate>();
         logedInUserID = 1;
     }
@@ -50,14 +50,20 @@ public class Website {
     }
 
     public static void addEstate(String buildingType, String dealType, int price, int area, String phone, String address, String description){
-        Estate newEstate = new Estate(Integer.toString(estates.size()+1), area, buildingType, address, dealType, logedInUserID); //TODO: check to beunique
-        if (dealType == "1"){
+        Estate newEstate = new Estate(Integer.toString(estates.size()+1), area, buildingType, address, dealType, logedInUserID); //TODO: check to be unique
+        if (dealType.equals("1")){
             newEstate.setBasePrice(price);
+            newEstate.setSellPrice(0);
+            newEstate.setRentPrice(0); //TODO: dynamic form should be implemented.
         }
-        else
+        else {
             newEstate.setSellPrice(price);
+            newEstate.setRentPrice(0);
+            newEstate.setBasePrice(0);
+        }
         newEstate.setDescription(description);
         newEstate.setPhone(phone);
+        estates.add(newEstate);
     }
 
 

@@ -18,7 +18,7 @@ public class Estate {
         this.area = area;
         this.buildingType = buildingType;
         this.address = address;
-        if(dealType == "رهن-اجاره")
+        if(dealType.equals("1"))
             this.dealType = DealType.rent;
         else
             this.dealType = DealType.sell;
@@ -47,13 +47,13 @@ public class Estate {
     public Estate(){}
 
     public boolean hasConditions(String buildingType, DealType dealType, int price, int area){
-        if (this.area == area && this.buildingType.equals(buildingType) && this.dealType.equals(dealType)){
-            if (dealType == DealType.rent)
-                return (price == basePrice);
+        if (this.area >= area && this.buildingType.equals(buildingType) && this.dealType.getValue() == dealType.getValue()){
+            if (dealType.equals(DealType.rent))
+                return (price >= basePrice);
             else
-                return (price == sellPrice);
+                return (price >= sellPrice);
         }
-        return false;
+        return true;
     }
 
     public int getRentPrice() {
