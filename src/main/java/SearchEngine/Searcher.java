@@ -70,9 +70,9 @@ public class Searcher extends HttpServlet {
         out.println("<table style=\"width:100%\" border=\"1\">");
         for (int i = 0; i < result.size(); i++){
             out.println("<tr>");
-            if(result.get(i).getDealType() == DealType.rent){ //TODO: get it by enum
+            if(result.get(i).getDealType().equals(DealType.rent)){ //TODO: get it by enum
                 out.println("<td>قیمت پایه :" +result.get(i).getBasePrice()+"تومن"+"</td>");
-                out.println("<td>قیمت اجاره :" +result.get(i).getBasePrice()+"تومن"+"</td>");
+                out.println("<td>قیمت اجاره :" +result.get(i).getRentPrice()+"تومن"+"</td>");
             }
             else
                 out.println("<td>قیمت :" +result.get(i).getSellPrice()+"تومن"+"</td>");
