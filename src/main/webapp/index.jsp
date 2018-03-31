@@ -81,7 +81,7 @@
 
 </div>
 <div align="center">
-    <form>
+    <form id="increaseCredit" action="/IncreaseCredit">
         <input type="submit" value="افزایش اعتبار">
         <input name="balance" type="text" value="اعتبار">
         <br><br>

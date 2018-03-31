@@ -53,6 +53,10 @@ public class Website {
         return null;
     }
 
+    public static String getBankApiKey(){
+        return bankApiKey;
+    }
+
     public static void addEstate(String buildingType, String dealType, int price, int area, String phone, String address, String description){
         Estate newEstate = new Estate(Integer.toString(estates.size()+1), area, buildingType, address, dealType, logedInUserID); //TODO: check to be unique
         if (dealType.equals("1")){
