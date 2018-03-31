@@ -23,7 +23,7 @@ public class Website {
     static{
         bankApiKey = "d1370810-34c0-11e8-813c-81721a10cc01";
         users = new ArrayList<User>();
-        users.add(new Individual(1, "بهنام همایون", "بهنام همایون", "123123"));
+        users.add(new Individual("1", "بهنام همایون", "بهنام همایون", "123123"));
         estates= new ArrayList<Estate>();
         estates.add(new Estate("1", 100, "ویلایی", "daUs", "1", "1"));
         searchResult = new ArrayList<Estate>();

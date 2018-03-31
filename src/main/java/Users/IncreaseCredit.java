@@ -47,11 +47,11 @@ public class IncreaseCredit extends HttpServlet {
         DataInputStream input = new DataInputStream(connection.getInputStream());
         String bankResponse = input.readLine();
         JSONObject res = new JSONObject(bankResponse);
-        if (res.getJSONObject("success").equals("true")){
+        if (res.get("success").equals(true)){
             response.sendRedirect("/"+"?msg=Balance incremented successfully.");
             Website.increaseCredit(Website.getCurrentUserID(), balance);
         }
         else
-            response.sendRedirect("/"+"?msg=" + res.getJSONObject("message"));
+            response.sendRedirect("/"+"?msg=" + res.get("message"));
     }
 }
