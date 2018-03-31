@@ -47,13 +47,15 @@ public class Estate {
     public Estate(){}
 
     public boolean hasConditions(String buildingType, DealType dealType, int price, int area){
+        System.out.println(this.buildingType.equals(buildingType));
+        System.out.println(this.dealType.getValue() == dealType.getValue());
         if (this.area >= area && this.buildingType.equals(buildingType) && this.dealType.getValue() == dealType.getValue()){
             if (dealType.equals(DealType.rent))
                 return (price >= basePrice);
             else
                 return (price >= sellPrice);
         }
-        return true;
+        return false;
     }
 
     public int getRentPrice() {
