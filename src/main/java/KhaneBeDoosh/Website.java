@@ -1,5 +1,7 @@
 package KhaneBeDoosh;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.*;
 
 import Estates.*;
@@ -15,9 +17,11 @@ public class Website {
     private static ArrayList<Estate> estates;
     private static ArrayList<User> users;
     private static int logedInUserID;
+    private static String bankApiKey;
     private static ArrayList<Estate> searchResult;
 
     static{
+        bankApiKey = "d1370810-34c0-11e8-813c-81721a10cc01";
         users = new ArrayList<User>();
         users.add(new Individual(1, "بهنام همایون", "بهنام همایون", "123123"));
         estates= new ArrayList<Estate>();
