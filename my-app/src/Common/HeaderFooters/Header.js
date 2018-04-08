@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import './headersAndFooters.css';
-import './../../../vendor/bootstrap/css/bootstrap.min.css';
-
+import './../../Styles/css/headersAndFooters.css';
+import './../../Styles/vendor/bootstrap/css/bootstrap.min.css';
+import LogoImg from './../../assests/img/logo.png'
 
 class Header extends Component{
     render(){
@@ -10,13 +10,12 @@ class Header extends Component{
             <nav className="navbar navbar-expand-lg navbar-light navbar-fixed-top shadow-box navBar">
                 <div className="container col-md-12">
                     <div className="col-md-8">
-                        <div className="float-right row">
-                            <a href="homePage.html">
-                                <img className="logoImg" src="./../../assests/img/logo.png" alt="logo"  />
-                            </a>
-                            <p className="logoName">خانه به دوش</p>
-
-                        </div>
+                            <div className="float-right row">
+                                <a className="logoImg" href="/">
+                                    <img className="" src={LogoImg} alt="Logo" />
+                                </a>
+                                <p className="logoName">خانه به دوش</p>
+                            </div>
                     </div>
                     <div className="dropdown">
                         <button type="button" className="btn btn-default userInfo-btn effect-box" href="#">
@@ -36,7 +35,7 @@ class Header extends Component{
                                         </table>
 
                                     </div>
-                                    <a className="a-addMoney" href="account.html" target="_blank">افزایش اعتبار</a>
+                                    <a className="a-addMoney" href="/credit" target="_blank">افزایش اعتبار</a>
                                 </div>
                             </div>
                         </button>
