@@ -1,0 +1,127 @@
+.searchResultTable {
+  width: 100%;
+  margin: 0.6250em;
+  text-align: right;
+  font-size: 1em;
+  white-space: nowrap;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 60%;
+  object-fit: fill;
+  border-top-left-radius: 0.625em;
+  border-top-right-radius: 0.625em;
+}
+
+
+.card {
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1.250em;
+  position: relative;
+  width: 20em;
+  height: 22em;
+  border-radius: 0.6250em;
+  box-shadow: 0px 20px 40px rgba(0,0,0,0.1);
+  transition: all 1s ease;
+}
+
+.card:hover{
+  box-shadow: 0px 2px 80px rgba(0,0,0,0.1);
+  background-color: #999999;
+}
+
+.card-body {
+  justify-items: center;
+  -webkit-box-flex:1;
+  -ms-flex:1 1 auto;
+  flex:1 1 auto;
+  padding:1.25rem
+}
+
+.searchResult {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2.5em;
+  justify-content: center;
+  flex-direction: row;
+}
+
+
+.delTypeLable {
+  text-align: center;
+  top: 0.625em;
+  left: 0.625em;
+  color: white;
+  border-radius: 0.4em;
+  margin: 0.4em;
+  float: left;
+  padding-right: 1.5em;
+    padding-left: 1.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.rentLable{
+    background-color: #F45B69;
+}
+
+.sellLable {
+  background-color: #5B539D;
+}
+
+.searchHomeForm{
+  height: 100%;
+  width: 80%;
+  padding: 10px;
+  margin-right: 100px;
+  background-color: rgba(0,0,0,.3);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.txtAlignL{
+    text-align: left;
+}
+
+.margin10{
+    margin: 10px;
+}
+
+form.form_{
+    width: 170%;
+    margin-right: -100px;
+}
+
+.spacer20{
+    height: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+    h1{
+        font-size: 80%;
+    }
+    .w-xs-100{
+        width: 100%;
+        height: 100%;
+    }
+    .KBDfeatureBox-xs{
+        margin-top: 250%;
+    }
+    .hidden-xs{
+        visibility: hidden;
+        margin-top: -100px;
+    }
+}
+
+.detailPhoto{
+    height: 350px;
+    border-radius: 10px
+}

@@ -1,19 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react'
+import {
+    BrowserRouter as Router,
+    Route,
+} from 'react-router-dom'
+import SearchResult from "./Search/SearchResult";
+import IncreaseCredit from "./Credit/IncreaseCredit";
+import HouseDetailPage from "./HouseDirectory/HouseDetailPage";
+import AddHouses from "./AddHouses/AddHouses";
 
-import Footer from './Common/HeaderFooters/Footer';
-import Header from './Common/HeaderFooters/Header';
-import './vendor/bootstrap/css/bootstrap.min.css';
+const App = () =>
+    <Router>
+        <div>
+            <Route exact path="/searchresult" component={SearchResult}/>
+            <Route exact path="/credit" component={IncreaseCredit}/>
+            <Route exact path="/addhouse" component={AddHouses}/>
+            <Route exact path="/housedetail" component={HouseDetailPage}/>
+        </div>
+    </Router>
 
-class App extends React.Component{
-    render() {
-        return (
-            <div>
-                <Header />
-                <Footer />
-            </div>
-        );
-    }
-}
-
-
-export default App;
+export default App

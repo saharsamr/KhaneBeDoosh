@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
+import "./../Styles/vendor/bootstrap/css/bootstrap.min.css";
+import "./../Styles/css/homePage.css"
+import "./../Styles/css/searchResult.css"
+import './../Styles/vendor/bootstrap/css/bootstrap-grid.css'
+
 
 class SearchForm extends Component{
     render(){
         return(
-            <div className="row justify-content-center" >
+            <div className="row justify-content-center position-relative" >
                 <div className="main-text">
                     <div className="col-md-12 text-center ">
                         <div className="container">
-                            <!--<div className="trans" style="alignment: right"></div>-->
                             <div className="row searchHomeForm">
                                 <div className="col-md-10 col-lg-8 col-xl-7 mx-auto ">
                                     <form className="form_ ">
@@ -31,8 +34,8 @@ class SearchForm extends Component{
 
                                         </div>
                                         <div className="row">
-                                            <div className="alignR row col-md-6">
-                                                <div className="form-check">
+                                            <div className="alignR row col-md-6 \">
+                                                <div className="form-check ">
                                                     <input type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked/>
                                                         <label className="form-check-label text-white" for="exampleRadios1">
                                                             رهن و اجاره
@@ -65,11 +68,5 @@ class SearchForm extends Component{
         );
     }
 }
-
-
-ReactDOM.render(
-    <SearchForm/>,
-    document.getElementById('searchform')
-);
 
 export default SearchForm;
