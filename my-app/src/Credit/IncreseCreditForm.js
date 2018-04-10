@@ -17,15 +17,14 @@ class IncreaseCreditForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = {balance: this.state.balance};
-        fetch('http://localhost:8080/increaseCredit', {
+        fetch('http://localhost:3000/increaseCredit', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify(data),
-            mode: "no-cors"
-        }).then(function (response){
-            console.log(response);
-            return response.json();
-        });
+        }).then((response) => response.json());
     }
 
     handleValueChange(event){
