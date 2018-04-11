@@ -13,7 +13,10 @@ class AddHouseForm extends React.Component {
             area: '',
             address: '',
             phoneNumber: '',
-            description: ''
+            description: '',
+            sellPrice: '',
+            rentPrice: '',
+            basePrice: ''
         }
 
         this.handleAddressChange = this.handleAddressChange.bind(this);
@@ -22,6 +25,9 @@ class AddHouseForm extends React.Component {
         this.handleDealTypeChange = this.handleDealTypeChange.bind(this);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handlePhoneChange = this.handlePhoneChange.bind(this);
+        this.handleSellPriceChange = this.handleSellPriceChange.bind(this);
+        this.handleRentPriceChange = this.handleRentPriceChange.bind(this);
+        this.handleBasePriceChange = this.handleBasePriceChange.bind(this);
     }
 
     handleAriaChange(event){
@@ -46,6 +52,51 @@ class AddHouseForm extends React.Component {
 
     handleDescriptionChange(event){
         this.setState({description: event.target.value});
+    }
+
+    handleSellPriceChange(event){
+        this.setState({sellPrice: event.target.value});
+    }
+
+    handleRentPriceChange(event){
+        this.setState({rentPrice: event.target.value});
+    }
+
+    handleBasePriceChange(event){
+        this.setState({basePrice: event.target.value});
+    }
+
+    handleSubmit(event){
+        event.preventDefault();
+        this.setPrice();
+        let info = {
+            price: this.state.price,
+            area: this.state.area,
+            buildingType: this.state.buildingType,
+            dealType: this.state.dealType,
+            description: this.state.description,
+            address: this.state.address,
+            phoneNumber: this.state.phoneNumber
+        }
+        fetch('http://localhost:3000/addestate', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(info)
+        })
+    }
+
+    setPrice(){
+        let p = {};
+        if(this.state.dealType == 1){
+            p.basePrice = this.state.basePrice;
+            p.rentPrice = this.state.rentPrice;
+        }
+        else
+            p.sellPrice = this.state.sellPrice;
+        this.state.price = p;
     }
 
     render(){

@@ -25,7 +25,7 @@ class IncreaseCreditForm extends React.Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
-        }).then((response) => response.json());
+        });
     }
 
     handleValueChange(event){

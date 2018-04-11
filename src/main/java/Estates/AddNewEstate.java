@@ -9,7 +9,7 @@ import java.lang.String;
 import Exceptions.EstateParametersException;
 import KhaneBeDoosh.*;
 
-@WebServlet("/AddNewEstate")
+@WebServlet("/addestate")
 public class AddNewEstate extends HttpServlet {
 
     public void init() throws ServletException {
