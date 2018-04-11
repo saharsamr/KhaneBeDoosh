@@ -22,8 +22,6 @@ public class Search extends JsonAPI {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        JSONObject searchParameters = parseJson(request);
-        System.out.println(searchParameters);
         findStates(request, response);
     }
 
@@ -83,7 +81,6 @@ public class Search extends JsonAPI {
         JSONArray estatesList = JsonParser.getJSONResponse("http://acm.ut.ac.ir/khaneBeDoosh/house").getJSONArray("data");
         ArrayList<Estate> result = new ArrayList<Estate>();
         Estate temp = new Estate();
-        System.out.println(estatesList.length());
         for(int i = 0; i < estatesList.length(); i++)
             if((temp = hasConditions(estatesList.getJSONObject(i), buildingType, dealType_, price_, area_)) != null)
                 result.add(temp);

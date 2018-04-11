@@ -2,9 +2,11 @@ import {Service} from 'react-services-injector';
 
 class Search extends Service {
 
-    doSearch(searchParams) {
-        let url = 'http://localhost:3000/search';
-        Object.keys(searchParams).forEach(key => url.searchParams.append(key, searchParams[key]));
+    doSearch(params) {
+        let url = 'http://localhost:3000/search?';
+        Object.keys(params).forEach(key => {
+            url = url + key + "=" + params[key] + "&";
+        });
         fetch(url, {
             method: 'GET',
             headers: {

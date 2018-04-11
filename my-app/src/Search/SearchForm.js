@@ -40,6 +40,21 @@ class SearchForm extends Component{
 
         this.setState({"searchParams": params});
         this.setState({"redirect": true});
+
+        let url = 'http://localhost:3000/search?';
+        Object.keys(params).forEach(key => {
+            url = url + key + "=" + params[key] + "&";
+        });
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+        }).then(response => response.json())
+            .then(response => {
+                console.log(response);
+            });
     }
 
 
@@ -101,14 +116,14 @@ class SearchForm extends Component{
                                             <div className="alignR row col-md-6 \">
                                                 <div className="form-check ">
                                                     <input type="radio" value={1} name="exampleRadios" id="exampleRadios1"
-                                                           checked={this.state.dealType === 1} onChange={this.handleDealTypeChange}/>
+                                                           onChange={this.handleDealTypeChange}/>
                                                         <label className="form-check-label text-white" for="exampleRadios1">
                                                             رهن و اجاره
                                                         </label>
                                                 </div>
                                                 <div className="form-check">
                                                     <input type="radio" name="exampleRadios" id="exampleRadios2" value={0}
-                                                           checked={this.state.dealType === 0} onChange={this.handleDealTypeChange}/>
+                                                           onChange={this.handleDealTypeChange}/>
                                                         <label className="form-check-label text-white" for="exampleRadios2">
                                                             خرید
                                                         </label>
