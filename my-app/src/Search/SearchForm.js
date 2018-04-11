@@ -5,7 +5,7 @@ import "./../Styles/vendor/bootstrap/css/bootstrap.min.css";
 import "./../Styles/css/homePage.css";
 import "./../Styles/css/searchResult.css";
 import './../Styles/vendor/bootstrap/css/bootstrap-grid.css';
-import { Redirect } from 'react-router';
+import {Redirect} from 'react-router';
 import {Service} from 'react-services-injector';
 
 
@@ -26,6 +26,7 @@ class SearchForm extends Component{
         this.handlePriceChange = this.handlePriceChange.bind(this);
         this.handleDealTypeChange = this.handleDealTypeChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.renderRedirect = this.renderRedirect.bind(this);
     }
 
     handleSubmit(event) {
@@ -59,16 +60,17 @@ class SearchForm extends Component{
         this.setState({"dealType": event.target.value});
     }
 
-    render(){
-        // const {redirect, searchParams} = this.state.searchParams;
-        //
+    renderRedirect() {
         if(this.state.redirect){
             console.log("-----------------");
-            <Redirect to={{
+            return (<Redirect to={{
                 pathname: '/searchresult',
-                state: {referrer: this.state.searchParams}
-            }} />
+                state: {searchParams: this.state.searchParams}
+            }} />);
         }
+    }
+
+    render(){
         return(
             <div className="row justify-content-center position-relative" >
                 <div className="main-text">
@@ -113,6 +115,7 @@ class SearchForm extends Component{
                                                 </div>
                                             </div>
                                             <div className="col-md-5">
+                                                {this.renderRedirect()}
                                                 <button type="submit" className="btn btn-block btn-sm btn-info">جستجو</button>
                                             </div>
 
