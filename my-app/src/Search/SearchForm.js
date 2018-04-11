@@ -39,7 +39,7 @@ class SearchForm extends Component{
         };
 
         this.setState({"searchParams": params});
-        this.setState({"redirect": true})
+        this.setState({"redirect": true});
     }
 
 

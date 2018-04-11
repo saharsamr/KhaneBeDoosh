@@ -30,6 +30,8 @@ public class IncreaseCreditRequest extends JsonAPI {
                 bankResponse = postBankServer(method);
                 out.println(bankResponse);
 //                out.flush();
+                if(bankResponse.get("success").equals(true))
+                    Website.getCurrentUser().increaseBalance(Integer.parseInt(method.get("balance").toString()));
             }
         }catch (Exception e ){
             JSONObject res = new JSONObject();
