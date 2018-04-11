@@ -17,6 +17,7 @@ class IncreaseCreditForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = {balance: this.state.balance};
+        console.log(data);
         fetch('http://localhost:3000/increaseCredit', {
             method: 'POST',
             headers: {
@@ -35,7 +36,7 @@ class IncreaseCreditForm extends React.Component {
         return(
             <div className="row margin-md-50">
                 <div className="col-md-4 text-xs-right">
-                    <p id="balanceValMargin"><span className="lables">اعتبار کنونی</span> ۲۰۰۰ <span className="lables">تومان</span></p>
+                    <p id="balanceValMargin"><span className="lables">اعتبار کنونی</span>۲۰۰۰<span className="lables">تومان</span></p>
                 </div>
                 <div className="col-md-7">
                     <form className="col-md-6" onSubmit={this.handleSubmit}>

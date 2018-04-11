@@ -10,9 +10,11 @@ class Search extends Service {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-            },
-            mode: "no-cors"
-        });
+            }
+        }).then(response => response.json())
+            .then(response => {
+                console.log(response);
+            });
 }
 }
 
