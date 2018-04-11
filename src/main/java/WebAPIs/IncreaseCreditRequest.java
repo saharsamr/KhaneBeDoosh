@@ -21,7 +21,6 @@ public class IncreaseCreditRequest extends JsonAPI {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         JSONObject req = parseJson(request);
-        System.out.println(req);
         JSONObject bankResponse;
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");

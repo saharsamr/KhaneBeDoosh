@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
+import {injector} from 'react-services-injector';
+import Search from './../Services/Search';
 import "./../Styles/vendor/bootstrap/css/bootstrap.min.css";
-import "./../Styles/css/homePage.css"
-import "./../Styles/css/searchResult.css"
-import './../Styles/vendor/bootstrap/css/bootstrap-grid.css'
+import "./../Styles/css/homePage.css";
+import "./../Styles/css/searchResult.css";
+import './../Styles/vendor/bootstrap/css/bootstrap-grid.css';
+import { Redirect } from 'react-router';
+import {Service} from 'react-services-injector';
 
 
 class SearchForm extends Component{
@@ -13,7 +17,9 @@ class SearchForm extends Component{
             buildingType: '',
             area: '',
             price: '',
-            dealType: 0
+            dealType: 0,
+            searchParams: {},
+            redirect: false
         };
         this.handleBuildingTypeSelect = this.handleBuildingTypeSelect.bind(this);
         this.handleAreaChange = this.handleAreaChange.bind(this);
@@ -24,24 +30,18 @@ class SearchForm extends Component{
 
     handleSubmit(event) {
         event.preventDefault();
-        let url = 'http://localhost:8080/search',
-            params = {
-                price: this.state.price,
-                area: this.state.area,
-                buildingType: this.state.buildingType,
-                dealType: this.state.dealType
-            };
+        let params = {
+            price: this.state.price,
+            area: this.state.area,
+            buildingType: this.state.buildingType,
+            dealType: this.state.dealType
+        };
 
-        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            mode: "no-cors"
-        });
+        this.setState({"searchParams": params});
+        this.setState({"redirect": true})
     }
+
+
 
     handleBuildingTypeSelect(event){
         this.setState({"buildingType": event.target.value});
@@ -60,6 +60,15 @@ class SearchForm extends Component{
     }
 
     render(){
+        // const {redirect, searchParams} = this.state.searchParams;
+        //
+        if(this.state.redirect){
+            console.log("-----------------");
+            <Redirect to={{
+                pathname: '/searchresult',
+                state: {referrer: this.state.searchParams}
+            }} />
+        }
         return(
             <div className="row justify-content-center position-relative" >
                 <div className="main-text">
