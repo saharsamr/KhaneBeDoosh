@@ -11,7 +11,7 @@ import KhaneBeDoosh.*;
 import org.json.JSONObject;
 
 @WebServlet("/addestate")
-public class AddNewEstate extends JsonAPI {
+public class AddEstate extends JsonAPI {
 
     public void init() throws ServletException {
         // Do required initialization
