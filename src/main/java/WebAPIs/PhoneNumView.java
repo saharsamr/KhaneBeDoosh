@@ -20,8 +20,7 @@ public class PhoneNumView extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        JSONObject estateInfo = JsonAPI.parseJson(request);
-        String id = estateInfo.get("id").toString();
+        String id = request.getParameter("id").toString();
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         JSONObject paymentStatus = new JSONObject();

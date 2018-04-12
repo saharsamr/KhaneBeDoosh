@@ -4,7 +4,7 @@ import Enums.DealType;
 import Estates.Estate;
 import Exceptions.SearchParametersException;
 import KhaneBeDoosh.Website;
-import SearchEngine.JsonParser;
+import KhaneBeDoosh.JsonParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

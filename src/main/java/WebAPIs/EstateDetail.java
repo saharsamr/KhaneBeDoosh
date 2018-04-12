@@ -1,7 +1,7 @@
 package WebAPIs;
 
 import Enums.DealType;
-import SearchEngine.JsonParser;
+import KhaneBeDoosh.JsonParser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,7 +17,7 @@ public class EstateDetail extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json");
-        String id = request.getParameter("id").toString();
+        String id = request.getParameter("id");
 
         JSONObject jsonEstateData = new JSONObject();
         try {
