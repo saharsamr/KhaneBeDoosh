@@ -13,9 +13,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 
-abstract public class JsonAPI extends HttpServlet {
-
-    public void sendJsonResponse(){}
+public class JsonAPI extends HttpServlet {
 
     public static JSONObject parseJson(HttpServletRequest request) throws IOException{
         StringBuffer jb = new StringBuffer();
@@ -34,7 +32,4 @@ abstract public class JsonAPI extends HttpServlet {
         }
         return jsonObject;
     }
-
-    abstract public Boolean validateData(JSONObject obj)throws Exception;
-
 }

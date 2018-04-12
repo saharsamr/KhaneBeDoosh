@@ -8,7 +8,7 @@ abstract public class User {
     private String username;
     private String password;
     private String id;
-    private List<Integer> paidReportsID = new ArrayList<Integer>();
+    private List<String> paidReportsID = new ArrayList<String>();
     private int balance;
 
     public int getBalance() {
@@ -35,11 +35,11 @@ abstract public class User {
         this.balance = 0;
     }
 
-    public void addPaidID(int id){
+    public void addPaidID(String id){
         paidReportsID.add(id);
     }
 
-    public boolean hasPaidFor(int id){
+    public boolean hasPaidFor(String id){
         return paidReportsID.contains(id);
     }
 

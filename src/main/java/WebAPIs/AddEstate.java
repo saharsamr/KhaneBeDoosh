@@ -11,20 +11,15 @@ import KhaneBeDoosh.*;
 import org.json.JSONObject;
 
 @WebServlet("/addestate")
-public class AddEstate extends JsonAPI {
+public class AddEstate extends HttpServlet {
 
     public void init() throws ServletException {
         // Do required initialization
     }
 
-    @Override
-    public Boolean validateData(JSONObject obj) {
-        return null;
-    }
-
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        JSONObject req = parseJson(request);
+        JSONObject req = JsonAPI.parseJson(request);
         String buildingType = req.get("buildingType").toString();
         String dealType = req.get("dealType").toString();
         String price = req.get("sellPrice").toString();

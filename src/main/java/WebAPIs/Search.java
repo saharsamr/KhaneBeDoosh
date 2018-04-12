@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -18,16 +19,11 @@ import java.util.ArrayList;
 
 
 @WebServlet("/search")
-public class Search extends JsonAPI {
+public class Search extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         findStates(request, response);
-    }
-
-    @Override
-    public Boolean validateData(JSONObject obj) {
-        return null;
     }
 
     public void findStates(HttpServletRequest request, HttpServletResponse response) throws IOException{

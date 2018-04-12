@@ -9,10 +9,9 @@ import HouseDetailPage from "./HouseDirectory/HouseDetailPage";
 import AddHouses from "./AddHouses/AddHouses";
 import MainPage from "./MainPage/MainPage";
 import {injector} from 'react-services-injector';
-import Search from './Services/Search';
-import {Service} from 'react-services-injector';
+import services from './Services';
 
-// injector.register(services);
+injector.register(services);
 
 const App = () =>
     <Router>

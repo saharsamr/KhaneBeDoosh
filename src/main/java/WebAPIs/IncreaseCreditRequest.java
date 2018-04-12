@@ -17,10 +17,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 @WebServlet("/increaseCredit")
-public class IncreaseCreditRequest extends JsonAPI {
+public class IncreaseCreditRequest extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        JSONObject req = parseJson(request);
+
+        JSONObject req = JsonAPI.parseJson(request);
         JSONObject bankResponse;
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
@@ -43,7 +44,16 @@ public class IncreaseCreditRequest extends JsonAPI {
 
     }
 
-    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException{ //TODO: badan bayad in qesmat ro ba login handle kard.alan ba ye karbar zadim.
+        int currentBalance = Website.getCurrentUser().getBalance();
+        response.setContentType("application/json");
+        JSONObject credit = new JSONObject();
+        credit.put("balance", currentBalance);
+        PrintWriter out = response.getWriter();
+        out.println(credit);
+    }
+
     public Boolean validateData(JSONObject obj) throws Exception {
         try{
             int val = Integer.parseInt(obj.get("balance").toString());

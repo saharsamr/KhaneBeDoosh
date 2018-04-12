@@ -16,6 +16,7 @@ class SearchResult extends React.Component{
                     <p className="lables">برای مشاهده اطلاعات بیشتر درباره‌ی هر ملک روی آن کلیک کنید.</p>
                 </div>
                 <div className="searchResult container">
+                    {/*TODO: inja bayad yeki yeki besazim cartaro:(*/}
                 </div>
                 <SearchForm/>
                 <Footer />
