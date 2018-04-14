@@ -22,17 +22,7 @@ class SearchResult extends React.Component{
             result: [],
             test: ''
         };
-        //this.doSearch = this.doSearch.bind(this);
-        // this.doSearch(this.props.location.state.searchParams);
     }
-
-    // componentDidMount(){
-    //     console.log("**************************");
-    //     this.doSearch(this.props.location.state.searchParams);
-    //     console.log(this.props.location.state.searchParams);
-    //     console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&");
-    //     console.log(this.state.result.valueOf());
-    // }
 
     componentWillMount(){
         let params = this.props.location.state.searchParams;
@@ -40,8 +30,6 @@ class SearchResult extends React.Component{
     }
 
     render() {
-        // this.doSearch(this.props.location.state.searchParams);
-        console.log(this.state.result);
         return (
             <div>
                 <Header />
@@ -73,8 +61,6 @@ class SearchResult extends React.Component{
             return response.json();
         }).then(data=> {
              this.setState({result: data});
-            // console.log("------------------");
-            // console.log(this.state.result);
         });
     }
 }

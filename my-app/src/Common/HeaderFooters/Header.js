@@ -5,7 +5,17 @@ import './../../Styles/vendor/bootstrap/css/bootstrap.min.css';
 import LogoImg from './../../assests/img/logo.png'
 
 class Header extends Component{
+
+    constructor(){
+        super();
+        this.state = {
+            balance: {}
+        };
+        this.getBalance = this.getBalance.bind(this);
+    }
+
     render(){
+        this.getBalance();
         return(
             <nav className="navbar navbar-expand-lg navbar-light navbar-fixed-top shadow-box navBar">
                 <div className="container col-md-12">
@@ -30,7 +40,7 @@ class Header extends Component{
                                         <table>
                                             <tr>
                                                 <td className="balancelable">اعتبار</td>
-                                                <td className="balanceValue">&emsp; 2000 تومان</td>
+                                                <td className="balanceValue">&emsp; {this.state.balance.balance} تومان</td>
                                             </tr>
                                         </table>
 
@@ -43,6 +53,21 @@ class Header extends Component{
                 </div>
             </nav>
         );
+    }
+
+    getBalance() {
+        let url = 'http://localhost:3000/increaseCredit';
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        }).then(response => {
+            return response.json();
+        }).then(data=> {
+            this.setState({balance: data});
+        });
     }
 }
 

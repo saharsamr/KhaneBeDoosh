@@ -1,5 +1,7 @@
 import React from 'react';
 import SearchElement from "./SearchElement";
+import "./../Styles/css/searchResult.css";
+import "./../Styles/vendor/bootstrap/css/bootstrap.min.css";
 
 class SearchResultBox extends React.Component {
 
@@ -9,10 +11,7 @@ class SearchResultBox extends React.Component {
             resultList: []
         };
     }
-    // componentWillMount(){
-    //     this.setState({resultList: this.props.item});
-    //     console.log(this.props.item);
-    // }
+
     render(){
         let list=this.props.list;
         console.log(list);
@@ -20,7 +19,7 @@ class SearchResultBox extends React.Component {
         for(let i = 0; i < list.length; i++)
             items.push(<SearchElement data={list[i]}/>);
         return(
-            <div class="searchResult container">
+            <div className="searchResult container">
                 {items}
             </div>
         );

@@ -8,10 +8,12 @@ class IncreaseCreditForm extends React.Component {
     constructor() {
         super();
         this.state= {
-            balance: ''
+            balance: '',
+            current: {}
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleValueChange = this.handleValueChange.bind(this);
+        this.getBalance = this.getBalance.bind(this);
     }
 
     handleSubmit(event) {
@@ -33,10 +35,11 @@ class IncreaseCreditForm extends React.Component {
     }
 
     render(){
+        this.getBalance();
         return(
             <div className="row margin-md-50">
                 <div className="col-md-4 text-xs-right">
-                    <p id="balanceValMargin"><span className="lables">اعتبار کنونی</span>۲۰۰۰<span className="lables">تومان</span></p>
+                    <p id="balanceValMargin"><span className="lables">اعتبار کنونی</span>{this.state.current.balance}<span className="lables">تومان</span></p>
                 </div>
                 <div className="col-md-7">
                     <form className="col-md-6" onSubmit={this.handleSubmit}>
@@ -49,6 +52,21 @@ class IncreaseCreditForm extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    getBalance() {
+        let url = 'http://localhost:3000/increaseCredit';
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        }).then(response => {
+            return response.json();
+        }).then(data=> {
+            this.setState({current: data});
+        });
     }
 }
 
