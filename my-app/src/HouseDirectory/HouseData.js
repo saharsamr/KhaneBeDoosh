@@ -5,10 +5,12 @@ class HouseData extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            id: this.props ,
-            enoughCredit : false,
-            showPhoneNum : true
+            id: '',
+            enoughCredit: false,
+            showPhoneNum: true,
+            price: this.props.data.price
         };
+        console.log(this.props.data.price);
         this.getPhonePaymentStatus = this.getPhonePaymentStatus.bind(this);
         this.handlePhoneNumRequest = this.handlePhoneNumRequest.bind(this);
     }
@@ -25,7 +27,7 @@ class HouseData extends React.Component {
             .then(function (data) {
                 if(data.paid.equals(false))
                     console.log("not paid");
-            })
+            });
     }
 
     handlePhoneNumRequest(){
@@ -51,10 +53,17 @@ class HouseData extends React.Component {
 
 
     render(){
+
         return(
             <div className="container row">
             <div className="col-md-5 text-right">
-                <span className={"dealTypeLable " + (this.props.data.dealType==="rent" ? "rentLable " : 'sellLable ')+ "folat-right"}>فروش</span>
+                {
+                    this.props.data.dealType ?
+                        <span className={"dealTypeLable rentLable folat-right"}>رهن اجاره</span>
+                        :
+                        <span className={"dealTypeLable sellLable folat-right"}>فروش</span>
+                }
+
                 <div className="spacer"></div>
                 <table className="text-right col-md-12 position-relative">
                     <tr className=" border-bottom">
@@ -67,10 +76,26 @@ class HouseData extends React.Component {
                         <td width="40%"> کلنگی</td>
                     </tr>
                     <tr className="spacer20"></tr>
-                    <tr className=" border-bottom">
-                        <td width="60%">قیمت</td>
-                        <td width="40%">2000 تومان</td>
-                    </tr>
+
+                    {
+                        this.props.data.dealType ?
+                            <div>
+                                <tr className=" border-bottom">
+                                    <td width="60%">قیمت رهن</td>
+                                    <td width="40%">2000 تومان</td>
+                                </tr>
+                                <tr className=" border-bottom">
+                                    <td width="60%">قیمت اجاره</td>
+                                    <td width="40%">2000 تومان</td>
+                                </tr>
+                            </div>
+                            :
+                            <tr className=" border-bottom">
+                                <td width="60%">قیمت</td>
+                                <td width="40%">2000 تومان</td>
+                            </tr>
+                    }
+
                     <tr className="spacer20"></tr>
                     <tr className=" border-bottom">
                         <td width="60%">آدرس</td>
@@ -99,7 +124,10 @@ class HouseData extends React.Component {
                         </div>
                         :
                         this.state.enoughCredit ?
-                            null :
+                            <div className="btn btn-block btn-sm btn-warning position-relative">
+                                091234567
+                            </div>
+                            :
                             <div className="btn btn-block btn-sm btn-warning position-relative">
                                 اعتبار شما برای مشاهده شماره مالک/مشاور کافی نیست.
                             </div>
