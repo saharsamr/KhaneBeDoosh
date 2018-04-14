@@ -9,7 +9,7 @@ import Users.User;
 import Users.Individual;
 import Enums.*;
 import org.json.JSONArray;
-import SearchEngine.JsonParser;
+import KhaneBeDoosh.JsonParser;
 import org.json.JSONObject;
 
 public class Website {
