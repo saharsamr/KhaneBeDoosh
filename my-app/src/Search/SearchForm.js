@@ -71,7 +71,7 @@ class SearchForm extends Component{
     }
 
     render(){
-        return(<div className="row justify-content-center" >
+        return(<div className="row justify-content-center position-relative" >
             <div className="main-text">
                 <div className="col-md-12 text-center ">
                     <div className="container">

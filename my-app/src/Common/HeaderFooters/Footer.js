@@ -10,8 +10,7 @@ class Footer extends Component{
     render(){
         return(
             <div>
-                <div className="spacer"> </div>
-                <footer className="footer">
+                <footer className="footer position-absolute">
                     <div className="container row" >
                         <div className="col-md-6 copy-right-text">
                             تمامی حقوق مادی و معنوی این وبسایت متعلق به سحر و صدف می باشد.&copy;

@@ -29,7 +29,7 @@ class AddHouseForm extends React.Component {
         this.handleSellPriceChange = this.handleSellPriceChange.bind(this);
         this.handleRentPriceChange = this.handleRentPriceChange.bind(this);
         this.handleBasePriceChange = this.handleBasePriceChange.bind(this);
-        // this.setPrice = this.setPrice.bind(this);
+        //this.setPrice = this.setPrice.bind(this);
         this.changeToRent = this.changeToRent.bind(this);
         this.changeToSale = this.changeToSale.bind(this);
     }
@@ -85,7 +85,7 @@ class AddHouseForm extends React.Component {
 
     handleSubmit(event){
         event.preventDefault();
-        // this.setPrice();
+        //this.setPrice();
         let info = {
             sellPrice: this.state.sellPrice,
             basePrice: this.state.basePrice,
@@ -110,16 +110,16 @@ class AddHouseForm extends React.Component {
         });
     }
 
-    // setPrice(){
-    //     let p = {};
-    //     if(this.state.rent){
-    //         p.basePrice = this.state.basePrice;
-    //         p.rentPrice = this.state.rentPrice;
-    //     }
-    //     else
-    //         p.sellPrice = this.state.sellPrice;
-    //     this.setState({price: p});
-    // }
+    setPrice(){
+        let p = {};
+        if(this.state.rent){
+            p.basePrice = this.state.basePrice;
+            p.rentPrice = this.state.rentPrice;
+        }
+        else
+            p.sellPrice = this.state.sellPrice;
+        this.setState({price: p});
+    }
 
     render(){
         return(
@@ -129,18 +129,16 @@ class AddHouseForm extends React.Component {
                     <div className="col-md-10 text-center ">
                         <form onSubmit={this.handleSubmit}>
                             <div className="row col-md-12 ">
-                                <div className="alignR row col-md-6">
+                                <div className="alignR row col-md-12 ">
                                     <div className="form-check ">
-                                        <input type="radio" value={1} name="exampleRadios" id="exampleRadios1"
-                                               onChange={this.handleDealTypeChange}/>
-                                        <label className="form-check-label text-white" for="exampleRadios1">
+                                        <input onChange={this.handleDealTypeChange, this.changeToRent} type="radio" name="exampleRadios" id="exampleRadios1" value={1}/>
+                                        <label className="form-check-label" for="exampleRadios1">
                                             رهن و اجاره
                                         </label>
                                     </div>
                                     <div className="form-check">
-                                        <input type="radio" name="exampleRadios" id="exampleRadios2" value={0}
-                                               onChange={this.handleDealTypeChange}/>
-                                        <label className="form-check-label text-white" for="exampleRadios2">
+                                        <input onChange={this.handleDealTypeChange, this.changeToSale} type="radio" name="exampleRadios" id="exampleRadios2" value={0}/>
+                                        <label className="form-check-label " for="exampleRadios2">
                                             خرید
                                         </label>
                                     </div>

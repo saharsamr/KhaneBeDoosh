@@ -6,11 +6,27 @@ import './../Styles/vendor/bootstrap/css/bootstrap-grid.css';
 import './../Styles/css/icons.css';
 import "./../Styles/css/searchResult.css";
 import "./../Styles/css/homePage.css";
+import {Redirect} from 'react-router';
 
 class SearchElement extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.goToDetail = this.goToDetail.bind(this);
+        this.redirect = false;
+    }
+
     render(){
+        if(this.redirect){
+            return(
+                <Redirect to={{
+                    pathname: "/housedetail",
+                    state: {id: this.props.data.id}
+                }}/>
+            );
+        }
         return(
-            <div className="card col-xs-12 col-md-5 col-sm-12">
+            <div className="card col-xs-12 col-md-5 col-sm-12" onClick={this.goToDetail}>
                 <img className="card-img-top" src={this.props.data.imageURL} alt="Card image cap"/>
                     <span className={"dealTypeLable " + (this.props.data.dealType==="rent" ? "rentLable " : 'sellLable ')+ "position-absolute"}>رهن و اجاره</span>
                     <div className="card-body">
@@ -35,6 +51,10 @@ class SearchElement extends React.Component {
                     </div>
             </div>
         );
+    }
+
+    goToDetail(){
+        this.redirect = true;
     }
 }
 
