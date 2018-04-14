@@ -71,12 +71,11 @@ class SearchForm extends Component{
     }
 
     render(){
-        return(
-            <div className="row justify-content-center position-relative" >
-                <div className="main-text">
-                    <div className="col-md-12 text-center ">
-                        <div className="container">
-                            <div className="row searchHomeForm">
+        return(<div className="row justify-content-center" >
+            <div className="main-text">
+                <div className="col-md-12 text-center ">
+                    <div className="container">
+                            <div className="searchHomeForm">
                                 <div className="col-md-10 col-lg-8 col-xl-7 mx-auto ">
                                     <form onSubmit={this.handleSubmit} className="form_ ">
                                         <div className="form-row align-items-center"><div className="form-group col-md-4 margin10 ">
@@ -98,7 +97,7 @@ class SearchForm extends Component{
 
                                         </div>
                                         <div className="row">
-                                            <div className="alignR row col-md-6 \">
+                                            <div className="alignR row col-md-6">
                                                 <div className="form-check ">
                                                     <input type="radio" value={1} name="exampleRadios" id="exampleRadios1"
                                                            onChange={this.handleDealTypeChange}/>

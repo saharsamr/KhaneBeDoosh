@@ -4,6 +4,7 @@ import Footer from "../Common/HeaderFooters/Footer";
 import MainPageInfo from "./MainPageInfo";
 import MainPageCarasoul from "./MainPageCarasoul";
 import MainPageTitle from "./MainPageTitle";
+import KhaneBeDooshFeature from "./KhaneBeDooshFeature"
 import SearchForm from "../Search/SearchForm";
 
 
@@ -13,8 +14,17 @@ class MainPage extends React.Component{
             <div>
                 <MainPageHeader/>
                 <MainPageCarasoul/>
-                <MainPageTitle/>
-                <SearchForm/>
+                <div className="row justify-content-center" >
+                    <div className="main-text">
+                        <div className="col-md-12 text-center ">
+                            <div className="container">
+                                <MainPageTitle/>
+                                <SearchForm/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <KhaneBeDooshFeature/>
                 <MainPageInfo/>
                 <Footer/>
             </div>

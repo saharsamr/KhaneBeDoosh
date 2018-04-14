@@ -31,13 +31,18 @@ public class IncreaseCreditRequest extends HttpServlet {
                 bankResponse = postBankServer(method);
                 out.println(bankResponse);
 //                out.flush();
-                if(bankResponse.get("success").equals(true))
+                if(bankResponse.get("success").equals(true)) {
                     Website.getCurrentUser().increaseBalance(Integer.parseInt(method.get("balance").toString()));
+                    response.setStatus(200);
+                }
+                else
+                    response.setStatus(500);
             }
         }catch (Exception e ){
             JSONObject res = new JSONObject();
             res.put("success", false);
             res.put("message", "Invalid parameter for increase credit");
+            response.setStatus(400);
             out.println(res);
 //            out.flush();
         }

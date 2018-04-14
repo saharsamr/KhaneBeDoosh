@@ -1,7 +1,7 @@
 import React from 'react';
 import "./../Styles/vendor/bootstrap/css/bootstrap.min.css";
-import "./../Styles/css/headersAndFooters.css"
-import "./../Styles/css/account.css"
+import "./../Styles/css/headersAndFooters.css";
+import "./../Styles/css/account.css";
 
 class IncreaseCreditForm extends React.Component {
 
@@ -27,6 +27,14 @@ class IncreaseCreditForm extends React.Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
+        }).then(function (response) {
+            if(response.ok)
+                alert("موجودی با موفقیت افزایش یافت.");
+            else if (response.status === 400)
+                alert("مقدار وارد شده نامعتبر است.");
+            else
+                alert("عملیات ناموفق بود. دوباره تلاش کنید.");
+
         });
     }
 

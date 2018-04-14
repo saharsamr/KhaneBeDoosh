@@ -6,7 +6,11 @@ class HouseImageAndPhone extends React.Component {
 
     constructor(){
         super();
-        this.id = this.props.id; //nemidunam ino in shekli bayad begiram ya na.
+        this.state = {
+            id: this.props ,
+            enoughCredit : false,
+            showPhoneNum : true
+        };
         this.getPhonePaymentStatus = this.getPhonePaymentStatus.bind(this);
         this.handlePhoneNumRequest = this.handlePhoneNumRequest.bind(this);
     }
@@ -36,14 +40,30 @@ class HouseImageAndPhone extends React.Component {
         }).then(response => response.json());
     }
 
+    showPhoneNumber(){
+        this.setState({
+            showPhoneNum: false
+        });
+    }
+
     render(){
         return(
             <div className="col-md-7 row">
                 <img className="float-right card-img-top card-img-bottom w-100 position-relative detailPhoto" src={HouseImg} alt="House image"/>
-                    <div className="spacer20">&nbsp;</div>
-                    <div className="btn btn-block btn-sm btn-info position-relative">
-                        مشاهده شماره مالک/مشاور
-                    </div>
+                <div className="spacer20">&nbsp;</div>
+                {
+                    this.state.showPhoneNum ?
+                        <div className="btn btn-block btn-sm btn-info position-relative" onClick={this.showPhoneNumber.bind(this)}>
+                            مشاهده شماره مالک/مشاور
+                        </div>
+                        :
+                        this.state.enoughCredit ?
+                            null :
+                            <div className="btn btn-block btn-sm btn-warning position-relative">
+                                اعتبار شما برای مشاهده شماره مالک/مشاور کافی نیست.
+                            </div>
+                }
+
             </div>
         );
     }

@@ -6,11 +6,11 @@ import './../Styles/css/headersAndFooters.css';
 class MainPageHeader extends Component{
     render(){
         return(
-            <nav class="navbar navbar-expand-lg navbar-light fixed-top red">
-                <div class="container" >
-                    <button type="button" class="btn btn-default transparent text-white border-white" href="#" >
+            <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+                <div classNameName="container" >
+                    <button type="button" className="btn btn-default transparent text-white border-white" href="#" >
                         &emsp; ناحیه کاربری
-                        <i class="fa fa-smile-o"></i>
+                        <i className="fa fa-smile-o"></i>
                     </button>
                 </div>
             </nav>

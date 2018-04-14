@@ -11,7 +11,7 @@ class Footer extends Component{
         return(
             <div>
                 <div className="spacer"> </div>
-                <footer className="footer position-fixed">
+                <footer className="footer">
                     <div className="container row" >
                         <div className="col-md-6 copy-right-text">
                             تمامی حقوق مادی و معنوی این وبسایت متعلق به سحر و صدف می باشد.&copy;

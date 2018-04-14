@@ -22,14 +22,16 @@ public class AddEstate extends HttpServlet {
         JSONObject req = JsonAPI.parseJson(request);
         String buildingType = req.get("buildingType").toString();
         String dealType = req.get("dealType").toString();
-        String price = req.get("sellPrice").toString();
+        String sellPrice = req.get("sellPrice").toString();
+        String basePrice = req.get("basePrice").toString();
+        String rentPrice = req.get("rentPrice").toString();
         String area = req.get("area").toString();
         String phone = req.get("phone").toString();
         String address = req.get("address").toString();
         String description = req.get("description").toString();
         try {
-            checkEstateRegistrationParamsValidation(buildingType, dealType, price, area, phone);
-            Website.addEstate(buildingType, dealType, Integer.parseInt(price), Integer.parseInt(area), phone, address, description);
+            checkEstateRegistrationParamsValidation(buildingType, dealType, sellPrice, basePrice, rentPrice, area, phone);
+            Website.addEstate(buildingType, dealType, Integer.parseInt(sellPrice), Integer.parseInt(basePrice), Integer.parseInt(rentPrice), Integer.parseInt(area), phone, address, description);
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (EstateParametersException e){
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -40,15 +42,17 @@ public class AddEstate extends HttpServlet {
         // do nothing.
     }
 
-    public void checkEstateRegistrationParamsValidation(String buildingType, String dealType, String price, String area, String phone) throws EstateParametersException{
+    public void checkEstateRegistrationParamsValidation(String buildingType, String dealType, String sellPrice, String basePrice, String rentPrice, String area, String phone) throws EstateParametersException{
         if (!(buildingType.equals("ویلایی") || buildingType.equals("آپارتمان")) ||
                 !(dealType.equals("1") || dealType.equals("0")) ||
                 !phone.matches("[0-9]+"))
             throw new EstateParametersException();
         try {
-            int price_ = Integer.parseInt(price);
+            int sell = Integer.parseInt(sellPrice);
+            int base = Integer.parseInt(basePrice);
+            int rent = Integer.parseInt(rentPrice);
             int area_ = Integer.parseInt(area);
-            if(price_ < 0 || area_ < 0)
+            if(sell < 0 || base < 0 || rent < 0 || area_ < 0)
                 throw new EstateParametersException();
         } catch (NumberFormatException e){
             throw new EstateParametersException();

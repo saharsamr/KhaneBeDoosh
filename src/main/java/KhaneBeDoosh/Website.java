@@ -57,18 +57,11 @@ public class Website {
         return bankApiKey;
     }
 
-    public static void addEstate(String buildingType, String dealType, int price, int area, String phone, String address, String description){
+    public static void addEstate(String buildingType, String dealType, int sellPrice, int basePrice, int rentPrice, int area, String phone, String address, String description){
         Estate newEstate = new Estate(Integer.toString(estates.size()+1), area, buildingType, address, dealType, logedInUserID); //TODO: check to be unique
-        if (dealType.equals("1")){
-            newEstate.setBasePrice(price);
-            newEstate.setSellPrice(0);
-            newEstate.setRentPrice(0); //TODO: dynamic form should be implemented.
-        }
-        else {
-            newEstate.setSellPrice(price);
-            newEstate.setRentPrice(0);
-            newEstate.setBasePrice(0);
-        }
+        newEstate.setBasePrice(basePrice);
+        newEstate.setSellPrice(sellPrice);
+        newEstate.setRentPrice(rentPrice); //TODO: dynamic form should be implemented.
         newEstate.setDescription(description);
         newEstate.setPhone(phone);
         estates.add(newEstate);

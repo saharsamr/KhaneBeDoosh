@@ -14,10 +14,11 @@ class AddHouseForm extends React.Component {
             address: '',
             phoneNumber: '',
             description: '',
-            sellPrice: '',
-            rentPrice: '',
-            basePrice: ''
+            sellPrice: 0,
+            rentPrice: 0,
+            basePrice: 0
         }
+        this.state = { rent: false };
 
         this.handleAddressChange = this.handleAddressChange.bind(this);
         this.handleAriaChange = this.handleAriaChange.bind(this);
@@ -28,6 +29,9 @@ class AddHouseForm extends React.Component {
         this.handleSellPriceChange = this.handleSellPriceChange.bind(this);
         this.handleRentPriceChange = this.handleRentPriceChange.bind(this);
         this.handleBasePriceChange = this.handleBasePriceChange.bind(this);
+        // this.setPrice = this.setPrice.bind(this);
+        this.changeToRent = this.changeToRent.bind(this);
+        this.changeToSale = this.changeToSale.bind(this);
     }
 
     handleAriaChange(event){
@@ -36,6 +40,7 @@ class AddHouseForm extends React.Component {
 
     handleDealTypeChange(event){
         this.setState({dealType: event.target.value});
+        console.log("deal type changed.");
     }
 
     handleBuildingTypeChange(event){
@@ -63,21 +68,35 @@ class AddHouseForm extends React.Component {
     }
 
     handleBasePriceChange(event){
-        this.setState({basePrice: event.target.value});
+        this.setState({price: event.target.value});
+    }
+
+    changeToRent(){
+        this.setState({
+            rent: true
+        });
+    }
+
+    changeToSale(){
+        this.setState({
+            rent: false
+        });
     }
 
     handleSubmit(event){
         event.preventDefault();
-        this.setPrice();
+        // this.setPrice();
         let info = {
-            price: this.state.price,
+            sellPrice: this.state.sellPrice,
+            basePrice: this.state.basePrice,
+            rentPrice: this.state.rentPrice,
             area: this.state.area,
             buildingType: this.state.buildingType,
             dealType: this.state.dealType,
             description: this.state.description,
             address: this.state.address,
             phoneNumber: this.state.phoneNumber
-        }
+        };
         fetch('http://localhost:3000/addestate', {
             method: 'POST',
             headers: {
@@ -85,19 +104,22 @@ class AddHouseForm extends React.Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(info)
-        })
+        }).then(function (response) {
+            if(response.status === 200)
+                alert("ملک با موفقیت ثبت شد.");
+        });
     }
 
-    setPrice(){
-        let p = {};
-        if(this.state.dealType == 1){
-            p.basePrice = this.state.basePrice;
-            p.rentPrice = this.state.rentPrice;
-        }
-        else
-            p.sellPrice = this.state.sellPrice;
-        this.state.price = p;
-    }
+    // setPrice(){
+    //     let p = {};
+    //     if(this.state.rent){
+    //         p.basePrice = this.state.basePrice;
+    //         p.rentPrice = this.state.rentPrice;
+    //     }
+    //     else
+    //         p.sellPrice = this.state.sellPrice;
+    //     this.setState({price: p});
+    // }
 
     render(){
         return(
@@ -105,23 +127,24 @@ class AddHouseForm extends React.Component {
                 <div className="container">
                     <div className="col-md-1"> </div>
                     <div className="col-md-10 text-center ">
-                        <form >
+                        <form onSubmit={this.handleSubmit}>
                             <div className="row col-md-12 ">
-                                <div className="alignR row col-md-12 ">
+                                <div className="alignR row col-md-6">
                                     <div className="form-check ">
-                                        <input onChange={this.handleDealTypeChange} type="radio" name="exampleRadios" id="exampleRadios1" value={1}/>
-                                            <label className="form-check-label" for="exampleRadios1">
-                                                رهن و اجاره
-                                            </label>
+                                        <input type="radio" value={1} name="exampleRadios" id="exampleRadios1"
+                                               onChange={this.handleDealTypeChange}/>
+                                        <label className="form-check-label text-white" for="exampleRadios1">
+                                            رهن و اجاره
+                                        </label>
                                     </div>
                                     <div className="form-check">
-                                        <input onChange={this.handleDealTypeChange} type="radio" name="exampleRadios" id="exampleRadios2" value={0}/>
-                                            <label className="form-check-label " for="exampleRadios2">
-                                                خرید
-                                            </label>
+                                        <input type="radio" name="exampleRadios" id="exampleRadios2" value={0}
+                                               onChange={this.handleDealTypeChange}/>
+                                        <label className="form-check-label text-white" for="exampleRadios2">
+                                            خرید
+                                        </label>
                                     </div>
                                 </div>
-
                             </div>
                             <div className="form-row align-items-center text-left col-md-12">
                                 <div className=" col-md-6 ">
@@ -143,20 +166,35 @@ class AddHouseForm extends React.Component {
                                     <label className="">&nbsp;</label>
                                     <input onChange={this.handleAddressChange} type="text" className="form-control" placeholder="آدرس"/>
                                 </div>
-                                <div className="col-md-6 ">
-                                    <label className="">تومان</label>
-                                    <input type="text" className="form-control" placeholder="قیمت رهن"/>
-                                </div>
+
+                                {
+                                    this.state.rent ?
+                                        <div className="col-md-6 ">
+                                            <label className="">تومان</label>
+                                            <input onChange={this.handleBasePriceChange} type="text" className="form-control" placeholder="قیمت رهن"/>
+                                        </div>
+                                        :
+                                        <div className="col-md-6 ">
+                                            <label className="">تومان</label>
+                                            <input onChange={this.handleSellPriceChange} type="text" className="form-control" placeholder="قیمت خرید"/>
+                                        </div>
+                                }
+
                             </div>
                             <div className="form-row col-md-12 text-left">
                                 <div className="col-md-6">
                                     <label className="">&nbsp;</label>
                                     <input onChange={this.handlePhoneChange} type="text" className="form-control" placeholder="شماره تماس"/>
                                 </div>
-                                <div className="col-md-6">
-                                    <label className="">تومان</label>
-                                    <input type="text" className="form-control" placeholder="قیمت اجاره"/>
-                                </div>
+
+                                {
+                                    this.state.rent ?
+                                        <div className="col-md-6">
+                                            <label className="">تومان</label>
+                                            <input onChange={this.handleRentPriceChange} type="text" className="form-control" placeholder="قیمت اجاره"/>
+                                        </div>
+                                        : null
+                                }
                             </div>
                             <div className=" col-md-12 text-left">
                                 <label>تومان</label>
@@ -172,7 +210,7 @@ class AddHouseForm extends React.Component {
                     <div className="col-md-1"> </div>
                 </div>
             </div>
-    );
+        );
     }
 }
 
