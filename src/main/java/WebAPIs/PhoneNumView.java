@@ -44,9 +44,11 @@ public class PhoneNumView extends HttpServlet {
             try{
                 current.decreaseBalance();
                 paymentSuccess.put("paid", true);
+                response.setStatus(200);
             } catch (LackOfBalanceException e){
                 paymentSuccess.put("paid", false);
                 paymentSuccess.put("message", "Lack of balance.");
+                response.setStatus(400);
             }
         }
         out.println(paymentSuccess);

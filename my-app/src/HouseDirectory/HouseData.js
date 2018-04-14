@@ -6,54 +6,53 @@ class HouseData extends React.Component {
         super(props);
         this.state = {
             id: '',
-            enoughCredit: false,
-            showPhoneNum: true,
-            price: this.props.data.price
+            enoughCredit: true,
+            paid: false
         };
-        console.log(this.props.data.price);
         this.getPhonePaymentStatus = this.getPhonePaymentStatus.bind(this);
         this.handlePhoneNumRequest = this.handlePhoneNumRequest.bind(this);
+
     }
 
     getPhonePaymentStatus(){
-        let url = 'http://localhost3000/estatephonenumber?id=' + this.id;
+        let url = 'http://localhost:3000/estatephonenumber?id=' + this.props.data.id;
         fetch(url, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             }
-        }).then(response => response.json())
-            .then(function (data) {
-                if(data.paid.equals(false))
-                    console.log("not paid");
-            });
+        }).then(response => response.json());
     }
 
     handlePhoneNumRequest(){
         let data = {
-            id: this.id
+            id: this.props.data.id
         };
-        fetch('http://localhost3000/estatephonenumber', {
+        fetch('http://localhost:3000/estatephonenumber', {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
-        }).then(response => response.json());
-    }
-
-    showPhoneNumber(){
-        this.setState({
-            showPhoneNum: false
-        });
+        }).then(function (response) {
+            if(response.status === 200) {
+                this.setState({paid: true});
+                console.log(200);
+            }
+            else {
+                this.setState({enoughCredit: false});
+                console.log(500);
+            }
+            });
+        console.log("called");
     }
 
 
 
     render(){
-
+        this.getPhonePaymentStatus();
         return(
             <div className="container row">
             <div className="col-md-5 text-right">
@@ -68,7 +67,12 @@ class HouseData extends React.Component {
                 <table className="text-right col-md-12 position-relative">
                     <tr className=" border-bottom">
                         <td width="60%" className="">شماره مالک/مشاور</td>
-                        <td width="40%"> 09121212121</td>
+                        {
+                            this.state.paid ?
+                                <td width="40%"> {this.props.data.phone}</td>
+                                :
+                                <td width="40%"> **********</td>
+                        }
                     </tr>
                     <tr className="spacer20"></tr>
                     <tr className=" border-bottom">
@@ -118,14 +122,14 @@ class HouseData extends React.Component {
                 <img className="float-right card-img-top card-img-bottom w-100 position-relative detailPhoto" src={this.props.data.imageURL} alt="House image"/>
                 <div className="spacer20">&nbsp;</div>
                 {
-                    this.state.showPhoneNum ?
-                        <div className="btn btn-block btn-sm btn-info position-relative" onClick={this.showPhoneNumber.bind(this)}>
+                    this.state.enoughCredit && !this.state.paid ?
+                        <div className="btn btn-block btn-sm btn-info position-relative" onClick={this.handlePhoneNumRequest}>
                             مشاهده شماره مالک/مشاور
                         </div>
                         :
-                        this.state.enoughCredit ?
+                        this.state.paid ?
                             <div className="btn btn-block btn-sm btn-warning position-relative">
-                                091234567
+                                شماره خریداری شده است.
                             </div>
                             :
                             <div className="btn btn-block btn-sm btn-warning position-relative">
