@@ -9,6 +9,6 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
-export default [Search];
+// export default [Search,];
 
 registerServiceWorker();

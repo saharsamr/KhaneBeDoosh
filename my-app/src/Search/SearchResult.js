@@ -5,9 +5,43 @@ import Header from './../Common/HeaderFooters/Header';
 import PageTitle from "./../Common/PageTitle";
 import SearchForm from "./../Search/SearchForm";
 import "./../Styles/css/searchResult.css";
+import "./../Services/Search";
+// import Search from "../Services/Search";
+import {injector} from 'react-services-injector';
+import services from "./../Services";
+import SearchResultBox from "./SearchResultBox";
+
+
+injector.register(services);
 
 class SearchResult extends React.Component{
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            result: [],
+            test: ''
+        };
+        //this.doSearch = this.doSearch.bind(this);
+        // this.doSearch(this.props.location.state.searchParams);
+    }
+
+    // componentDidMount(){
+    //     console.log("**************************");
+    //     this.doSearch(this.props.location.state.searchParams);
+    //     console.log(this.props.location.state.searchParams);
+    //     console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&");
+    //     console.log(this.state.result.valueOf());
+    // }
+
+    componentWillMount(){
+        let params = this.props.location.state.searchParams;
+        this.doSearch(params);
+    }
+
     render() {
+        // this.doSearch(this.props.location.state.searchParams);
+        console.log(this.state.result);
         return (
             <div>
                 <Header />
@@ -15,13 +49,33 @@ class SearchResult extends React.Component{
                 <div>
                     <p className="lables">برای مشاهده اطلاعات بیشتر درباره‌ی هر ملک روی آن کلیک کنید.</p>
                 </div>
-                <div className="searchResult container">
-                    {/*TODO: inja bayad yeki yeki besazim cartaro:(*/}
+                <div>
                 </div>
+                <SearchResultBox list={this.state.result}/>
                 <SearchForm/>
                 <Footer />
             </div>
         );
+    }
+
+    doSearch(params) {
+        let url = 'http://localhost:3000/search?';
+        Object.keys(params).forEach(key => {
+            url = url + key + "=" + params[key] + "&";
+        });
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        }).then(response => {
+            return response.json();
+        }).then(data=> {
+             this.setState({result: data});
+            // console.log("------------------");
+            // console.log(this.state.result);
+        });
     }
 }
 

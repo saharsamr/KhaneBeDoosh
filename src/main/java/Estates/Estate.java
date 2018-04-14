@@ -32,7 +32,8 @@ public class Estate {
             DealType dealType,
             int sellPrice,
             int rentPrice,
-            int basePrice
+            int basePrice,
+            URL imageUrl
     )
     {
         this.id = id;
@@ -42,6 +43,7 @@ public class Estate {
         this.sellPrice = sellPrice;
         this.rentPrice = rentPrice;
         this.basePrice = basePrice;
+        this.imageURL = imageUrl;
     }
 
     public Estate(){}

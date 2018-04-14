@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -83,20 +84,22 @@ public class Search extends HttpServlet {
         return result;
     }
 
-    public static Estate hasConditions(JSONObject obj, String buildingType, DealType dealType, int price, int area){
+    public static Estate hasConditions(JSONObject obj, String buildingType, DealType dealType, int price, int area) throws  Exception{
         String buildingType_ = obj.get("buildingType").toString();
         int dealType_ = Integer.parseInt(obj.get("dealType").toString());
         int area_ = Integer.parseInt(obj.get("area").toString());
         String id = obj.get("id").toString();
+        String image = obj.get("imageURL").toString();
         DealType deal = DealType.valueOf(dealType_);
         JSONObject price_ = new JSONObject(obj.get("price").toString());
+        URL url = new URL(image);
         int sellPrice, rentPrice, basePrice;
         if(deal.equals(DealType.rent)){
             sellPrice = 0;
             rentPrice = Integer.parseInt(price_.get("rentPrice").toString());
             basePrice = Integer.parseInt(price_.get("basePrice").toString());
             if((basePrice < price) && (area_ > area) && (deal.equals(dealType)) && buildingType.equals(buildingType_))
-                return new Estate(id, area_, buildingType_, deal, sellPrice, rentPrice, basePrice);
+                return new Estate(id, area_, buildingType_, deal, sellPrice, rentPrice, basePrice, url);
             else
                 return null;
         }
@@ -105,7 +108,7 @@ public class Search extends HttpServlet {
             rentPrice = 0;
             basePrice = 0;
             if((sellPrice < price) && (area_ > area) && (deal.equals(dealType)) && buildingType.equals(buildingType_))
-                return new Estate(id, area_, buildingType_, deal, sellPrice, rentPrice, basePrice);
+                return new Estate(id, area_, buildingType_, deal, sellPrice, rentPrice, basePrice, url);
             else
                 return null;
         }
@@ -120,6 +123,7 @@ public class Search extends HttpServlet {
             instance.put("area", estate.getArea());
             instance.put("dealType", estate.getDealType());
             instance.put("buildingType", estate.getBuildingType());
+            instance.put("address", estate.getAddress());
             //TODO: create link for different websites.
             price = new JSONObject();
             if(estate.getDealType().equals(DealType.rent)){
@@ -129,6 +133,7 @@ public class Search extends HttpServlet {
             else
                 price.put("sellPrice", estate.getSellPrice());
             instance.put("price", price);
+            instance.put("imageURL", estate.getImageURL());
             estatesList.put(instance);
         }
         PrintWriter out = response.getWriter();

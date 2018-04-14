@@ -11,15 +11,16 @@ import {Service} from 'react-services-injector';
 
 class SearchForm extends Component{
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state= {
             buildingType: '',
             area: '',
             price: '',
             dealType: 0,
             searchParams: {},
-            redirect: false
+            redirect: false,
+            result: {}
         };
         this.handleBuildingTypeSelect = this.handleBuildingTypeSelect.bind(this);
         this.handleAreaChange = this.handleAreaChange.bind(this);
@@ -40,21 +41,6 @@ class SearchForm extends Component{
 
         this.setState({"searchParams": params});
         this.setState({"redirect": true});
-
-        let url = 'http://localhost:3000/search?';
-        Object.keys(params).forEach(key => {
-            url = url + key + "=" + params[key] + "&";
-        });
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            }
-        }).then(response => response.json())
-            .then(response => {
-                console.log(response);
-            });
     }
 
 
@@ -77,7 +63,6 @@ class SearchForm extends Component{
 
     renderRedirect() {
         if(this.state.redirect){
-            console.log("-----------------");
             return (<Redirect to={{
                 pathname: '/searchresult',
                 state: {searchParams: this.state.searchParams}
