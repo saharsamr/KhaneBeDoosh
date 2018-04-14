@@ -5,6 +5,7 @@ import Header from './../Common/HeaderFooters/Header';
 import PageTitle from "./../Common/PageTitle";
 import SearchForm from "./../Search/SearchForm";
 import "./../Styles/css/searchResult.css";
+import "./../Styles/css/headersAndFooters.css";
 import "./../Services/Search";
 // import Search from "../Services/Search";
 import {injector} from 'react-services-injector';
@@ -41,6 +42,9 @@ class SearchResult extends React.Component{
                 </div>
                 <SearchResultBox list={this.state.result}/>
                 <SearchForm/>
+                <div className="spacer"></div>
+                <div className="spacer"></div>
+                <div className="spacer"></div>
                 <Footer />
             </div>
         );

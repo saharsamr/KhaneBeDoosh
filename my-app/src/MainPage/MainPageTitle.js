@@ -13,7 +13,7 @@ class MainPageTitle extends Component{
 
                             <div className="row col-sm-3 mx-auto">
                                 <div className="col-md-10">
-                                    <a href="homePage.html">
+                                    <a>
                                         <img className="img-fluid rounded-circle mx-auto logoImg" src={logoImg} alt="Logo image"/>
                                     </a>
                                     <h6 className="text-white">خانه به دوش</h6>

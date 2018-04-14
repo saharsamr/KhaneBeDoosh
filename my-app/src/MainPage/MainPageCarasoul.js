@@ -10,6 +10,7 @@ import "./../Styles/css/myCarousel.css"
 import FirstCarsoulImg from "./../assests/img/banner/michal-kubalczyk-260909-unsplash.jpg"
 import SecondCarsoulImg from "./../assests/img/banner/mahdiar-mahmoodi-452489-unsplash.jpg"
 import ThirdCarsoulImg from "./../assests/img/banner/luke-van-zyl-504032-unsplash.jpg"
+import fourthCarasoulImg from "./../assests/img/banner/casey-horner-533586-unsplash.jpg"
 
 class MainPageCarasoul extends Component{
     render(){
@@ -48,7 +49,7 @@ class MainPageCarasoul extends Component{
                         <label for="mycarousel-3" className="mycarousel-control prev hidden-xs" title="Prev">«</label>
                         <label for="mycarousel-1" className="mycarousel-control next hidden-xs" title="Next">»</label>
                     </div>
-                    <img src="img/banner/casey-horner-533586-unsplash.jpg" alt="Third slide" />
+                    <img src={fourthCarasoulImg} alt="Third slide" />
                 </div>
                 <ol className="mycarousel-indicators" aria-label="mycarousel navigation" aria-hidden="true">
                     <li>

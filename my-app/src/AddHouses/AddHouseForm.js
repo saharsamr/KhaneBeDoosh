@@ -9,7 +9,6 @@ class AddHouseForm extends React.Component {
         this.state = {
             dealType: 1,
             buildingType: '',
-            price: {},
             area: '',
             address: '',
             phoneNumber: '',
@@ -108,17 +107,6 @@ class AddHouseForm extends React.Component {
             if(response.status === 200)
                 alert("ملک با موفقیت ثبت شد.");
         });
-    }
-
-    setPrice(){
-        let p = {};
-        if(this.state.rent){
-            p.basePrice = this.state.basePrice;
-            p.rentPrice = this.state.rentPrice;
-        }
-        else
-            p.sellPrice = this.state.sellPrice;
-        this.setState({price: p});
     }
 
     render(){

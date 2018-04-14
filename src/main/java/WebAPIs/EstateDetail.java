@@ -19,7 +19,7 @@ public class EstateDetail extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json");
+        response.setContentType("application/json;charset=utf-8");
         String id = request.getParameter("id");
 
         JSONObject jsonEstateData = new JSONObject();

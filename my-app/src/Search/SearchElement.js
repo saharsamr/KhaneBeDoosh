@@ -12,21 +12,17 @@ class SearchElement extends React.Component {
 
     constructor(props){
         super(props);
-        this.goToDetail = this.goToDetail.bind(this);
-        this.redirect = false;
+        this.state = {
+            redirect: false
+        };
+        this.setRedirect = this.setRedirect.bind(this);
+        this.renderRedirect = this.renderRedirect.bind(this);
     }
 
     render(){
-        if(this.redirect){
-            return(
-                <Redirect to={{
-                    pathname: "/housedetail",
-                    state: {id: this.props.data.id}
-                }}/>
-            );
-        }
         return(
-            <div className="card col-xs-12 col-md-5 col-sm-12" onClick={this.goToDetail}>
+            <div className="card col-xs-12 col-md-5 col-sm-12" onClick={this.setRedirect}>
+                {this.renderRedirect()}
                 <img className="card-img-top" src={this.props.data.imageURL} alt="Card image cap"/>
                     <span className={"dealTypeLable " + (this.props.data.dealType==="rent" ? "rentLable " : 'sellLable ')+ "position-absolute"}>رهن و اجاره</span>
                     <div className="card-body">
@@ -53,8 +49,20 @@ class SearchElement extends React.Component {
         );
     }
 
-    goToDetail(){
-        this.redirect = true;
+    setRedirect(){
+        this.setState({redirect: true});
+        console.log("here");
+    }
+
+    renderRedirect(){
+        if(this.state.redirect){
+            return(
+                <Redirect to={{
+                    pathname: "/housedetail",
+                    state: {id: this.props.data.id}
+                }}/>
+            );
+        }
     }
 }
 

@@ -1,3 +1,8 @@
+*{
+    direction: rtl;
+    font-family: Shabnam, 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 .searchResultTable {
   width: 100%;
   margin: 0.6250em;
@@ -88,7 +93,10 @@
 }
 
 .margin10{
-    margin: 10px;
+    margin-right: -10px;
+}
+.margin-top-10{
+    margin-top: 16px;
 }
 
 form.form_{

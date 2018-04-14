@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './../../Styles/css/headersAndFooters.css';
 import './../../Styles/css/icons.css';
 import './../../Styles/vendor/bootstrap/css/bootstrap.min.css';
+import './../../Styles/vendor/bootstrap/css/bootstrap.css';
 import './../../Styles/vendor/font-awesome/css/font-awesome.min.css';
 import './../../Styles/vendor/simple-line-icons/css/simple-line-icons.css';
 import './../../Styles/vendor/bootstrap/css/bootstrap-grid.css'
@@ -10,7 +11,8 @@ class Footer extends Component{
     render(){
         return(
             <div>
-                <footer className="footer position-absolute">
+                <div className="spacer"></div>
+                <footer className="footer">
                     <div className="container row" >
                         <div className="col-md-6 copy-right-text">
                             تمامی حقوق مادی و معنوی این وبسایت متعلق به سحر و صدف می باشد.&copy;
@@ -25,7 +27,6 @@ class Footer extends Component{
                     </div>
                 </footer>
             </div>
-
         );
     }
 }

@@ -11,6 +11,7 @@ class AddHouses extends React.Component {
     render(){
         return(
             <div>
+                <Header/>
                 <PageTitle title="ثبت ملک جدید در خانه به دوش"/>
                 <div className="spacer"> </div>
                 <AddHouseForm/>

@@ -78,19 +78,20 @@ class SearchForm extends Component{
                             <div className="searchHomeForm">
                                 <div className="col-md-10 col-lg-8 col-xl-7 mx-auto ">
                                     <form onSubmit={this.handleSubmit} className="form_ ">
-                                        <div className="form-row align-items-center"><div className="form-group col-md-4 margin10 ">
-                                            <label >&nbsp;</label>
-                                            <select className="form-control h-100" value={this.state.buildingType} onChange={this.handleBuildingTypeSelect}>
-                                                <option selected="selected" disabled="disabled">نوع ساختمان</option>
-                                                <option value="آپارتمان">آپارتمان</option>
-                                                <option value="ویلایی">ویلایی</option>
-                                            </select>
-                                        </div>
-                                            <div className="form-group margin10 txtAlignL w-25 ">
+                                        <div className="form-row align-items-center">
+                                            <div className="form-group col-md-4 margin10 ">
+                                                <label >&nbsp;</label>
+                                                <select className="form-control h-100" value={this.state.buildingType} onChange={this.handleBuildingTypeSelect}>
+                                                    <option selected="selected" disabled="disabled">نوع ساختمان</option>
+                                                    <option value="آپارتمان">آپارتمان</option>
+                                                    <option value="ویلایی">ویلایی</option>
+                                                </select>
+                                            </div>
+                                            <div className="form-group txtAlignL margin10 w-25 ">
                                                 <label className="text-white">متر مربع</label>
                                                 <input value={this.state.area} onChange={this.handleAreaChange} type="text" className="form-control " placeholder="حداکثر متراژ"/>
                                             </div>
-                                            <div className="form-group margin10 txtAlignL ">
+                                            <div className="form-group margin-top-10 txtAlignL ">
                                                 <label className="text-white">تومان</label>
                                                 <input value={this.state.price} onChange={this.handlePriceChange} type="text" className="form-control" placeholder="حداکثر قیمت"/>
                                             </div>
