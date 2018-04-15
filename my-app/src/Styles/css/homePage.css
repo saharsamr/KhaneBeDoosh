@@ -110,7 +110,9 @@ div.centered {
 .margin10{
     margin: 10px;
 }
-
+.padding10{
+    padding: 8px 0 9px 0;
+}
 .infoBox{
     padding: 20px;
     margin: 2%;

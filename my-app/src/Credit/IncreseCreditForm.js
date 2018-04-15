@@ -50,8 +50,9 @@ class IncreaseCreditForm extends React.Component {
                     <div className="col-md-4 text-xs-right">
                         <p id="balanceValMargin"><span className="lables">اعتبار کنونی</span>{this.state.current.balance}<span className="lables">تومان</span></p>
                     </div>
-                    <div className="col-md-7">
-                        <form className="col-md-6" onSubmit={this.handleSubmit}>
+                    <div className="col-md-2"> </div>
+                    <div className="col-md-6">
+                        <form className="col-md-8" onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                 <label >تومان</label>
                                 <input type="text" name="balance" value={this.state.balance} onChange={this.handleValueChange} className="form-control" placeholder="مبلغ مورد نظر"/>
@@ -60,8 +61,9 @@ class IncreaseCreditForm extends React.Component {
                         </form>
                     </div>
                 </div>
-                <div className="spacer"></div>
-                <div className="spacer"></div>
+                <div className="spacer"> </div>
+                <div className="spacer"> </div>
+                <div className="spacer"> </div>
             </div>
         );
     }

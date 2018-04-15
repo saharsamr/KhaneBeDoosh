@@ -17,7 +17,7 @@ class AddHouseForm extends React.Component {
             rentPrice: 0,
             basePrice: 0
         }
-        this.state = { rent: false };
+        this.state = { rent: null };
 
         this.handleAddressChange = this.handleAddressChange.bind(this);
         this.handleAriaChange = this.handleAriaChange.bind(this);
@@ -29,8 +29,11 @@ class AddHouseForm extends React.Component {
         this.handleRentPriceChange = this.handleRentPriceChange.bind(this);
         this.handleBasePriceChange = this.handleBasePriceChange.bind(this);
         //this.setPrice = this.setPrice.bind(this);
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+
         this.changeToRent = this.changeToRent.bind(this);
-        this.changeToSale = this.changeToSale.bind(this);
+        this.changeToSell = this.changeToSell.bind(this);
     }
 
     handleAriaChange(event){
@@ -72,13 +75,15 @@ class AddHouseForm extends React.Component {
 
     changeToRent(){
         this.setState({
-            rent: true
+            rent: true,
+            dealType:1
         });
     }
 
-    changeToSale(){
+    changeToSell(){
         this.setState({
-            rent: false
+            rent: false,
+            dealType: 0
         });
     }
 
@@ -119,13 +124,13 @@ class AddHouseForm extends React.Component {
                             <div className="row col-md-12 ">
                                 <div className="alignR row col-md-12 ">
                                     <div className="form-check ">
-                                        <input onChange={this.handleDealTypeChange, this.changeToRent} type="radio" name="exampleRadios" id="exampleRadios1" value={1}/>
+                                        <input onClick={ this.changeToRent} type="radio" name="exampleRadios" id="exampleRadios1" value={1}/>
                                         <label className="form-check-label" for="exampleRadios1">
                                             رهن و اجاره
                                         </label>
                                     </div>
                                     <div className="form-check">
-                                        <input onChange={this.handleDealTypeChange, this.changeToSale} type="radio" name="exampleRadios" id="exampleRadios2" value={0}/>
+                                        <input onClick={this.changeToSell} type="radio" name="exampleRadios" id="exampleRadios2" value={0}/>
                                         <label className="form-check-label " for="exampleRadios2">
                                             خرید
                                         </label>
@@ -183,13 +188,13 @@ class AddHouseForm extends React.Component {
                                 }
                             </div>
                             <div className=" col-md-12 text-left">
-                                <label>تومان</label>
+                                <label>&nbsp;</label>
                                 <input onChange={this.handleDescriptionChange} type="text" className="form-control" placeholder="توضیحات"/>
                             </div>
 
                             <div className="col-md-4 float-left">
                                 <label>&nbsp;</label>
-                                <button type="submit" className="btn btn-block btn-sm btn-info">ثبت ملک</button>
+                                <button type="submit" className="btn btn-block btn-sm btn-info" onClick={this.sendData}>ثبت ملک</button>
                             </div>
                         </form>
                     </div>

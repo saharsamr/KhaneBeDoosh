@@ -7,10 +7,10 @@ class MainPageHeader extends Component{
     render(){
         return(
             <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-                <div classNameName="container" >
-                    <button type="button" className="btn btn-default transparent text-white border-white" href="#" >
+                <div className="container" >
+                    <button type="button" className="btn btn-default transparent text-white border-white " >
                         &emsp; ناحیه کاربری
-                        <i className="fa fa-smile-o"></i>
+                        <i className="fa fa-smile-o"> </i>
                     </button>
                 </div>
             </nav>

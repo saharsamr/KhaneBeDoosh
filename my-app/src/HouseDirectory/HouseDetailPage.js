@@ -47,7 +47,6 @@ class HouseDetailPage extends React.Component {
         }).then(response => {
             return response.json();
         }).then(data=> {
-            console.log(data);
             this.setState({result: data});
         });
     }

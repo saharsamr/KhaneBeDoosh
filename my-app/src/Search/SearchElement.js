@@ -23,8 +23,8 @@ class SearchElement extends React.Component {
         return(
             <div className="card col-xs-12 col-md-5 col-sm-12" onClick={this.setRedirect}>
                 {this.renderRedirect()}
-                <img className="card-img-top" src={this.props.data.imageURL} alt="Card image cap"/>
-                    <span className={"dealTypeLable " + (this.props.data.dealType==="rent" ? "rentLable " : 'sellLable ')+ "position-absolute"}>رهن و اجاره</span>
+                <img className="card-img-top_" src={this.props.data.imageURL} alt="Card image cap"/>
+                    <span className={"dealTypeLable " + (this.props.data.dealType==="rent" ? "rentLable " : 'sellLable ')+ "position-absolute"}>{this.props.data.dealType==="rent" ? "رهن و اجاره" : "خرید"}</span>
                     <div className="card-body">
                         <table className="searchResultTable">
                             <tr>

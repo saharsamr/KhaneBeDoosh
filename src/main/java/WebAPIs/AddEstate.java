@@ -1,6 +1,7 @@
 package WebAPIs;
 
 import java.io.*;
+import static java.lang.System.*;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -20,8 +21,8 @@ public class AddEstate extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         JSONObject req = JsonAPI.parseJson(request);
-        String buildingType = req.get("buildingType").toString();
         String dealType = req.get("dealType").toString();
+        String buildingType = req.get("buildingType").toString();
         String sellPrice = req.get("sellPrice").toString();
         String basePrice = req.get("basePrice").toString();
         String rentPrice = req.get("rentPrice").toString();

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import './../../Styles/vendor/bootstrap/css/bootstrap.min.css';
 import './../../Styles/css/headersAndFooters.css';
 import './../../Styles/css/icons.css';
-import './../../Styles/vendor/bootstrap/css/bootstrap.min.css';
 import './../../Styles/vendor/bootstrap/css/bootstrap.css';
 import './../../Styles/vendor/font-awesome/css/font-awesome.min.css';
 import './../../Styles/vendor/simple-line-icons/css/simple-line-icons.css';
@@ -11,10 +11,10 @@ class Footer extends Component{
     render(){
         return(
             <div>
-                <div className="spacer"></div>
+                <div className="spacer"> </div>
                 <footer className="footer">
-                    <div className="container row" >
-                        <div className="col-md-6 copy-right-text">
+                    <div className=" row" >
+                        <div className="col-md-4 copy-right-text">
                             تمامی حقوق مادی و معنوی این وبسایت متعلق به سحر و صدف می باشد.&copy;
                         </div>
                         <div className="col-md-6">

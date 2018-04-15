@@ -20,6 +20,7 @@ class SearchForm extends Component{
             dealType: 0,
             searchParams: {},
             redirect: false,
+            redirectAddHouse:false,
             result: {}
         };
         this.handleBuildingTypeSelect = this.handleBuildingTypeSelect.bind(this);
@@ -28,6 +29,8 @@ class SearchForm extends Component{
         this.handleDealTypeChange = this.handleDealTypeChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.renderRedirect = this.renderRedirect.bind(this);
+        this.setRedirectAddHouse = this.setRedirectAddHouse.bind(this);
+        this.renderRedirectToAddHouse = this.renderRedirectToAddHouse.bind(this);
     }
 
     handleSubmit(event) {
@@ -70,6 +73,18 @@ class SearchForm extends Component{
         }
     }
 
+    renderRedirectToAddHouse(){
+        if(this.state.redirectAddHouse){
+            return (<Redirect to={{
+                pathname: '/addhouse'
+            }} />);
+        }
+    }
+
+    setRedirectAddHouse(){
+        this.setState({"redirectAddHouse":true});
+    }
+
     render(){
         return(<div className="row justify-content-center position-relative" >
             <div className="main-text">
@@ -81,7 +96,7 @@ class SearchForm extends Component{
                                         <div className="form-row align-items-center">
                                             <div className="form-group col-md-4 margin10 ">
                                                 <label >&nbsp;</label>
-                                                <select className="form-control h-100" value={this.state.buildingType} onChange={this.handleBuildingTypeSelect}>
+                                                <select className="form-control h-100 padding10" value={this.state.buildingType} onChange={this.handleBuildingTypeSelect}>
                                                     <option selected="selected" disabled="disabled">نوع ساختمان</option>
                                                     <option value="آپارتمان">آپارتمان</option>
                                                     <option value="ویلایی">ویلایی</option>
@@ -123,7 +138,8 @@ class SearchForm extends Component{
                                     </form>
                                 </div>
                             </div>
-                            <div className="searchHomeForm ">
+                            <div className="searchHomeForm " onClick={this.setRedirectAddHouse}>
+                                {this.renderRedirectToAddHouse()}
                                 <div className="text-white">
                                     صاحب خانه هستید؟ خانه خود را ثبت کنید
                                 </div>

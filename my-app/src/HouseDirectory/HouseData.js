@@ -11,6 +11,7 @@ class HouseData extends React.Component {
         };
         this.getPhonePaymentStatus = this.getPhonePaymentStatus.bind(this);
         this.handlePhoneNumRequest = this.handlePhoneNumRequest.bind(this);
+        this.getPhoneNumber = this.getPhoneNumber.bind(this);
 
     }
 
@@ -25,7 +26,7 @@ class HouseData extends React.Component {
         }).then(response => response.json());
     }
 
-    handlePhoneNumRequest(){
+    handlePhoneNumRequest() {
         let data = {
             id: this.props.data.id
         };
@@ -38,18 +39,30 @@ class HouseData extends React.Component {
             body: JSON.stringify(data)
         }).then(function (response) {
             if(response.ok) {
-                this.setState({paid: true});
+                //this.setState({paid:true});
                 console.log(200);
             }
             else {
-                this.setState({enoughCredit: false});
                 console.log(500);
+                //this.setState({enoughCredit: false});
             }
-            });
-        console.log("called");
+        });
     }
 
-
+    getPhoneNumber() {
+        let url = 'http://localhost:3000/estatephonenumber';
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json;charset=utf-8',
+            }
+        }).then(response => {
+            return response.json();
+        }).then(data=> {
+            this.setState({current: data});
+        });
+    }
 
     render(){
         this.getPhonePaymentStatus();
@@ -71,7 +84,7 @@ class HouseData extends React.Component {
                             this.state.paid ?
                                 <td width="40%"> {this.props.data.phone}</td>
                                 :
-                                <td width="40%"> **********</td>
+                                <td width="40%">{this.state.paid?this.getPhoneNumber():"*********"}</td>
                         }
                     </tr>
                     <tr className="spacer20"></tr>
@@ -79,26 +92,25 @@ class HouseData extends React.Component {
                         <td width="60%">{this.props.data.buildingType}</td>
                         <td width="40%"> کلنگی</td>
                     </tr>
-                    <tr className="spacer20"></tr>
+                    <tr className="spacer20"> </tr>
 
+
+                    <tr className=" border-bottom">
+                        <td width="60%">{ this.props.data.dealType ? "قیمت رهن" : "قیمت خرید" }</td>
+                        <td width="40%">{this.props.data.dealType ? this.props.data.price.basePrice : this.props.data.dealType} تومان</td>
+                    </tr>
+
+                    <tr className="spacer20"> </tr>
                     {
                         this.props.data.dealType ?
-                            <div>
-                                <tr className=" border-bottom">
-                                    <td width="60%">قیمت رهن</td>
-                                    <td width="40%">2000 تومان</td>
-                                </tr>
-                                <tr className=" border-bottom">
-                                    <td width="60%">قیمت اجاره</td>
-                                    <td width="40%">2000 تومان</td>
-                                </tr>
-                            </div>
-                            :
                             <tr className=" border-bottom">
-                                <td width="60%">قیمت</td>
-                                <td width="40%">2000 تومان</td>
+                                <td width="60%">قیمت اجاره</td>
+                                <td width="40%">{this.props.data.price.rentPrice} تومان</td>
                             </tr>
+                            :
+                            null
                     }
+
 
                     <tr className="spacer20"></tr>
                     <tr className=" border-bottom">
