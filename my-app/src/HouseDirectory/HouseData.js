@@ -37,7 +37,7 @@ class HouseData extends React.Component {
             },
             body: JSON.stringify(data)
         }).then(function (response) {
-            if(response.status === 200) {
+            if(response.ok) {
                 this.setState({paid: true});
                 console.log(200);
             }
