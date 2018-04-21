@@ -3,5 +3,8 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+  <listener>
+    <listener-class>KhaneBeDoosh.OnStartup</listener-class>
+  </listener>
   <display-name>Archetype Created Web Application</display-name>
 </web-app>
