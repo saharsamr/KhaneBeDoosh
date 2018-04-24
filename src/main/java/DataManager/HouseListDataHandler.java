@@ -8,35 +8,26 @@ import org.json.JSONObject;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Timer;
 import java.util.TimerTask;
 
 
 public class HouseListDataHandler {
 
     static long delay;
+    static TimerTask task;
 
-    private class UpdateHouseListPeriodicly extends TimerTask{
-
-        @Override
-        public void run(){
-            try {
-                JSONObject res = JsonParser.getJSONResponse("http://acm.ut.ac.ir/khaneBeDoosh/house");
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis()),
-                        expireTime = new Timestamp(res.getLong("expireTime"));
-                delay = expireTime.getTime() - timestamp.getTime();
-                String sqlCommand = "DELETE FROM estatesList";
-                DataBaseHandler.executeStatement(sqlCommand);
-                addToDatabase(res.getJSONArray("data"));
-            }catch (Exception e){
-                System.out.println(e.getMessage());
-            }
-        }
+    public static void fillEstatesListTable(){
+        task = new TimerHandler();
+        Timer timer = new Timer();
+        timer.schedule(task, delay);
     }
 
     public static void addToDatabase(JSONArray estatesList){
         for(int i = 0; i < estatesList.length(); i++){
             ArrayList<String> values = getObjectData(estatesList.getJSONObject(i));
             addToList(values);
+            System.out.println("added.");
         }
     }
 

@@ -15,6 +15,7 @@ public class OnStartup implements ServletContextListener {
             DataBaseHandler.connectToDB();
             UsersDataHandler.createUsersTable();
             HouseListDataHandler.createHouseListTable();
+            HouseListDataHandler.fillEstatesListTable();
 //            ArrayList<String> attr = new ArrayList<String>(), val = new ArrayList<String>();
 //            attr.add("id");
 //            attr.add("username");
