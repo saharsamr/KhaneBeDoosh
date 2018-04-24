@@ -1,5 +1,6 @@
 package WebAPIs;
 
+import DataManager.UsersDataHandler;
 import Exceptions.InvalidBalanceValueException;
 import KhaneBeDoosh.Website;
 import org.json.JSONObject;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.SQLException;
 
 @WebServlet("/increaseCredit")
 public class IncreaseCreditRequest extends HttpServlet {
@@ -51,7 +53,14 @@ public class IncreaseCreditRequest extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{ //TODO: badan bayad in qesmat ro ba login handle kard.alan ba ye karbar zadim.
-        int currentBalance = Website.getCurrentUser().getBalance();
+        String id = Website.getCurrentUserID();
+        int currentBalance;
+        try {
+            currentBalance = UsersDataHandler.getUserByID(id).getInt("balance");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return;
+        }
         response.setContentType("application/json");
         JSONObject credit = new JSONObject();
         credit.put("balance", currentBalance);
