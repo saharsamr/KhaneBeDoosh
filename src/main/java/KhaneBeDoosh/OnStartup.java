@@ -1,6 +1,7 @@
 package KhaneBeDoosh;
 
 import DataManager.DataBaseHandler;
+import DataManager.UsersDataHandler;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -10,8 +11,8 @@ public class OnStartup implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent context) {
         try {
-            DataBaseHandler.connecToDB();
-            DataBaseHandler.createUsersTable();
+            DataBaseHandler.connectToDB();
+            UsersDataHandler.createUsersTable();
             ArrayList<String> attr = new ArrayList<String>(), val = new ArrayList<String>();
             attr.add("id");
             attr.add("username");
