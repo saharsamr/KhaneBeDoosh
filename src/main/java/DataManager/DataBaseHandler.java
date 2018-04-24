@@ -1,8 +1,6 @@
 package DataManager;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DataBaseHandler {
@@ -16,7 +14,7 @@ public class DataBaseHandler {
         System.out.println("Connection to database established.");
     }
 
-    public static void createUsersTable() throws Exception{
+    public static void createUsersTable(){
         String sqlCommand = "CREATE TABLE IF NOT EXISTS users (\n" +
                 "id TEXT PRIMARY KEY, \n" +
                 "username TEXT, \n" +
@@ -27,20 +25,32 @@ public class DataBaseHandler {
     }
 
     public static void addItem(String tableName, ArrayList<String> attrs, ArrayList<String> values){
-        String sqlCommand = "INSERT INTO " + tableName+"(";
+
+        String sqlCommand = "INSERT INTO " + tableName + "(";
         for(String attr: attrs)
-            sqlCommand += attr + ", ";
+            sqlCommand += attr + ",";
+        sqlCommand = sqlCommand.substring(0, sqlCommand.length()-1);
         sqlCommand += ") VALUES(";
         for(String val: values)
-            sqlCommand += val + ", ";
-        sqlCommand += ")";
-        executeStatement(sqlCommand);
+            sqlCommand += "?,";
+        sqlCommand = sqlCommand.substring(0, sqlCommand.length()-1);
+        sqlCommand += ");";
+        try {
+            PreparedStatement prp = con.prepareStatement(sqlCommand);
+            for(int i = 1; i <= values.size(); i++)
+                prp.setString(i, values.get(i-1));
+            prp.executeUpdate();
+            System.out.println("Insertion run successfully.");
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void executeStatement(String cmnd){
         try{
             Statement stm = con.createStatement();
             stm.execute(cmnd);
+            System.out.println("Command run successfully.");
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
