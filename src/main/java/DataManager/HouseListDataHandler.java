@@ -51,6 +51,8 @@ public class HouseListDataHandler {
             values.add(price.get("basePrice").toString());
             values.add(price.get("rentPrice").toString());
         }
+        values.add(obj.get("address").toString());
+        values.add("0");
         return values;
     }
 
@@ -63,7 +65,11 @@ public class HouseListDataHandler {
                     "imageURL TEXT, \n" +
                     "sellPrice INTEGER, \n" +
                     "basePrice INTEGER, \n" +
-                    "rentPrice INTEGER" +
+                    "rentPrice INTEGER, \n" +
+                    "address TEXT, \n" +
+                    "phone TEXT, \n" +
+                    "description TEXT, \n" +
+                    "type INTEGER \n" +
                     ");";
             DataBaseHandler.executeStatement(sqlCommand);
     }
@@ -81,7 +87,7 @@ public class HouseListDataHandler {
         return prp.executeQuery();
     }
 
-    private static ArrayList<String> makeEstateAttributeList(){
+    public static ArrayList<String> makeEstateAttributeList(){
         ArrayList<String> attrs = new ArrayList<String>();
         attrs.add("id");
         attrs.add("buildingType");
@@ -91,6 +97,8 @@ public class HouseListDataHandler {
         attrs.add("sellPrice");
         attrs.add("basePrice");
         attrs.add("rentPrice");
+        attrs.add("address");
+        attrs.add("type");
         return attrs;
     }
 }

@@ -3,8 +3,10 @@ package KhaneBeDoosh;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
+import java.util.UUID;
 
 import DataManager.DataBaseHandler;
+import DataManager.HouseListDataHandler;
 import Estates.*;
 import Users.User;
 import Users.Individual;
@@ -59,13 +61,30 @@ public class Website {
     }
 
     public static void addEstate(String buildingType, String dealType, int sellPrice, int basePrice, int rentPrice, int area, String phone, String address, String description){
-        Estate newEstate = new Estate(Integer.toString(estates.size()+1), area, buildingType, address, dealType, logedInUserID); //TODO: check to be unique
-        newEstate.setBasePrice(basePrice);
-        newEstate.setSellPrice(sellPrice);
-        newEstate.setRentPrice(rentPrice); //TODO: dynamic form should be implemented.
-        newEstate.setDescription(description);
-        newEstate.setPhone(phone);
-        estates.add(newEstate);
+        ArrayList<String> attr = HouseListDataHandler.makeEstateAttributeList();
+        attr.add("phone");
+        attr.add("description");
+        String imageURL = "my-app/src/assests/img/home1.jpg";
+        ArrayList<String> values = makeLocalEstateValues(buildingType, dealType, sellPrice, basePrice, rentPrice, area, phone, address, description, imageURL);
+        DataBaseHandler.addItem("estatesList", attr, values);
+    }
+
+    public static ArrayList<String> makeLocalEstateValues(String buildingType, String dealType, int sellPrice, int basePrice, int rentPrice, int area, String phone, String address, String description, String imageURL){
+        ArrayList<String> values = new ArrayList<String>();
+        UUID id = UUID.randomUUID();
+        values.add(id.toString());
+        values.add(buildingType);
+        values.add(dealType);
+        values.add(Integer.toString(area));
+        values.add(imageURL);
+        values.add(Integer.toString(sellPrice));
+        values.add(Integer.toString(basePrice));
+        values.add(Integer.toString(rentPrice));
+        values.add(address);
+        values.add("1");
+        values.add(phone);
+        values.add(description);
+        return values;
     }
 
     public static void increaseCredit(String userId, int balance){

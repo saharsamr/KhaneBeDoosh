@@ -15,7 +15,7 @@ public class TimerHandler extends TimerTask {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis()),
                     expireTime = new Timestamp(res.getLong("expireTime"));
             HouseListDataHandler.delay = expireTime.getTime() - timestamp.getTime();
-            String sqlCommand = "DELETE FROM estatesList";
+            String sqlCommand = "DELETE FROM estatesList WHERE type = 0";
             DataBaseHandler.executeStatement(sqlCommand);
             HouseListDataHandler.addToDatabase(res.getJSONArray("data"));
         }catch (Exception e){
