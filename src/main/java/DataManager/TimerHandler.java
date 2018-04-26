@@ -1,6 +1,5 @@
 package DataManager;
 
-import DataManager.DataBaseHandler;
 import KhaneBeDoosh.JsonParser;
 import org.json.JSONObject;
 
@@ -11,7 +10,8 @@ public class TimerHandler extends TimerTask {
     @Override
     public void run(){
         try {
-            JSONObject res = JsonParser.getJSONResponse("http://acm.ut.ac.ir/khaneBeDoosh/house");
+            JSONObject res = JsonParser.getJSONResponse("http://139.59.151.5:6664/khaneBeDoosh/v2/house");
+            System.out.println(res.toString());
             Timestamp timestamp = new Timestamp(System.currentTimeMillis()),
                     expireTime = new Timestamp(res.getLong("expireTime"));
             HouseListDataHandler.delay = expireTime.getTime() - timestamp.getTime();

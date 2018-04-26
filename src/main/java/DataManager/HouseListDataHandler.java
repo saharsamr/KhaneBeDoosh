@@ -27,7 +27,6 @@ public class HouseListDataHandler {
         for(int i = 0; i < estatesList.length(); i++){
             ArrayList<String> values = getObjectData(estatesList.getJSONObject(i));
             addToList(values);
-            System.out.println("added.");
         }
     }
 
@@ -46,7 +45,7 @@ public class HouseListDataHandler {
             values.add("0");
         }
         else{
-            values.add(price.get("0").toString());
+            values.add("0");
             values.add(price.get("basePrice").toString());
             values.add(price.get("rentPrice").toString());
         }
@@ -56,8 +55,8 @@ public class HouseListDataHandler {
     public static void createHouseListTable(){
             String sqlCommand = "CREATE TABLE IF NOT EXISTS estatesList (\n" +
                     "id TEXT PRIMARY KEY, \n" +
-                    "buildingType TEXT CHECK(buildingType IN ('آپارتمان', 'ویلایی')), \n" +
-                    "dealType TEXT CHECK(buildingType IN ('1', '0')), \n" +
+                    "buildingType TEXT, \n" +
+                    "dealType TEXT, \n" +
                     "area INTEGER, \n" +
                     "imageURL TEXT, \n" +
                     "sellPrice INTEGER, \n" +
