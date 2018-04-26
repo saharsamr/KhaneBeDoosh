@@ -73,6 +73,21 @@ public class HouseListDataHandler {
                     ");";
             DataBaseHandler.executeStatement(sqlCommand);
     }
+    
+    public static ResultSet search(String buildingType, String dealType, String price, String area) throws Exception{
+        String sqlCommand = "SELECT dealType, area, imageURL, sellPrice, basePrice, rentPrice, address "
+                + "FROM estateList WHERE buildingType = ? AND dealType = ? AND area >= ? AND ";
+        if(dealType.equals("1"))
+            sqlCommand += "basePrice <= ?";
+        else
+            sqlCommand += "sellPrice <= ?";
+        PreparedStatement prp = DataBaseHandler.getConnection().prepareStatement(sqlCommand);
+        prp.setString(1, buildingType);
+        prp.setString(2, dealType);
+        prp.setString(3, area);
+        prp.setString(4, price);
+        return prp.executeQuery();
+    }
 
     public static void addToList(ArrayList<String> values){
         ArrayList<String> attrs = makeEstateAttributeList();

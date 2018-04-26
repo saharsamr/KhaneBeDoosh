@@ -41,9 +41,11 @@ public class Search extends HttpServlet {
             checkSearchParametersValidation(buildingType, dealType, price, area);
 
             deal = DealType.valueOf(dealType);
+            
+            HouseListDataHandler.search(buildingType, Integer.toString(dealType), Integer.toString(price), Integer.toString(area));
 
-            result = findLocalEstates(buildingType, deal, price, area);
-            result.addAll(findAgencyEstates(buildingType, deal, price,area));
+//            result = findLocalEstates(buildingType, deal, price, area);
+//            result.addAll(findAgencyEstates(buildingType, deal, price,area));
 
         }catch (SearchParametersException ParametersExcep){
             response.setStatus(response.SC_BAD_REQUEST);
