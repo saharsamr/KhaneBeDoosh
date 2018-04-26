@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -69,6 +71,14 @@ public class HouseListDataHandler {
     public static void addToList(ArrayList<String> values){
         ArrayList<String> attrs = makeEstateAttributeList();
         DataBaseHandler.addItem("estatesList", attrs, values);
+    }
+
+    public static ResultSet getHouseDataById(String id) throws Exception{
+        String sqlCommand = "SELECT id, buildingType, dealType, area, imageURL, sellPrice, basePrice, rentPrice "
+                + "FROM estateList WHERE id == ?";
+        PreparedStatement prp = DataBaseHandler.getConnection().prepareStatement(sqlCommand);
+        prp.setString(1, id);
+        return prp.executeQuery();
     }
 
     private static ArrayList<String> makeEstateAttributeList(){

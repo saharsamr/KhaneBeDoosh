@@ -1,5 +1,6 @@
 package WebAPIs;
 
+import DataManager.HouseListDataHandler;
 import Enums.DealType;
 import Estates.Estate;
 import Exceptions.SearchParametersException;

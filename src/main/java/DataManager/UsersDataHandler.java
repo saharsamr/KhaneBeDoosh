@@ -18,11 +18,38 @@ public class UsersDataHandler {
         DataBaseHandler.executeStatement(sqlCommand);
     }
 
+    public static void createTableHasPaidFor(){
+        String sqlCommand = "CREATE TABLE IF NOT EXISTS hasPaidFor (\n" +
+                "uid TEXT\n" +
+                "eid TEXT, \n" +
+                "PRIMARY KEY(uid, eid), \n" +
+                "FOREIGN KEY (uid) REFERENCES users(id), \n" +
+                "FOREIGN KEY (eid) REFERENCES estatesList(id) \n" +
+                ");";
+        DataBaseHandler.executeStatement(sqlCommand);
+    }
+
     public static ResultSet getUserByID(String id) throws Exception {
         String sqlCommand = "SELECT id, username, balance, name "
                 + "FROM users WHERE id == ?";
         PreparedStatement prp = DataBaseHandler.getConnection().prepareStatement(sqlCommand);
         prp.setString(1, id);
         return prp.executeQuery();
+    }
+
+    public static Boolean checkIfPaid(String eid, String uid) throws Exception{
+        String sqlCommand = "SELECT * FROM hasPaidFor P WHERE P.eid = ? AND P.uid = ?";
+        PreparedStatement prp = DataBaseHandler.getConnection().prepareStatement(sqlCommand);
+        prp.setString(1, eid);
+        prp.setString(2, uid);
+        return prp.executeQuery().next();
+    }
+
+    public static void setBalance(String id, int balance) throws Exception{
+        String sqlCommand = "UPDATE users SET balance = ? WHERE id = ? ";
+        PreparedStatement prp = DataBaseHandler.getConnection().prepareStatement(sqlCommand);
+        prp.setInt(1, balance);
+        prp.setString(2, id);
+        prp.executeUpdate();
     }
 }
