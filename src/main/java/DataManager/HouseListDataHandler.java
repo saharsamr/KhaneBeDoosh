@@ -94,14 +94,6 @@ public class HouseListDataHandler {
         DataBaseHandler.addItem("estatesList", attrs, values);
     }
 
-    public static ResultSet getHouseDataById(String id) throws Exception{
-        String sqlCommand = "SELECT id, buildingType, dealType, area, imageURL, sellPrice, basePrice, rentPrice "
-                + "FROM estateList WHERE id == ?";
-        PreparedStatement prp = DataBaseHandler.getConnection().prepareStatement(sqlCommand);
-        prp.setString(1, id);
-        return prp.executeQuery();
-    }
-
     public static ArrayList<String> makeEstateAttributeList(){
         ArrayList<String> attrs = new ArrayList<String>();
         attrs.add("id");
