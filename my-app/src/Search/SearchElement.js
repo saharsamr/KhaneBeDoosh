@@ -29,7 +29,7 @@ class SearchElement extends React.Component {
                         <table className="searchResultTable">
                             <tr>
                                 <td width="60%">{this.props.data.area} متر مربع</td>
-                                <td width="40%"><i className={"fa fa-map-marker " + (this.props.data.dealType==="rent" ? "rentLocation" : 'sellLocation')}> </i> کارگر شمالی</td>
+                                <td width="40%"><i className={"fa fa-map-marker " + (this.props.data.dealType==="rent" ? "rentLocation" : 'sellLocation')}> </i> {this.props.data.address}</td>
                             </tr>
                         </table>
                         <hr></hr>

@@ -33,7 +33,7 @@ public class Search extends HttpServlet {
     public void findStates(HttpServletRequest request, HttpServletResponse response) throws IOException{
         System.out.println("request umad");
         DealType deal;
-        response.setContentType("application/json");
+        response.setContentType("application/json;charset=utf-8");
         try{
             String buildingType = request.getParameter("buildingType"), temp = new String();
             if(buildingType.equals("ویلایی"))
