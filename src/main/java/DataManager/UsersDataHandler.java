@@ -5,6 +5,7 @@ import KhaneBeDoosh.Website;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class UsersDataHandler {
 
@@ -30,11 +31,13 @@ public class UsersDataHandler {
     }
 
     public static ResultSet getUserByID(String id) throws Exception {
-        String sqlCommand = "SELECT id, username, balance, name "
-                + "FROM users WHERE id == ?";
-        PreparedStatement prp = DataBaseHandler.getConnection().prepareStatement(sqlCommand);
-        prp.setString(1, id);
-        return prp.executeQuery();
+//        String sqlCommand = "SELECT id, username, balance, name "
+//                + "FROM users WHERE id == ?";
+//        PreparedStatement prp = DataBaseHandler.getConnection().prepareStatement(sqlCommand);
+//        prp.setString(1, id);
+        String sqlCommand = String.format("SELECT id, username, balance, name FROM users WHERE id == %s", id);
+        Statement stm= DataBaseHandler.getConnection().createStatement();
+        return stm.executeQuery(sqlCommand);
     }
 
     public static Boolean checkIfPaid(String eid, String uid) throws Exception{
@@ -46,6 +49,7 @@ public class UsersDataHandler {
     }
 
     public static void setBalance(String id, int balance) throws Exception{
+        System.out.println("Increase");
         String sqlCommand = "UPDATE users SET balance = ? WHERE id = ? ";
         PreparedStatement prp = DataBaseHandler.getConnection().prepareStatement(sqlCommand);
         prp.setInt(1, balance);

@@ -30,8 +30,6 @@ class IncreaseCreditForm extends React.Component {
         }).then(function (response) {
             if(response.ok)
                 alert("موجودی با موفقیت افزایش یافت.");
-            else if (response.status === 400)
-                alert("مقدار وارد شده نامعتبر است.");
             else
                 alert("عملیات ناموفق بود. دوباره تلاش کنید.");
 

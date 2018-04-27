@@ -17,16 +17,16 @@ public class OnStartup implements ServletContextListener {
             HouseListDataHandler.createHouseListTable();
             UsersDataHandler.createTableHasPaidFor();
             HouseListDataHandler.fillEstatesListTable();
-//            ArrayList<String> attr = new ArrayList<String>(), val = new ArrayList<String>();
-//            attr.add("id");
-//            attr.add("username");
-//            attr.add("balance");
-//            attr.add("name");
-//            val.add("1");
-//            val.add("behnam");
-//            val.add("1200");
-//            val.add("behn");
-//            DataBaseHandler.addItem("users", attr, val);
+            ArrayList<String> attr = new ArrayList<String>(), val = new ArrayList<String>();
+            attr.add("id");
+            attr.add("username");
+            attr.add("balance");
+            attr.add("name");
+            val.add("1");
+            val.add("behnam");
+            val.add("1200");
+            val.add("behn");
+            DataBaseHandler.addItem("users", attr, val);
         }catch (Exception e ){
             System.out.println(e.getMessage());
         }

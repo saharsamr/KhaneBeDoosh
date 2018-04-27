@@ -22,7 +22,7 @@ import java.sql.SQLException;
 public class IncreaseCreditRequest extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        System.out.println("increment req");
         JSONObject req = JsonAPI.parseJson(request);
         JSONObject bankResponse;
         PrintWriter out = response.getWriter();
@@ -31,10 +31,12 @@ public class IncreaseCreditRequest extends HttpServlet {
         try{
             if(validateData(method)) {
                 bankResponse = postBankServer(method);
+                System.out.println(bankResponse.toString());
                 out.println(bankResponse);
 //                out.flush();
-                if(bankResponse.get("success").equals(true)) {
-                    Website.getCurrentUser().increaseBalance(Integer.parseInt(method.get("balance").toString()));
+                if(bankResponse.get("result").equals("OK")) {
+                    int newBalance = UsersDataHandler.getUserByID(Website.getCurrentUserID()).getInt("balance") + Integer.parseInt(method.get("balance").toString());
+                    UsersDataHandler.setBalance(Website.getCurrentUserID(), newBalance);
                     response.setStatus(200);
                 }
                 else
@@ -56,8 +58,8 @@ public class IncreaseCreditRequest extends HttpServlet {
         String id = Website.getCurrentUserID();
         int currentBalance;
         try {
-//            currentBalance = UsersDataHandler.getUserByID(id).getInt("balance");
-            currentBalance = 1200;
+            currentBalance = UsersDataHandler.getUserByID(id).getInt("balance");
+//            currentBalance = 1200;
         }catch (Exception e){
             System.out.println(e.getMessage());
             return;
@@ -81,7 +83,8 @@ public class IncreaseCreditRequest extends HttpServlet {
     }
 
     public JSONObject postBankServer(JSONObject obj) throws Exception{
-        URL url = new URL("http://acm.ut.ac.ir/ieBank/pay");
+        System.out.println("req to bank server");
+        URL url = new URL("http://139.59.151.5:6664/bank/pay");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setDoInput(true);
         connection.setDoOutput(true);
