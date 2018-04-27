@@ -81,30 +81,13 @@ public class HouseListDataHandler {
     }
     
     public static ResultSet search(String buildingType, String dealType, String price, String area) throws Exception{
-//        String sqlCommand = "SELECT dealType, area, imageURL, sellPrice, basePrice, rentPrice, address "
-//                + "FROM estateList WHERE buildingType = ? AND dealType = ? AND area >= ? AND ";
-//        if(dealType.equals("1"))
-//            sqlCommand += "basePrice <= ?";
-//        else
-//            sqlCommand += "sellPrice <= ?";
-//        System.out.println("qable prepare statement");
-//        PreparedStatement prp = DataBaseHandler.getConnection().prepareStatement(sqlCommand);
-//        System.out.println("bade prepare statement");
-//        prp.setString(1, buildingType);
-//        prp.setString(2, dealType);
-//        prp.setString(3, area);
-//        prp.setString(4, price);
         String sqlCommand = String.format("SELECT * FROM estatesList WHERE buildingType = %s AND dealType = %s AND area >= %s AND ", buildingType, dealType, area);
         if(dealType.equals("1"))
             sqlCommand += String.format("basePrice <= %s", price);
         else
             sqlCommand += String.format("sellPrice <= %s", price);
         Statement stm = DataBaseHandler.getConnection().createStatement();
-//        stm.executeQuery(sqlCommand);
-        System.out.println("************");
         ResultSet x = stm.executeQuery(sqlCommand);
-        System.out.println("-------");
-        System.out.println(x.toString());
         return x;
     }
 
