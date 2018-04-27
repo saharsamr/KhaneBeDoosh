@@ -24,18 +24,18 @@ class SearchElement extends React.Component {
             <div className="card col-xs-12 col-md-5 col-sm-12" onClick={this.setRedirect}>
                 {this.renderRedirect()}
                 <img className="card-img-top_" src={this.props.data.imageURL} alt="Card image cap"/>
-                    <span className={"dealTypeLable " + (this.props.data.dealType==="rent" ? "rentLable " : 'sellLable ')+ "position-absolute"}>{this.props.data.dealType==="rent" ? "رهن و اجاره" : "خرید"}</span>
+                    <span className={"dealTypeLable " + (this.props.data.dealType===1 ? "rentLable " : 'sellLable ')+ "position-absolute"}>{this.props.data.dealType===1 ? "رهن و اجاره" : "خرید"}</span>
                     <div className="card-body">
                         <table className="searchResultTable">
                             <tr>
                                 <td width="60%">{this.props.data.area} متر مربع</td>
-                                <td width="40%"><i className={"fa fa-map-marker " + (this.props.data.dealType==="rent" ? "rentLocation" : 'sellLocation')}> </i> {this.props.data.address}</td>
+                                <td width="40%"><i className={"fa fa-map-marker " + (this.props.data.dealType===1 ? "rentLocation" : 'sellLocation')}> </i> {this.props.data.address}</td>
                             </tr>
                         </table>
                         <hr></hr>
                         <table className="searchResultTable">
                                 {
-                                    this.props.data.dealType === "rent" ?
+                                    this.props.data.dealType === 1 ?
                                         <tr>
                                             <td width="60%">رهن {this.props.data.price.basePrice} <span className="unit">تومان</span></td>
                                             <td width="40%">اجاره {this.props.data.price.rentPrice} <span className="unit">تومان</span></td>

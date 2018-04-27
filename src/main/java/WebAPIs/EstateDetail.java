@@ -24,7 +24,7 @@ public class EstateDetail extends HttpServlet {
 
         JSONObject jsonEstateData = new JSONObject();
         try {
-            jsonEstateData= new JSONObject(JsonParser.getJSONResponse("http://acm.ut.ac.ir/khaneBeDoosh/house/" + id).get("data").toString());
+            jsonEstateData= new JSONObject(JsonParser.getJSONResponse("http://139.59.151.5:6664/khaneBeDoosh/v2/house/" + id).get("data").toString());
             PrintWriter out = response.getWriter();
             out.println(jsonEstateData);
         }catch (Exception e){
