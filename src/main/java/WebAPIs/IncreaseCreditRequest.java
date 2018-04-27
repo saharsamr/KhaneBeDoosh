@@ -56,7 +56,8 @@ public class IncreaseCreditRequest extends HttpServlet {
         String id = Website.getCurrentUserID();
         int currentBalance;
         try {
-            currentBalance = UsersDataHandler.getUserByID(id).getInt("balance");
+//            currentBalance = UsersDataHandler.getUserByID(id).getInt("balance");
+            currentBalance = 1200;
         }catch (Exception e){
             System.out.println(e.getMessage());
             return;

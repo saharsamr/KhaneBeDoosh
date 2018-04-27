@@ -31,15 +31,22 @@ public class Search extends HttpServlet {
     }
 
     public void findStates(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        System.out.println("request umad");
         DealType deal;
         response.setContentType("application/json");
         try{
-            String buildingType = request.getParameter("buildingType");
+            String buildingType = request.getParameter("buildingType"), temp = new String();
+            if(buildingType.equals("ویلایی"))
+                temp = "0";
+            else
+                temp = "1";
             int dealType = Integer.parseInt(request.getParameter("dealType"));
             int price = Integer.parseInt(request.getParameter("price"));
             int area = Integer.parseInt(request.getParameter("area"));
             checkSearchParametersValidation(buildingType, dealType, price, area);
-            ResultSet result = HouseListDataHandler.search(buildingType, Integer.toString(dealType), Integer.toString(price), Integer.toString(area));
+            System.out.println("validate shod");
+            ResultSet result = HouseListDataHandler.search(temp, Integer.toString(dealType), Integer.toString(price), Integer.toString(area));
+            System.out.println("resultSet sakhte shod");
             response.setStatus(response.SC_OK);
             sendResponse(response, result);
 
@@ -64,9 +71,14 @@ public class Search extends HttpServlet {
     public void sendResponse(HttpServletResponse response, ResultSet result) throws IOException, SQLException{
         JSONObject instance, price;
         JSONArray estatesList = new JSONArray();
+        System.out.println("&&&&&&&&&&&&&&&&");
         while(result.next()){
+            System.out.println("**********************");
             instance = new JSONObject();
-            instance.put("id", result.getString("id"));
+            result.getString("id");
+            System.out.println("22222");
+            instance.put("id", "l");
+            System.out.println("###########");
             instance.put("area", result.getInt("area"));
             instance.put("dealType", result.getInt("dealType"));
             instance.put("buildingType", result.getString("buildingType"));
@@ -83,6 +95,7 @@ public class Search extends HttpServlet {
             instance.put("imageURL", result.getString("imageURL"));
             estatesList.put(instance);
         }
+        System.out.println("^^^^^^^^^^^");
         PrintWriter out = response.getWriter();
         out.println(estatesList);
     }
