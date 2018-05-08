@@ -1,5 +1,6 @@
 package WebAPIs;
 
+import DataManager.UsersDataHandler;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
@@ -12,17 +13,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.sql.ResultSet;
+import java.util.HashMap;
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        JSONObject req = JsonAPI.parseJson(request);
-
-        String username = req.get("username").toString();
-        String password = req.get("password").toString();
-
-        String jwt = generateJWT(username, password);
+        response.setContentType("application/json");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        try{
+            ResultSet user = UsersDataHandler.getUserByUsername(username);
+            String pass = user.getString("password");
+            System.out.println(pass);
+            System.out.println(password);
+            if(pass.equals(password)){
+                String jwt = generateJWT(username, password);
+                JSONObject userJWT = new JSONObject();
+                userJWT.put("jwt", jwt);
+            }
+            else
+                response.setStatus(response.SC_FORBIDDEN); //403
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     private String generateJWT(String username, String password) {
@@ -34,7 +49,6 @@ public class Login extends HttpServlet {
                     .withClaim("password", password)
                     .withIssuer("auth0")
                     .sign(algorithm);
-            System.out.println(token);
             return token;
         } catch (UnsupportedEncodingException exception) {
             //UTF-8 encoding not supported

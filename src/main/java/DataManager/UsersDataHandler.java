@@ -12,9 +12,11 @@ public class UsersDataHandler {
     public static void createUsersTable(){
         String sqlCommand = "CREATE TABLE IF NOT EXISTS users (\n" +
                 "id TEXT PRIMARY KEY, \n" +
-                "username TEXT, \n" +
+                "username TEXT UNIQUE, \n" +
+                "password TEXT, \n" +
                 "balance REAL, \n" +
                 "name TEXT \n" +
+                "is_admin INTEGER \n" +
                 ");";
         DataBaseHandler.executeStatement(sqlCommand);
     }
@@ -31,11 +33,13 @@ public class UsersDataHandler {
     }
 
     public static ResultSet getUserByID(String id) throws Exception {
-//        String sqlCommand = "SELECT id, username, balance, name "
-//                + "FROM users WHERE id == ?";
-//        PreparedStatement prp = DataBaseHandler.getConnection().prepareStatement(sqlCommand);
-//        prp.setString(1, id);
         String sqlCommand = String.format("SELECT id, username, balance, name FROM users WHERE id == %s", id);
+        Statement stm= DataBaseHandler.getConnection().createStatement();
+        return stm.executeQuery(sqlCommand);
+    }
+
+    public static ResultSet getUserByUsername(String username) throws Exception {
+        String sqlCommand = String.format("SELECT id, username, password, name FROM users WHERE username == \"%s\"", username);
         Statement stm= DataBaseHandler.getConnection().createStatement();
         return stm.executeQuery(sqlCommand);
     }
