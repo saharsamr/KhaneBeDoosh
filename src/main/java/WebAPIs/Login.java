@@ -26,8 +26,6 @@ public class Login extends HttpServlet {
         try{
             ResultSet user = UsersDataHandler.getUserByUsername(username);
             String pass = user.getString("password");
-            System.out.println(pass);
-            System.out.println(password);
             if(pass.equals(password)){
                 String jwt = generateJWT(username, password);
                 JSONObject userJWT = new JSONObject();
