@@ -22,7 +22,6 @@ import java.sql.SQLException;
 public class IncreaseCreditRequest extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("increment req");
         JSONObject req = JsonAPI.parseJson(request);
         JSONObject bankResponse;
         PrintWriter out = response.getWriter();
@@ -31,7 +30,6 @@ public class IncreaseCreditRequest extends HttpServlet {
         try{
             if(validateData(method)) {
                 bankResponse = postBankServer(method);
-                System.out.println(bankResponse.toString());
                 out.println(bankResponse);
 //                out.flush();
                 if(bankResponse.get("result").equals("OK")) {
@@ -83,7 +81,6 @@ public class IncreaseCreditRequest extends HttpServlet {
     }
 
     public JSONObject postBankServer(JSONObject obj) throws Exception{
-        System.out.println("req to bank server");
         URL url = new URL("http://139.59.151.5:6664/bank/pay");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setDoInput(true);
