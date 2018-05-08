@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 import java.util.HashMap;
@@ -30,6 +31,8 @@ public class Login extends HttpServlet {
                 String jwt = generateJWT(username, password);
                 JSONObject userJWT = new JSONObject();
                 userJWT.put("jwt", jwt);
+                PrintWriter out = response.getWriter();
+                out.println(userJWT);
             }
             else
                 response.setStatus(response.SC_FORBIDDEN); //403
