@@ -27,6 +27,10 @@ public class AuthenticationFilter implements Filter {
             String jwt = httpRequest.getHeader("jwt");
             if(!jwt.equals(null))
                 verifyJWT(jwt, servletRequest, servletResponse);
+            else {
+                HttpServletResponse res = (HttpServletResponse) servletResponse;
+                res.addHeader("username", null);
+            }
             filterChain.doFilter(servletRequest, servletResponse);
         } catch (IOException e) {
             e.printStackTrace();
