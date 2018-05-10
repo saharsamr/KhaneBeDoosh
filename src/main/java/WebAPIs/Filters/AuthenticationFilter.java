@@ -5,18 +5,13 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.sun.deploy.net.HttpRequest;
-import com.sun.deploy.net.HttpResponse;
 import DataManager.UsersDataHandler;
-import com.sun.org.apache.xerces.internal.impl.dv.xs.YearDV;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 
 @WebFilter("/*")
@@ -61,7 +56,6 @@ public class AuthenticationFilter implements Filter {
             String username = jwt.getClaim("username").asString();
             ResultSet user = UsersDataHandler.getUserByUsername(username);
             res.addHeader("username", user.getString("username"));
-            res.addHeader("balance", user.getString("balance"));
         } catch (JWTVerificationException exception){
             res.setStatus(res.SC_FORBIDDEN);
         }

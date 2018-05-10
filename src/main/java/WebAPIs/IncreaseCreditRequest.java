@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @WebServlet("/increaseCredit")
@@ -33,8 +34,9 @@ public class IncreaseCreditRequest extends HttpServlet {
                 out.println(bankResponse);
 //                out.flush();
                 if(bankResponse.get("result").equals("OK")) {
-                    int newBalance = UsersDataHandler.getUserByID(Website.getCurrentUserID()).getInt("balance") + Integer.parseInt(method.get("balance").toString());
-                    UsersDataHandler.setBalance(Website.getCurrentUserID(), newBalance);
+                    ResultSet user = UsersDataHandler.getUserByUsername(response.getHeader("username"));
+                    int newBalance = user.getInt("balance") + Integer.parseInt(method.get("balance").toString());
+                    UsersDataHandler.setBalance(user.getString("id"), newBalance);
                     response.setStatus(200);
                 }
                 else
@@ -59,7 +61,6 @@ public class IncreaseCreditRequest extends HttpServlet {
         try {
             currentBalance = UsersDataHandler.getUserByUsername(username).getInt("balance");
             name = UsersDataHandler.getUserByUsername(username).getString("name");
-            System.out.println("*********"+ name);
         }catch (Exception e){
             System.out.println(e.getMessage());
             return;

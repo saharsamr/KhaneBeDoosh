@@ -21,10 +21,12 @@ public class OnStartup implements ServletContextListener {
             attr.add("id");
             attr.add("username");
             attr.add("balance");
+            attr.add("password");
             attr.add("name");
-            val.add("1");
-            val.add("behnam");
+            val.add("100");
+            val.add("behi");
             val.add("1200");
+            val.add("1234");
             val.add("behn");
             DataBaseHandler.addItem("users", attr, val);
         }catch (Exception e ){
