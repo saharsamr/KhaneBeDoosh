@@ -8,14 +8,18 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.sun.deploy.net.HttpRequest;
 import com.sun.deploy.net.HttpResponse;
 import DataManager.UsersDataHandler;
+import com.sun.org.apache.xerces.internal.impl.dv.xs.YearDV;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
 
+@WebFilter("/*")
 public class AuthenticationFilter implements Filter {
 
     public void init(FilterConfig filterConfig) {
@@ -26,19 +30,27 @@ public class AuthenticationFilter implements Filter {
         try {
             HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
             String jwt = httpRequest.getHeader("jwt");
-            HttpServletResponse res = verifyJWT(jwt, servletRequest, servletResponse);
-            servletRequest = (ServletRequest)  res;
+            if(!jwt.equals(null))
+                verifyJWT(jwt, servletRequest, servletResponse);
             filterChain.doFilter(servletRequest, servletResponse);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ServletException e) {
             e.printStackTrace();
+        } catch (NullPointerException e) {
+            try {
+                filterChain.doFilter(servletRequest, servletResponse);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            } catch (ServletException e1) {
+                e1.printStackTrace();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private HttpServletResponse verifyJWT (String token, ServletRequest request, ServletResponse response) throws Exception{
+    private void verifyJWT (String token, ServletRequest request, ServletResponse response) throws Exception{
         HttpServletResponse res = (HttpServletResponse) response;
         try {
             Algorithm algorithm = Algorithm.HMAC256("mozi-amoo");
@@ -50,10 +62,8 @@ public class AuthenticationFilter implements Filter {
             ResultSet user = UsersDataHandler.getUserByUsername(username);
             res.addHeader("username", user.getString("username"));
             res.addHeader("balance", user.getString("balance"));
-            return res;
         } catch (JWTVerificationException exception){
             res.setStatus(res.SC_FORBIDDEN);
-            return res;
         }
     }
 

@@ -21,6 +21,7 @@ import java.util.HashMap;
 public class Login extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        System.out.println("login");
         response.setContentType("application/json");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -44,12 +45,13 @@ public class Login extends HttpServlet {
     private String generateJWT(String username, String password) {
         String token = "";
         try {
-            Algorithm algorithm = Algorithm.HMAC256("moozi-amoo");
+            Algorithm algorithm = Algorithm.HMAC256("mozi-amoo");
             token = JWT.create()
                     .withClaim("username", username)
                     .withClaim("password", password)
                     .withIssuer("auth0")
                     .sign(algorithm);
+            System.out.println(username);
             return token;
         } catch (UnsupportedEncodingException exception) {
             //UTF-8 encoding not supported

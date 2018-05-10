@@ -9,7 +9,7 @@ class Header extends Component{
     constructor(){
         super();
         this.state = {
-            balance: {}
+            userData: {}
         };
         this.getBalance = this.getBalance.bind(this);
     }
@@ -34,13 +34,13 @@ class Header extends Component{
                             <div className="container userInfoBox-hover">
                                 <div className="dropdownBox">
                                     <div className="userName">
-                                        بهنام همایون
+                                        {this.state.userData.name}
                                     </div>
                                     <div>
                                         <table>
                                             <tr>
                                                 <td className="balancelable">اعتبار</td>
-                                                <td className="balanceValue">&emsp; {this.state.balance.balance} تومان</td>
+                                                <td className="balanceValue">&emsp; {this.state.userData.balance} تومان</td>
                                             </tr>
                                         </table>
 
@@ -56,17 +56,19 @@ class Header extends Component{
     }
 
     getBalance() {
+        console.log(localStorage.getItem("jwt"));
         let url = 'http://localhost:3000/increaseCredit';
         fetch(url, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json;charset=utf-8',
+                'jwt': localStorage.getItem("jwt")
             }
         }).then(response => {
             return response.json();
         }).then(data=> {
-            this.setState({balance: data});
+            this.setState({userData: data});
         });
     }
 }

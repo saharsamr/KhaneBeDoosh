@@ -53,11 +53,13 @@ public class IncreaseCreditRequest extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{ //TODO: badan bayad in qesmat ro ba login handle kard.alan ba ye karbar zadim.
-        String id = Website.getCurrentUserID();
+        String username = response.getHeader("username");
         int currentBalance;
+        String name;
         try {
-            currentBalance = UsersDataHandler.getUserByID(id).getInt("balance");
-//            currentBalance = 1200;
+            currentBalance = UsersDataHandler.getUserByUsername(username).getInt("balance");
+            name = UsersDataHandler.getUserByUsername(username).getString("name");
+            System.out.println("*********"+ name);
         }catch (Exception e){
             System.out.println(e.getMessage());
             return;
@@ -65,6 +67,7 @@ public class IncreaseCreditRequest extends HttpServlet {
         response.setContentType("application/json");
         JSONObject credit = new JSONObject();
         credit.put("balance", currentBalance);
+        credit.put("name", name);
         PrintWriter out = response.getWriter();
         out.println(credit);
     }

@@ -73,6 +73,7 @@ class IncreaseCreditForm extends React.Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json;charset=utf-8',
+                'jwt': localStorage.getItem("jwt")
             }
         }).then(response => {
             return response.json();
