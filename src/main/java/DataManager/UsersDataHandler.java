@@ -39,7 +39,7 @@ public class UsersDataHandler {
     }
 
     public static ResultSet getUserByUsername(String username) throws Exception {
-        String sqlCommand = String.format("SELECT id, username, password, name FROM users WHERE username == \"%s\"", username);
+        String sqlCommand = String.format("SELECT * FROM users WHERE username == \"%s\"", username);
         Statement stm= DataBaseHandler.getConnection().createStatement();
         return stm.executeQuery(sqlCommand);
     }

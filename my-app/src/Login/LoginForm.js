@@ -33,11 +33,9 @@ class LoginForm extends React.Component {
             }
         }).then(response => {
             return response.json();
+        }).then(data=> {
+            localStorage.setItem("jwt", data.jwt.toString());
         });
-        //     .then(data=> {
-        //     this.setState({result: data});
-        //     console.log(this.state.result);
-        // });
     }
 
     handleUsernameChange(event){
