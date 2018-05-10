@@ -32,7 +32,6 @@ public class IncreaseCreditRequest extends HttpServlet {
             if(validateData(method)) {
                 bankResponse = postBankServer(method);
                 out.println(bankResponse);
-//                out.flush();
                 if(bankResponse.get("result").equals("OK")) {
                     ResultSet user = UsersDataHandler.getUserByUsername(response.getHeader("username"));
                     int newBalance = user.getInt("balance") + Integer.parseInt(method.get("balance").toString());
@@ -48,7 +47,6 @@ public class IncreaseCreditRequest extends HttpServlet {
             res.put("message", "Invalid parameter for increase credit");
             response.setStatus(400);
             out.println(res);
-//            out.flush();
         }
 
     }

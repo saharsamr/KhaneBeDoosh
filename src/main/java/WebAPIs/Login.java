@@ -15,13 +15,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;
-import java.util.HashMap;
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("login");
         response.setContentType("application/json");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -51,7 +49,6 @@ public class Login extends HttpServlet {
                     .withClaim("password", password)
                     .withIssuer("auth0")
                     .sign(algorithm);
-            System.out.println(username);
             return token;
         } catch (UnsupportedEncodingException exception) {
             //UTF-8 encoding not supported
