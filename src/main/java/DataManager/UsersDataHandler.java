@@ -32,6 +32,20 @@ public class UsersDataHandler {
         DataBaseHandler.executeStatement(sqlCommand);
     }
 
+    public static ResultSet ListAllUserAndTheirHouses() throws Exception{ //TODO: alan in bayad INNER JOIN bashe?
+        String sqlCommand = String.format("SELECT U.uid, U.username, E.id FROM users AS U" +
+                "INNER JOIN estatesList AS E" +
+                " WHERE U.id == E.uid");
+        Statement stm = DataBaseHandler.getConnection().createStatement();
+        return stm.executeQuery(sqlCommand);
+    }
+
+    public static ResultSet ListUserHouses(String id) throws Exception{ //TODO: in ro ham check kon lotfan.
+        String sqlCommand = String.format("SELECT L.eid FROM hasPaidFor AS L WHERE L.uid == \"%s\"", id);
+        Statement stm = DataBaseHandler.getConnection().createStatement();
+        return stm.executeQuery(sqlCommand);
+    }
+
     public static ResultSet getUserByID(String id) throws Exception {
         String sqlCommand = String.format("SELECT id, username, balance, name FROM users WHERE id == %s", id);
         Statement stm= DataBaseHandler.getConnection().createStatement();
