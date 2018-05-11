@@ -39,7 +39,6 @@ class AddHouseForm extends React.Component {
 
     handleDealTypeChange(event){
         this.setState({dealType: event.target.value});
-        console.log("deal type changed.");
     }
 
     handleBuildingTypeChange(event){
@@ -67,20 +66,20 @@ class AddHouseForm extends React.Component {
     }
 
     handleBasePriceChange(event){
-        this.setState({price: event.target.value});
+        this.setState({basePrice: event.target.value});
     }
 
-    changeToRent(){
+    changeToRent(event){
+        this.handleDealTypeChange(event);
         this.setState({
-            rent: true,
-            dealType:1
+            rent: true
         });
     }
 
-    changeToSell(){
+    changeToSell(event){
+        this.handleDealTypeChange(event);
         this.setState({
-            rent: false,
-            dealType: 0
+            rent: false
         });
     }
 
@@ -122,13 +121,13 @@ class AddHouseForm extends React.Component {
                             <div className="row col-md-12 ">
                                 <div className="alignR row col-md-12 ">
                                     <div className="form-check ">
-                                        <input onClick={this.handleDealTypeChange} type="radio" name="exampleRadios" id="exampleRadios1" value={1}/>
+                                        <input onClick={this.changeToRent} type="radio" name="exampleRadios" id="exampleRadios1" value={1}/>
                                         <label className="form-check-label" for="exampleRadios1">
                                             رهن و اجاره
                                         </label>
                                     </div>
                                     <div className="form-check">
-                                        <input onClick={this.handleDealTypeChange} type="radio" name="exampleRadios" id="exampleRadios2" value={0}/>
+                                        <input onClick={this.changeToSell} type="radio" name="exampleRadios" id="exampleRadios2" value={0}/>
                                         <label className="form-check-label " for="exampleRadios2">
                                             خرید
                                         </label>
