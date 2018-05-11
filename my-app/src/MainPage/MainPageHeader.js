@@ -12,6 +12,7 @@ class MainPageHeader extends Component{
                         &emsp; ناحیه کاربری
                         <i className="fa fa-smile-o"> </i>
                     </button>
+                    <button type="button" className="btn btn-default transparent text-white border-white " href="#">خروج</button>
                 </div>
             </nav>
         );
