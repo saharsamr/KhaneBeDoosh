@@ -23,7 +23,7 @@ public class UsersDataHandler {
 
     public static void createTableHasPaidFor(){
         String sqlCommand = "CREATE TABLE IF NOT EXISTS hasPaidFor (\n" +
-                "uid TEXT\n" +
+                "uid TEXT, \n" +
                 "eid TEXT, \n" +
                 "PRIMARY KEY(uid, eid), \n" +
                 "FOREIGN KEY (uid) REFERENCES users(id), \n" +

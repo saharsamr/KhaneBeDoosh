@@ -69,8 +69,7 @@ public class Search extends HttpServlet {
         JSONArray estatesList = new JSONArray();
         while(result.next()){
             instance = new JSONObject();
-            result.getString("id");
-            instance.put("id", "l");
+            instance.put("id", result.getString("id"));
             instance.put("area", result.getInt("area"));
             instance.put("dealType", result.getInt("dealType"));
             instance.put("buildingType", result.getString("buildingType"));

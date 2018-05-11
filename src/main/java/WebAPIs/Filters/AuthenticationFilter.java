@@ -25,12 +25,7 @@ public class AuthenticationFilter implements Filter {
         try {
             HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
             String jwt = httpRequest.getHeader("jwt");
-            if(!jwt.equals(null))
-                verifyJWT(jwt, servletRequest, servletResponse);
-            else {
-                HttpServletResponse res = (HttpServletResponse) servletResponse;
-                res.addHeader("username", null);
-            }
+            verifyJWT(jwt, servletRequest, servletResponse);
             filterChain.doFilter(servletRequest, servletResponse);
         } catch (IOException e) {
             e.printStackTrace();
@@ -38,6 +33,8 @@ public class AuthenticationFilter implements Filter {
             e.printStackTrace();
         } catch (NullPointerException e) {
             try {
+                HttpServletResponse res = (HttpServletResponse) servletResponse;
+                res.addHeader("username", null);
                 filterChain.doFilter(servletRequest, servletResponse);
             } catch (IOException e1) {
                 e1.printStackTrace();

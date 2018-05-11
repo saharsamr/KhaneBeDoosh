@@ -59,7 +59,6 @@ class Header extends Component{
     }
 
     getBalance() {
-        console.log(localStorage.getItem("jwt"));
         let url = 'http://localhost:3000/increaseCredit';
         fetch(url, {
             method: 'GET',

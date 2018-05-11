@@ -22,7 +22,6 @@ public class AddEstate extends HttpServlet {
             throws ServletException, IOException {
         String username = response.getHeader("username");
         JSONObject req = new JSONObject(JsonAPI.parseJson(request).get("Method").toString());
-        System.out.println("^^^^^^^^"+req);
         String dealType = req.get("dealType").toString();
         String buildingType = req.get("buildingType").toString();
         String sellPrice, basePrice, rentPrice;

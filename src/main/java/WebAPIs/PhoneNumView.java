@@ -4,7 +4,6 @@ import DataManager.DataBaseHandler;
 import DataManager.UsersDataHandler;
 import Exceptions.LackOfBalanceException;
 import KhaneBeDoosh.Website;
-import Users.User;
 import org.json.JSONObject;
 
 import javax.servlet.ServletException;
@@ -22,15 +21,19 @@ public class PhoneNumView extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String id = request.getParameter("id").toString();
+        String eid = request.getParameter("id").toString();
+        String uid = response.getHeader("username");
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         JSONObject paymentStatus = new JSONObject();
-        if(Website.getCurrentUser().hasPaidFor(id))
-            paymentStatus.put("paid", true);
-        else
-            paymentStatus.put("paid", false);
+        try {
+            if(UsersDataHandler.checkIfPaid(eid, uid))
+                paymentStatus.put("paid", true);
+            else
+                paymentStatus.put("paid", false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         out.println(paymentStatus);
     }
 
@@ -38,7 +41,12 @@ public class PhoneNumView extends HttpServlet {
             throws ServletException, IOException {
         JSONObject estateInfo = JsonAPI.parseJson(request);
         String eid = estateInfo.get("id").toString();
-        String uid = Website.getCurrentUserID();
+        String uid = null;
+        try {
+            uid = UsersDataHandler.getUserByUsername(response.getHeader("username")).getString("id");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
         JSONObject paymentSuccess = new JSONObject();

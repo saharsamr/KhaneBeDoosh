@@ -16,10 +16,6 @@
     <title>خانه به دوش</title>
 </head>
 <body>
-<header>
-    <h3 align="right"> <%=getCurrentUser().getUsername()%> </h3>
-    <h3 align="left">اعتبار: <%=getCurrentUser().getBalance()%></h3>
-</header>
     <%
         if(request.getParameter("msg") != null){
     %>
