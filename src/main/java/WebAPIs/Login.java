@@ -55,6 +55,7 @@ public class Login extends HttpServlet {
         } catch (JWTCreationException exception) {
             //Invalid Signing configuration / Couldn't convert Claims.
         }
+        System.out.println(token);
         return token;
     }
 }

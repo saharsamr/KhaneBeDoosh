@@ -15,7 +15,7 @@ public class UsersDataHandler {
                 "username TEXT UNIQUE, \n" +
                 "password TEXT, \n" +
                 "balance REAL, \n" +
-                "name TEXT \n" +
+                "name TEXT, \n" +
                 "is_admin INTEGER \n" +
                 ");";
         DataBaseHandler.executeStatement(sqlCommand);
@@ -33,9 +33,7 @@ public class UsersDataHandler {
     }
 
     public static ResultSet ListAllUserAndTheirHouses() throws Exception{ //TODO: alan in bayad INNER JOIN bashe?
-        String sqlCommand = String.format("SELECT U.uid, U.username, E.id FROM users AS U" +
-                "INNER JOIN estatesList AS E" +
-                " WHERE U.id == E.uid");
+        String sqlCommand = String.format("SELECT U.uid, U.eid FROM hasPaidFor AS U");
         Statement stm = DataBaseHandler.getConnection().createStatement();
         return stm.executeQuery(sqlCommand);
     }

@@ -28,7 +28,7 @@ public class Houses extends HttpServlet {
             }
             //TODO: Redirect in the other case.
         } catch (Exception e){
-            System.out.println(e.getStackTrace());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -39,7 +39,6 @@ public class Houses extends HttpServlet {
         while(list.next()){
             instance = new JSONObject();
             instance.put("uid", list.getString("uid"));
-            instance.put("username", list.getString("username"));
             instance.put("eid", list.getString("eid"));
             estatesList.put(instance);
         }

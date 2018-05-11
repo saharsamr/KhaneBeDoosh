@@ -8,7 +8,7 @@ class HouseData extends React.Component {
             id: '',
             enoughCredit: true,
             paid: false,
-            phoneNum: ''
+            phoneNum: {}
         };
         this.getPhonePaymentStatus = this.getPhonePaymentStatus.bind(this);
         this.handlePhoneNumRequest = this.handlePhoneNumRequest.bind(this);
@@ -46,12 +46,10 @@ class HouseData extends React.Component {
             },
             body: JSON.stringify(data)
         }).then(response =>  {
-            if(response.ok) {
+            if(response.ok)
                 this.setState({paid:true});
-            }
-            else {
+            else
                 this.setState({enoughCredit: false});
-            }
         });
     }
 
