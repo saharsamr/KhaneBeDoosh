@@ -1,7 +1,5 @@
 package KhaneBeDoosh;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.*;
 import java.util.UUID;
 
@@ -10,10 +8,7 @@ import DataManager.HouseListDataHandler;
 import Estates.*;
 import Users.User;
 import Users.Individual;
-import Enums.*;
-import org.json.JSONArray;
-import KhaneBeDoosh.JsonParser;
-import org.json.JSONObject;
+import DataManager.UsersDataHandler;
 
 public class Website {
 
@@ -60,16 +55,23 @@ public class Website {
         return bankApiKey;
     }
 
-    public static void addEstate(String buildingType, String dealType, int sellPrice, int basePrice, int rentPrice, int area, String phone, String address, String description){
+    public static void addEstate(String buildingType, String dealType,
+                                 int sellPrice, int basePrice, int rentPrice, int area,
+                                 String phone, String address, String description,
+                                 String username) throws Exception {
         ArrayList<String> attr = HouseListDataHandler.makeEstateAttributeList();
         attr.add("phone");
         attr.add("description");
+        attr.add("owner_id");
         String imageURL = "my-app/src/assests/img/home1.jpg";
-        ArrayList<String> values = makeLocalEstateValues(buildingType, dealType, sellPrice, basePrice, rentPrice, area, phone, address, description, imageURL);
+        ArrayList<String> values = makeLocalEstateValues(buildingType, dealType, sellPrice, basePrice, rentPrice, area, phone, address, description, imageURL, username);
         DataBaseHandler.addItem("estatesList", attr, values);
     }
 
-    public static ArrayList<String> makeLocalEstateValues(String buildingType, String dealType, int sellPrice, int basePrice, int rentPrice, int area, String phone, String address, String description, String imageURL){
+    public static ArrayList<String> makeLocalEstateValues(String buildingType, String dealType, int sellPrice,
+                                                          int basePrice, int rentPrice, int area, String phone, String address,
+                                                          String description, String imageURL,
+                                                          String username) throws Exception {
         ArrayList<String> values = new ArrayList<String>();
         UUID id = UUID.randomUUID();
         values.add(id.toString());
@@ -84,10 +86,11 @@ public class Website {
         values.add("1");
         values.add(phone);
         values.add(description);
+        values.add(UsersDataHandler.getUserByUsername(username).getString("id"));
         return values;
     }
 
-    public static void increaseCredit(String userId, int balance){
+    public static void increaseCredit(String userId, int balance) {
         for (User user : users){
             if (user.getId().equals(userId))
                 user.increaseBalance(balance);

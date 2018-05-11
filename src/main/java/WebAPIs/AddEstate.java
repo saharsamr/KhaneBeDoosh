@@ -20,22 +20,36 @@ public class AddEstate extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        JSONObject req = JsonAPI.parseJson(request);
+        String username = response.getHeader("username");
+        JSONObject req = new JSONObject(JsonAPI.parseJson(request).get("Method").toString());
+        System.out.println("^^^^^^^^"+req);
         String dealType = req.get("dealType").toString();
         String buildingType = req.get("buildingType").toString();
-        String sellPrice = req.get("sellPrice").toString();
-        String basePrice = req.get("basePrice").toString();
-        String rentPrice = req.get("rentPrice").toString();
+        String sellPrice, basePrice, rentPrice;
+        if(dealType.equals("0")) {
+            sellPrice = req.get("sellPrice").toString();
+            basePrice = "0";
+            rentPrice = "0";
+        }
+        else {
+            basePrice = req.get("basePrice").toString();
+            rentPrice = req.get("rentPrice").toString();
+            sellPrice = "0";
+        }
         String area = req.get("area").toString();
         String phone = req.get("phone").toString();
         String address = req.get("address").toString();
         String description = req.get("description").toString();
         try {
             checkEstateRegistrationParamsValidation(buildingType, dealType, sellPrice, basePrice, rentPrice, area, phone);
-            Website.addEstate(buildingType, dealType, Integer.parseInt(sellPrice), Integer.parseInt(basePrice), Integer.parseInt(rentPrice), Integer.parseInt(area), phone, address, description);
+            Website.addEstate(buildingType, dealType, Integer.parseInt(sellPrice), Integer.parseInt(basePrice), Integer.parseInt(rentPrice), Integer.parseInt(area), phone, address, description, username);
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (EstateParametersException e){
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        } catch (Exception e){
+            System.out.println("----------------");
+            System.out.println(e.getStackTrace());
+            System.out.println("----------------");
         }
     }
 

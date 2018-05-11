@@ -20,6 +20,7 @@ public class JsonAPI extends HttpServlet {
         String line = null;
         JSONObject jsonObject;
         try {
+            request.setCharacterEncoding("utf-8");
             BufferedReader reader = request.getReader();
             while ((line = reader.readLine()) != null)
                 jb.append(line);

@@ -75,7 +75,9 @@ public class HouseListDataHandler {
                     "address TEXT, \n" +
                     "phone TEXT, \n" +
                     "description TEXT, \n" +
-                    "type INTEGER \n" +
+                    "type INTEGER, \n" +
+                    "owner_id String, \n" +
+                    "FOREIGN KEY (owner_id) REFERENCES users(id) \n" +
                     ");";
             DataBaseHandler.executeStatement(sqlCommand);
     }
