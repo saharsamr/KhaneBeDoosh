@@ -52,7 +52,8 @@ class Header extends Component{
                                         <div className="row justify-content-center">
                                             <a className="a-addMoney" href="/credit" target="_blank">افزایش اعتبار</a>
                                             <button type="button" onClick={this.logOut}
-                                                    className="btn btn-default userInfo-btn effect-box" href="/loginUser">خروج
+                                                    className="btn btn-default userInfo-btn effect-box">
+                                                <a className="a-addMoney" href="/loginUser" target="_blank">خروج</a>
                                             </button>
                                         </div>
                                     </div>
