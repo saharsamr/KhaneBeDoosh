@@ -45,7 +45,10 @@ class Header extends Component{
                                         </table>
 
                                     </div>
-                                    <a className="a-addMoney" href="/credit" target="_blank">افزایش اعتبار</a>
+                                    <div className="row justify-content-center">
+                                        <a className="a-addMoney" href="/credit" target="_blank">افزایش اعتبار</a>
+                                        <button type="button" className="btn btn-default userInfo-btn effect-box" href="#">خروج</button>
+                                    </div>
                                 </div>
                             </div>
                         </button>
