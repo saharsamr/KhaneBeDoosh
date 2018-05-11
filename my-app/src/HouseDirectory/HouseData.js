@@ -12,7 +12,7 @@ class HouseData extends React.Component {
         };
         this.getPhonePaymentStatus = this.getPhonePaymentStatus.bind(this);
         this.handlePhoneNumRequest = this.handlePhoneNumRequest.bind(this);
-        this.getPhoneNumber = this.getPhoneNumber.bind(this);
+        // this.getPhoneNumber = this.getPhoneNumber.bind(this);
 
     }
 
@@ -25,8 +25,11 @@ class HouseData extends React.Component {
                 'Content-Type': 'application/json',
                 'jwt': localStorage.getItem("jwt")
             }
-        }).then(response => response.json());
-        // this.getPhoneNumber();
+        }).then(response => {
+            return response.json();
+        }).then(data=> {
+            this.setState({phoneNum: data});
+        });
     }
 
     handlePhoneNumRequest() {
@@ -52,21 +55,21 @@ class HouseData extends React.Component {
         });
     }
 
-    getPhoneNumber() {
-        let url = 'http://localhost:3000/estatephonenumber?id=' + this.props.data.id;
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json;charset=utf-8',
-                'jwt': localStorage.getItem("jwt")
-            }
-        }).then(response => {
-            return response.json();
-        }).then(data=> {
-            this.setState({phoneNum: data});
-        });
-    }
+    // getPhoneNumber() {
+    //     let url = 'http://localhost:3000/estatephonenumber?id=' + this.props.data.id;
+    //     fetch(url, {
+    //         method: 'GET',
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json;charset=utf-8',
+    //             'jwt': localStorage.getItem("jwt")
+    //         }
+    //     }).then(response => {
+    //         return response.json();
+    //     }).then(data=> {
+    //         this.setState({phoneNum: data});
+    //     });
+    // }
 
     render(){
         this.getPhonePaymentStatus();

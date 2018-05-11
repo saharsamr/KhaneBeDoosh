@@ -28,7 +28,7 @@ public class EstateDetail extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.println(jsonEstateData);
         }catch (Exception e){
-            throw new ServletException();
+            System.out.println(e.getMessage());
         }
     }
 
