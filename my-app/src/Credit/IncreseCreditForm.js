@@ -2,6 +2,7 @@ import React from 'react';
 import "./../Styles/vendor/bootstrap/css/bootstrap.min.css";
 import "./../Styles/css/headersAndFooters.css";
 import "./../Styles/css/account.css";
+import {Redirect} from 'react-router';
 
 class IncreaseCreditForm extends React.Component {
 
@@ -14,6 +15,15 @@ class IncreaseCreditForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleValueChange = this.handleValueChange.bind(this);
         this.getBalance = this.getBalance.bind(this);
+        this.renderLoginPage = this.renderLoginPage.bind(this);
+    }
+
+    renderLoginPage() {
+        if(!localStorage.key("jwt")){
+            return (<Redirect to={{
+                pathname: '/loginUser'
+            }} />);
+        }
     }
 
     handleSubmit(event) {
@@ -42,6 +52,7 @@ class IncreaseCreditForm extends React.Component {
     }
 
     render(){
+        this.renderLoginPage();
         this.getBalance();
         return(
             <div>
@@ -68,19 +79,21 @@ class IncreaseCreditForm extends React.Component {
     }
 
     getBalance() {
-        let url = 'http://localhost:3000/increaseCredit';
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json;charset=utf-8',
-                'jwt': localStorage.getItem("jwt")
-            }
-        }).then(response => {
-            return response.json();
-        }).then(data=> {
-            this.setState({current: data});
-        });
+        if(localStorage.key("jwt")) {
+            let url = 'http://localhost:3000/increaseCredit';
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json;charset=utf-8',
+                    'jwt': localStorage.getItem("jwt")
+                }
+            }).then(response => {
+                return response.json();
+            }).then(data => {
+                this.setState({current: data});
+            });
+        }
     }
 }
 
