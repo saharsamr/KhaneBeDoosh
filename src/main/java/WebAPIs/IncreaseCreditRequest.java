@@ -28,12 +28,14 @@ public class IncreaseCreditRequest extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         JSONObject method = new JSONObject(req.get("Method").toString());
-        try{
+        ResultSet user = null;
+        try {
+            user = UsersDataHandler.getUserByUsername(response.getHeader("username"));
             if(validateData(method)) {
-                bankResponse = postBankServer(method);
+                bankResponse = postBankServer(method, user);
                 out.println(bankResponse);
                 if(bankResponse.get("result").equals("OK")) {
-                    ResultSet user = UsersDataHandler.getUserByUsername(response.getHeader("username"));
+
                     int newBalance = user.getInt("balance") + Integer.parseInt(method.get("balance").toString());
                     UsersDataHandler.setBalance(user.getString("id"), newBalance);
                     response.setStatus(200);
@@ -82,7 +84,7 @@ public class IncreaseCreditRequest extends HttpServlet {
         return true;
     }
 
-    public JSONObject postBankServer(JSONObject obj) throws Exception{
+    public JSONObject postBankServer(JSONObject obj, ResultSet user) throws Exception{
         URL url = new URL("http://139.59.151.5:6664/bank/pay");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setDoInput(true);
@@ -92,7 +94,7 @@ public class IncreaseCreditRequest extends HttpServlet {
         connection.setRequestProperty("apiKey", Website.getBankApiKey());
         connection.connect();
         DataOutputStream output = new DataOutputStream(connection.getOutputStream());
-        String data = "{\"userId\":" + Website.getCurrentUserID() + ",\"value\":"
+        String data = "{\"userId\":" + user.getString("id") + ",\"value\":"
                 + obj.get("balance") + "}";
         output.writeBytes(data);
         output.flush();

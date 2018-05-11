@@ -7,7 +7,8 @@ class HouseData extends React.Component {
         this.state = {
             id: '',
             enoughCredit: true,
-            paid: false
+            paid: false,
+            phoneNum: ''
         };
         this.getPhonePaymentStatus = this.getPhonePaymentStatus.bind(this);
         this.handlePhoneNumRequest = this.handlePhoneNumRequest.bind(this);
@@ -25,13 +26,15 @@ class HouseData extends React.Component {
                 'jwt': localStorage.getItem("jwt")
             }
         }).then(response => response.json());
+        // this.getPhoneNumber();
     }
 
     handlePhoneNumRequest() {
         let data = {
             id: this.props.data.id
         };
-        fetch('http://localhost:3000/estatephonenumber', {
+        let url = 'http://localhost:3000/estatephonenumber?id=' + this.props.data.id;
+        fetch(url, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -39,20 +42,18 @@ class HouseData extends React.Component {
                 'jwt': localStorage.getItem("jwt")
             },
             body: JSON.stringify(data)
-        }).then(function (response) {
+        }).then(response =>  {
             if(response.ok) {
-                //this.setState({paid:true});
-                console.log(200);
+                this.setState({paid:true});
             }
             else {
-                console.log(500);
-                //this.setState({enoughCredit: false});
+                this.setState({enoughCredit: false});
             }
         });
     }
 
     getPhoneNumber() {
-        let url = 'http://localhost:3000/estatephonenumber';
+        let url = 'http://localhost:3000/estatephonenumber?id=' + this.props.data.id;
         fetch(url, {
             method: 'GET',
             headers: {
@@ -63,7 +64,7 @@ class HouseData extends React.Component {
         }).then(response => {
             return response.json();
         }).then(data=> {
-            this.setState({current: data});
+            this.setState({phoneNum: data});
         });
     }
 
@@ -87,7 +88,7 @@ class HouseData extends React.Component {
                             this.state.paid ?
                                 <td width="40%"> {this.props.data.phone}</td>
                                 :
-                                <td width="40%">{this.state.paid?this.getPhoneNumber():"*********"}</td>
+                                <td width="40%">{this.state.paid ? this.state.phoneNum.phone : "*********"}</td>
                         }
                     </tr>
                     <tr className="spacer20"></tr>
@@ -144,7 +145,7 @@ class HouseData extends React.Component {
                         :
                         this.state.paid ?
                             <div className="btn btn-block btn-sm btn-warning position-relative">
-                                شماره خریداری شده است.
+
                             </div>
                             :
                             <div className="btn btn-block btn-sm btn-warning position-relative">

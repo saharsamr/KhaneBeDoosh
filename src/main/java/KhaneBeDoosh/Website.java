@@ -13,7 +13,6 @@ public class Website {
 
     private static ArrayList<Estate> estates;
     private static ArrayList<User> users;
-    private static String logedInUserID;
     private static String bankApiKey;
     private static ArrayList<Estate> searchResult;
 
@@ -30,13 +29,6 @@ public class Website {
 
     public static List<User> getUsers() {
         return users;
-    }
-
-    public static User getCurrentUser() {
-        for (int i = 0; i < users.size(); i++)
-            if (users.get(i).getId().equals(logedInUserID))
-                return users.get(i);
-        return null;
     }
 
     public static Estate getEstate(String id){
@@ -84,16 +76,5 @@ public class Website {
         values.add(description);
         values.add(UsersDataHandler.getUserByUsername(username).getString("id"));
         return values;
-    }
-
-    public static void increaseCredit(String userId, int balance) {
-        for (User user : users){
-            if (user.getId().equals(userId))
-                user.increaseBalance(balance);
-        }
-    }
-
-    public static String getCurrentUserID (){
-        return logedInUserID;
     }
 }

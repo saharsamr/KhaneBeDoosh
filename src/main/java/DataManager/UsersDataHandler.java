@@ -67,7 +67,6 @@ public class UsersDataHandler {
     }
 
     public static void setBalance(String id, int balance) throws Exception{
-        System.out.println("Increase");
         String sqlCommand = "UPDATE users SET balance = ? WHERE id = ? ";
         PreparedStatement prp = DataBaseHandler.getConnection().prepareStatement(sqlCommand);
         prp.setInt(1, balance);

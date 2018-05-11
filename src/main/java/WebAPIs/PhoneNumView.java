@@ -2,6 +2,7 @@ package WebAPIs;
 
 import DataManager.DataBaseHandler;
 import DataManager.UsersDataHandler;
+import DataManager.HouseListDataHandler;
 import Exceptions.LackOfBalanceException;
 import KhaneBeDoosh.Website;
 import org.json.JSONObject;
@@ -27,8 +28,10 @@ public class PhoneNumView extends HttpServlet {
         PrintWriter out = response.getWriter();
         JSONObject paymentStatus = new JSONObject();
         try {
-            if(UsersDataHandler.checkIfPaid(eid, uid))
+            if(UsersDataHandler.checkIfPaid(eid, uid)) {
                 paymentStatus.put("paid", true);
+                paymentStatus.put("phone", HouseListDataHandler.getHouseByID(eid).getString("phone"));
+            }
             else
                 paymentStatus.put("paid", false);
         } catch (Exception e) {
@@ -39,7 +42,7 @@ public class PhoneNumView extends HttpServlet {
 
     public void doPut(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        JSONObject estateInfo = JsonAPI.parseJson(request);
+        JSONObject estateInfo = new JSONObject(JsonAPI.parseJson(request).get("Method").toString());
         String eid = estateInfo.get("id").toString();
         String uid = null;
         try {
@@ -53,7 +56,7 @@ public class PhoneNumView extends HttpServlet {
         int currentBalance;
         try{
             if(!UsersDataHandler.checkIfPaid(eid, uid)) {
-                currentBalance = UsersDataHandler.getUserByID(Website.getCurrentUserID()).getInt("balance");
+                currentBalance = UsersDataHandler.getUserByID(uid).getInt("balance");
                 if(currentBalance < 1000)
                     throw new LackOfBalanceException();
                 UsersDataHandler.setBalance(uid, currentBalance-1000);
@@ -66,7 +69,7 @@ public class PhoneNumView extends HttpServlet {
             paymentSuccess.put("message", "Lack of balance.");
             response.setStatus(400);
         } catch (Exception e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace());
         }
         out.println(paymentSuccess);
     }

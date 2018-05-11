@@ -93,6 +93,12 @@ public class HouseListDataHandler {
         return x;
     }
 
+    public static ResultSet getHouseByID(String id) throws Exception{
+        String sqlCommand = String.format("SELECT * FROM estatesList WHERE id = \"%s\" ", id);
+        Statement stm = DataBaseHandler.getConnection().createStatement();
+        return stm.executeQuery(sqlCommand);
+    }
+
     public static void addToList(ArrayList<String> values){
         ArrayList<String> attrs = makeEstateAttributeList();
         DataBaseHandler.addItem("estatesList", attrs, values);
