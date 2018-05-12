@@ -2,6 +2,9 @@ import React from 'react'
 import {
     BrowserRouter as Router,
     Route,
+    Link,
+    Switch,
+    Redirect
 } from 'react-router-dom'
 import SearchResult from "./Search/SearchResult";
 import IncreaseCredit from "./Credit/IncreaseCredit";
@@ -9,8 +12,6 @@ import HouseDetailPage from "./HouseDirectory/HouseDetailPage";
 import AddHouses from "./AddHouses/AddHouses";
 import MainPage from "./MainPage/MainPage";
 import Login from "./Login/Login";
-import {injector} from 'react-services-injector';
-import services from './Services';
 
 
 const App = () =>

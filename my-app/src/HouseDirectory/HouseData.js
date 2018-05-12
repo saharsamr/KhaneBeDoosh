@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from "react-router-dom";
 
 class HouseData extends React.Component {
 
@@ -12,8 +13,6 @@ class HouseData extends React.Component {
         };
         this.getPhonePaymentStatus = this.getPhonePaymentStatus.bind(this);
         this.handlePhoneNumRequest = this.handlePhoneNumRequest.bind(this);
-        // this.getPhoneNumber = this.getPhoneNumber.bind(this);
-
     }
 
     getPhonePaymentStatus(){
@@ -45,29 +44,13 @@ class HouseData extends React.Component {
                 'jwt': localStorage.getItem("jwt")
             },
             body: JSON.stringify(data)
-        }).then(response =>  {
-            if(response.ok)
-                this.setState({paid:true});
+        }).then(response => {
+            if (response.ok)
+                this.setState({paid: true});
             else
                 this.setState({enoughCredit: false});
         });
     }
-
-    // getPhoneNumber() {
-    //     let url = 'http://localhost:3000/estatephonenumber?id=' + this.props.data.id;
-    //     fetch(url, {
-    //         method: 'GET',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json;charset=utf-8',
-    //             'jwt': localStorage.getItem("jwt")
-    //         }
-    //     }).then(response => {
-    //         return response.json();
-    //     }).then(data=> {
-    //         this.setState({phoneNum: data});
-    //     });
-    // }
 
     render(){
         this.getPhonePaymentStatus();
@@ -144,13 +127,18 @@ class HouseData extends React.Component {
                             مشاهده شماره مالک/مشاور
                         </div>
                         :
-                        this.state.paid ?
-                            <div className="btn btn-block btn-sm btn-warning position-relative">
+                            localStorage.key("jwt") ?
+                            this.state.paid ?
+                                <div className="btn btn-block btn-sm btn-warning position-relative">
 
-                            </div>
+                                </div>
+                                :
+                                <div className="btn btn-block btn-sm btn-warning position-relative">
+                                    اعتبار شما برای مشاهده شماره مالک/مشاور کافی نیست.
+                                </div>
                             :
                             <div className="btn btn-block btn-sm btn-warning position-relative">
-                                اعتبار شما برای مشاهده شماره مالک/مشاور کافی نیست.
+                                <a href={"/loginUser"}>برای خرید شماره‌تلفن باید وارد شده‌باشید. برای ورود اینجا کلیک کنید.</a>
                             </div>
                 }
 

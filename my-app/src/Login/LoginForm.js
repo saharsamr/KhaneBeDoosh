@@ -4,8 +4,8 @@ import "./../Styles/css/login.css";
 
 class LoginForm extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             result: [],
             username: "",
