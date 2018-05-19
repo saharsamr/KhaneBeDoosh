@@ -1,3 +1,4 @@
+var Sequelize = require('sequelize');
 var sequelize = require('./DBConnection');
 
 var Users = sequelize.define('users', {

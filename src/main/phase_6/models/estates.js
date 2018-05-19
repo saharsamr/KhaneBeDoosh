@@ -1,4 +1,5 @@
 var sequelize = require('./DBConnection');
+var Sequelize = require('sequelize');
 var Users = require('./users');
 
 var Estates = sequelize.define('users', {

@@ -5,6 +5,4 @@ app.get("/", function (req, res) {
     res.send("Hello world!");
 });
 
-sequelize.sync();
-
-var ex = app.listen(3000);
+var ex = app.listen(8080);
