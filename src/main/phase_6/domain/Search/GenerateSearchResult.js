@@ -6,8 +6,9 @@ async function generateSearchResult(req, res) {
     let area = req.query.area;
     let price = req.query.price;
     let dealType = req.query.dealType;
+    let result;
 
-    let searchResult = await (dealType) ?
+    let searchResult = await ((dealType) ?
         Estates.findAll({
             where: {
                 buildingType: buildingType,
@@ -24,11 +25,11 @@ async function generateSearchResult(req, res) {
                 area: {$gte: area},
                 sellPrice: {$lte: price}
             }
-        });
+        })).then(function(data){
+        result = JSON.stringify(data);
+    });
 
-    console.log(JSON.stringify(searchResult));
-
-    res.json(JSON.stringify(searchResult));
+    res.json(result);
 }
 
 module.exports = generateSearchResult;
