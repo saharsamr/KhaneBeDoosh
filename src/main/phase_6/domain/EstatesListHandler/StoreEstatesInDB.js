@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 let Estates = require('./../../models/estates');
 
-async function getHousesList(req, res) {
+async function getHousesList() {
     let response = await fetch('http://139.59.151.5:6664/khaneBeDoosh/v2/house');
     let jsonRes = await response.json();
     let dataArray = await jsonRes.data;
@@ -17,10 +17,9 @@ async function getHousesList(req, res) {
             dealType: record.dealType, buildingType: buildingType,
             address: record.address, imageURL: record.imageURL
         });
-        console.log("saved.");
     });
 
-    res.send(dataArray);
+    console.log("Estates instances saved successfully.");
 }
 
 module.exports = getHousesList;
