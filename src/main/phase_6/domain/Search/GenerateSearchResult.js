@@ -26,7 +26,7 @@ async function generateSearchResult(req, res) {
                 sellPrice: {$lte: price}
             }
         })).then(function(data){
-        result = JSON.stringify(data);
+        result = data;
     });
 
     res.json(result);
