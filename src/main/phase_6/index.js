@@ -7,4 +7,6 @@ app.get("/", function (req, res) {
 
 app.get("/search", require('./domain/Search/GenerateSearchResult'));
 
+app.get("/getCredit", require('./domain/UserHandler/UsersData').getBalance);
+
 app.listen(8080);

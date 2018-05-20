@@ -16,7 +16,11 @@ var Estates = sequelize.define('estates', {
     description: {type: Sequelize.STRING},
     type: {type: Sequelize.INTEGER},
     owner_id: {type: Sequelize.STRING, refrences: {model: Users, Key: 'id'}}
-});
+},
+{
+    timestamps: false
+}
+);
 
 Estates.sync();
 

@@ -8,7 +8,11 @@ var Users = sequelize.define('users', {
         balance: {type: Sequelize.DOUBLE},
         name: {type: Sequelize.STRING},
         is_admin: {type: Sequelize.INTEGER, validate: {isIn: [[0, 1]]}}
-});
+},
+{
+        timestamps: false
+}
+);
 
 Users.sync();
 
