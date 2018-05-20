@@ -5,4 +5,6 @@ app.get("/", function (req, res) {
     res.send("Hello world!");
 });
 
-var ex = app.listen(8080);
+app.get("/search", require('./domain/search/getDataFromServer'));
+
+app.listen(8080);
