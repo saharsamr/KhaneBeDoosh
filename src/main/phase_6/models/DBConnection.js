@@ -1,5 +1,8 @@
 var Sequelize = require('sequelize');
 
+const path = require('path');
+const dbPath = path.resolve(__dirname, '../data/KhaneBeDoosh.db');
+
 var sequelize = new Sequelize('database', null, null, {
     dialect: 'sqlite',
 
@@ -9,7 +12,7 @@ var sequelize = new Sequelize('database', null, null, {
         idle: 10000
     },
 
-    storage: '../../data/KhaneBeDoosh.db'
+    storage: dbPath
 });
 
 module.exports = sequelize;
