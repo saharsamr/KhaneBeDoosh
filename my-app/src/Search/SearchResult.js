@@ -33,7 +33,6 @@ class SearchResult extends React.Component{
     render() {
         return (
             <div>
-                <Header />
                 <PageTitle title="نتایج جستجو"/>
                 <div>
                     <p className="lables">برای مشاهده اطلاعات بیشتر درباره‌ی هر ملک روی آن کلیک کنید.</p>

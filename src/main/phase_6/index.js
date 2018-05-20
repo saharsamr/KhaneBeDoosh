@@ -5,6 +5,7 @@ app.get("/", function (req, res) {
     res.send("Hello world!");
 });
 
+// app.use("/search", require('./domain/EstatesListHandler/StoreEstatesInDB'));
 app.get("/search", require('./domain/Search/GenerateSearchResult'));
 
 app.get("/getCredit", require('./domain/UserHandler/UsersData').getBalance);

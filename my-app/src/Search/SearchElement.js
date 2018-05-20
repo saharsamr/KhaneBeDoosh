@@ -37,11 +37,11 @@ class SearchElement extends React.Component {
                                 {
                                     this.props.data.dealType === 1 ?
                                         <tr>
-                                            <td width="60%">رهن {this.props.data.price.basePrice} <span className="unit">تومان</span></td>
-                                            <td width="40%">اجاره {this.props.data.price.rentPrice} <span className="unit">تومان</span></td>
+                                            <td width="60%">رهن {this.props.data.basePrice} <span className="unit">تومان</span></td>
+                                            <td width="40%">اجاره {this.props.data.rentPrice} <span className="unit">تومان</span></td>
                                         </tr>
                                     :
-                                        <td width="60%">خرید {this.props.data.price.sellPrice} <span className="unit">تومان</span></td>
+                                        <td width="60%">خرید {this.props.data.sellPrice} <span className="unit">تومان</span></td>
                                 }
                         </table>
                     </div>
