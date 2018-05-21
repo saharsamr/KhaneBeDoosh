@@ -28,10 +28,12 @@ class IncreaseCreditForm extends React.Component {
             },
             body: JSON.stringify(data),
         }).then(function (response) {
-            if(response.ok)
+            if(response.status == 200)
                 alert("موجودی با موفقیت افزایش یافت.");
-            else
+            else if(response.status == 500)
                 alert("عملیات ناموفق بود. دوباره تلاش کنید.");
+            else if(response.status == 403)
+                alert("مقدار وارد شده نامعتبر است. دوباره تلاش کنید.");
 
         });
     }

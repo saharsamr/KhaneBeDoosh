@@ -73,30 +73,35 @@ functions = {
 
     increaseCredit: async function(req, res){
         var balance = req.body.balance;
-        var status;
-        await fetch("http://139.59.151.5:6664/bank/pay",
-            {
-                method: 'POST',
-                body: {
-                    "userId": "0",
-                    "value": balance
-                },
-                header: {
-                    'Content-Type': 'application/json',
-                    "apiKey": "d1370810-34c0-11e8-813c-81721a10cc01"
-                }
-            }).then(async function (data) {
-                if(data.ok)
+        var validation = require('./../Validations').increseCreditValidation(balance);
+        if(validation) {
+            var status;
+            await fetch("http://139.59.151.5:6664/bank/pay",
+                {
+                    method: 'POST',
+                    body: {
+                        "userId": "0",
+                        "value": balance
+                    },
+                    header: {
+                        'Content-Type': 'application/json',
+                        "apiKey": "d1370810-34c0-11e8-813c-81721a10cc01"
+                    }
+                }).then(async function (data) {
+                if (data.ok)
                     status = "ok";
-        });
-        if(status === 'ok') {
-            var user = await Users.findOne({where: {username: 'behnamm'}});
-            user = user.toJSON();
-            await Users.update({balance: user.balance+parseInt(balance)}, {where: {id: '0'}});
-            res.status(200).send("success");
+            });
+            if (status === 'ok') {
+                var user = await Users.findOne({where: {username: 'behnamm'}});
+                user = user.toJSON();
+                await Users.update({balance: user.balance + parseInt(balance)}, {where: {id: '0'}});
+                res.status(200).send("success");
+            }
+            else
+                res.status(500).send("failed");
         }
         else
-            res.status(500).send("failed");
+            res.status(403).send("Bad Input Parameter.");
     }
 };
 

@@ -61,9 +61,10 @@ class SearchResult extends React.Component{
                 'Content-Type': 'application/json;charset=utf-8',
             }
         }).then(response => {
-            return response.json();
-        }).then(data=> {
-             this.setState({result: data});
+            if(response.ok)
+                this.setState({result: response.json()});
+            else
+                alert("پارامترهای ورودی مجاز نیست. مجددا تلاش کنید.");
         });
     }
 }
