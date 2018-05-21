@@ -67,7 +67,7 @@ class IncreaseCreditForm extends React.Component {
     }
 
     getBalance() {
-        let url = 'http://localhost:3000/increaseCredit';
+        let url = 'http://localhost:3000/getCredit';
         fetch(url, {
             method: 'GET',
             headers: {

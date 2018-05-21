@@ -19,4 +19,6 @@ app.put("/estatephonenumber", require('./domain/UserHandler/UsersData').buyHouse
 
 app.get("/estatedetail", require('./domain/EstatesListHandler/EstateDetail'));
 
+app.post("/increaseCredit", require('./domain/UserHandler/UsersData').increaseCredit);
+
 app.listen(8080);
