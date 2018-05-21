@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
 var sequelize = require('./DBConnection');
+var Estates = require('./estates');
 
 var Users = sequelize.define('users', {
         id: {type: Sequelize.STRING, primaryKey: true},

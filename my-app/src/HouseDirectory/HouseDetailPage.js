@@ -18,12 +18,6 @@ class HouseDetailPage extends React.Component {
         this.getDetail();
     }
 
-    // componentWillMount(){
-    //     let id_ = this.props.location.state.id;
-    //     this.setState({id: id_});
-    //     this.getDetail();
-    // }
-
     render(){
         return(
             <div>
