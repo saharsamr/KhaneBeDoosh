@@ -1,10 +1,18 @@
 const fetch = require('node-fetch');
 let Estates = require('./../../models/estates');
 
-async function getHousesList() {
+var expireTime = Math.floor(Date.now());
+
+var timerObject = setTimeout(async function getHousesList() {
     let response = await fetch('http://139.59.151.5:6664/khaneBeDoosh/v2/house');
     let jsonRes = await response.json();
     let dataArray = await jsonRes.data;
+    expireTime = await  jsonRes.expireTime;
+
+    Estates.destroy({
+        where: {},
+        truncate: true
+    });
 
     dataArray.forEach(function(record) {
         let price = record.price;
@@ -20,6 +28,8 @@ async function getHousesList() {
     });
 
     console.log("Estates instances saved successfully.");
-}
+}, expireTime - Math.floor(Date.now()));
 
-module.exports = getHousesList;
+
+
+module.exports = timerObject;

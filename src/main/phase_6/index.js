@@ -6,6 +6,8 @@ app.get("/", function (req, res) {
     res.send("Hello world!");
 });
 
+var timer = require('./domain/EstatesListHandler/StoreEstatesInDB');
+
 // app.use("/search", require('./domain/EstatesListHandler/StoreEstatesInDB'));
 app.get("/search", require('./domain/Search/GenerateSearchResult'));
 
