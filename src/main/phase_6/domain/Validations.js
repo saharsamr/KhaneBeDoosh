@@ -9,11 +9,10 @@ function isNumber(num) {
 
 functions = {
     searchParamsValidation: function(buildingType, dealType, area, price){
-        var building = (buildingType === 'ویلایی' || buildingType === 'آپارتمان');
         var deal = (dealType === '0' || dealType === '1');
         var area_ = isNumber(area);
         var price_ = isNumber(price);
-        return (building && deal && area_ && price_);
+        return (deal && area_ && price_);
     },
 
     increseCreditValidation: function(value){

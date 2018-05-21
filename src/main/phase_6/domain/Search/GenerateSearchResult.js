@@ -33,7 +33,7 @@ async function generateSearchResult(req, res) {
             result = data;
         });
 
-        res.json(result);
+        res.status(200).json(result);
     }
 
     else

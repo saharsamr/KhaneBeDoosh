@@ -50,6 +50,7 @@ class SearchResult extends React.Component{
     }
 
     doSearch(params) {
+        var flag = true;
         let url = 'http://localhost:3000/search?';
         Object.keys(params).forEach(key => {
             url = url + key + "=" + params[key] + "&";
@@ -61,10 +62,15 @@ class SearchResult extends React.Component{
                 'Content-Type': 'application/json;charset=utf-8',
             }
         }).then(response => {
-            if(response.ok)
-                this.setState({result: response.json()});
-            else
+            if(response.status == 200)
+                return response.json();
+            else {
+                flag = false;
                 alert("پارامترهای ورودی مجاز نیست. مجددا تلاش کنید.");
+            }
+        }).then(data => {
+            if(flag)
+                this.setState({result: data});
         });
     }
 }
