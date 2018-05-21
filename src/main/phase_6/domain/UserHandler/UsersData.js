@@ -9,7 +9,7 @@ functions = {
         let paymentStatus;
         await Users.findOne({
             where: {
-                id: "1"
+                username: "behnam"
             }
         }).then(function (data) {
             userData = data;
@@ -19,7 +19,10 @@ functions = {
     
     checkIfPaid: async function(req, res) {
         let estateID = req.query.id;
-        let result;
+        let result = {
+            paid: false,
+            phone: ''
+        };
         await hasPaidFor.findOne({
             where: {
                 uid: '1',
@@ -30,17 +33,28 @@ functions = {
                 result.paid = true;
                 result.phone = EstatesHandler.getPhone(estateID);
             }
-            else
-                result.paid = false;
         });
         res.json(result);
     },
 
     buyHouseID: async function(req, res) {
+        console.log("salam");
         var estateID = req.body.id;
-        var result;
-        var user = await Users.findOne({where: {username: 'behnam'}});
-        if(!user){
+        console.log(estateID);
+        var result = {
+            paid: false,
+            message: 'success'
+        };
+        var paidInstance = await hasPaidFor.findOne({
+            where: {
+                eid: estateID,
+                uid: '1'
+            }
+        });
+        console.log(JSON.stringify(user));
+        if(!paidInstance){
+            var user = await Users.findOne({where: {username: 'behnam'}});
+            console.log("!user");
             user = user.toJSON();
             if(user.balance >= 1000){
                 await Users.update({id: user.balance-1000}, {where: {id: '1'}});
@@ -48,7 +62,6 @@ functions = {
                 res.status(200).json(result);
             }
             else{
-                result.paid = false;
                 result.message = "Lack of balance.";
                 res.status(400).json(result);
             }
