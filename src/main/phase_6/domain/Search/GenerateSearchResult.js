@@ -1,6 +1,6 @@
 var Estates = require('./../../models/estates');
 
-async function generateSearchResult(req, res) {
+async function generateSearchResult(req, res, next) {
 
     let buildingType = (req.query.buildingType === 'ویلایی') ? 0 : 1;
     let area = req.query.area;
@@ -30,6 +30,7 @@ async function generateSearchResult(req, res) {
         });
 
     res.json(result);
+    next();
 }
 
 module.exports = generateSearchResult;

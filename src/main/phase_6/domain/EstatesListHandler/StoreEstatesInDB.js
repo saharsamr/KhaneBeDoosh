@@ -15,7 +15,7 @@ async function getHousesList() {
         Estates.create({id: record.id, area: record.area,
             sellPrice: sellPrice, basePrice: basePrice, rentPrice: rentPrice,
             dealType: record.dealType, buildingType: buildingType,
-            address: record.address, imageURL: record.imageURL
+            address: record.address, imageURL: record.imageURL, phone: record.phone
         });
     });
 

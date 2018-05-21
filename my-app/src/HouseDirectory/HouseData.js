@@ -67,8 +67,8 @@ class HouseData extends React.Component {
                         <tr className=" border-bottom">
                             <td width="60%" className="">شماره مالک/مشاور</td>
                             {
-                                this.state.paid ?
-                                    <td width="40%"> {this.props.data.phone}</td>
+                                this.state.phoneNum.paid ?
+                                    <td width="40%"> {this.state.phoneNum.phone}</td>
                                     :
                                     <td width="40%">{this.state.paid ? this.state.phoneNum.phone : "*********"}</td>
                             }
@@ -125,9 +125,9 @@ class HouseData extends React.Component {
                                 مشاهده شماره مالک/مشاور
                             </div>
                             :
-                            this.state.paid ?
+                            this.state.phoneNum.paid ?
                                 <div className="btn btn-block btn-sm btn-warning position-relative">
-                                    {this.props.data.phone}
+                                    {this.state.phoneNum.phone}
                                 </div>
                                 :
                                 <div className="btn btn-block btn-sm btn-warning position-relative">

@@ -1,15 +1,14 @@
 var Users = require('./../../models/users');
 var Estates = require('./../../models/estates');
 var hasPaidFor = require('./../../models/paidForHousesRelation');
-var EstatesHandler = require('./../EstatesListHandler/EstatesData');
+const fetch = require('node-fetch');
 
 functions = {
     getBalance: async function(req, res) {
         let userData;
-        let paymentStatus;
         await Users.findOne({
             where: {
-                username: "behnam"
+                username: "behnamm"
             }
         }).then(function (data) {
             userData = data;
@@ -25,22 +24,23 @@ functions = {
         };
         await hasPaidFor.findOne({
             where: {
-                uid: '1',
+                uid: '0',
                 eid: estateID
             }
-        }).then(function (data) {
-            if(data){
+        }).then(async function (data) {
+            if(data != null){
                 result.paid = true;
-                result.phone = EstatesHandler.getPhone(estateID);
+                let response = await fetch('http://139.59.151.5:6664/khaneBeDoosh/v2/house/'+estateID);
+                let jsonRes = await response.json();
+                let estateData = await jsonRes.data;
+                result.phone = estateData.phone;
             }
         });
         res.json(result);
     },
 
     buyHouseID: async function(req, res) {
-        console.log("salam");
         var estateID = req.body.id;
-        console.log(estateID);
         var result = {
             paid: false,
             message: 'success'
@@ -48,17 +48,20 @@ functions = {
         var paidInstance = await hasPaidFor.findOne({
             where: {
                 eid: estateID,
-                uid: '1'
+                uid: '0'
             }
         });
-        console.log(JSON.stringify(user));
+        console.log(JSON.stringify(paidInstance));
         if(!paidInstance){
-            var user = await Users.findOne({where: {username: 'behnam'}});
-            console.log("!user");
+            var user = await Users.findOne({where: {username: 'behnamm'}});
             user = user.toJSON();
             if(user.balance >= 1000){
-                await Users.update({id: user.balance-1000}, {where: {id: '1'}});
+                await Users.update({balance: user.balance-1000}, {where: {id: '0'}});
                 result.paid = true;
+                await hasPaidFor.create({uid: '0', eid: estateID})
+                    .then(function(data){
+                        console.log(JSON.stringify(data));
+                    });
                 res.status(200).json(result);
             }
             else{

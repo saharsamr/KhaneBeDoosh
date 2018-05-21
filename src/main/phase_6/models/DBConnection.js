@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 
 const path = require('path');
-const dbPath = path.resolve(__dirname, '../data/KhaneBeDoosh.db');
+const dbPath = path.resolve(__dirname, './../data/KhaneBeDoosh.db');
 
 var sequelize = new Sequelize('database', null, null, {
     dialect: 'sqlite',
