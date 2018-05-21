@@ -17,6 +17,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.put("/estatephonenumber", require('./domain/UserHandler/UsersData').buyHouseID);
 
-app.put("/estatedetail", require('./domain/EstatesListHandler/EstateDetail'));
+app.get("/estatedetail", require('./domain/EstatesListHandler/EstateDetail'));
 
 app.listen(8080);

@@ -32,6 +32,7 @@ class HouseDetailPage extends React.Component {
 
     getDetail() {
         let url = ('http://localhost:3000/estatedetail?id='+ this.props.location.state.id);
+        console.log(this.props.location.state.id);
         fetch(url, {
             method: 'GET',
             headers: {
